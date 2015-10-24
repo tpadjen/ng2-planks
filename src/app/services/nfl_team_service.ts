@@ -10,7 +10,7 @@ export class NFLTeamService {
 	teams: Array<NFLTeam> = [];
 
 	constructor(fakerService: FakerService) {
-		this.teams = fakerService.uniqueRandomTeams(TEAMS);
+		this.teams = fakerService.uniqueRandomTeams(TEAMS).sort(NFLTeam.alphabetical);
 	}
 
 	randomTeam(): NFLTeam {
