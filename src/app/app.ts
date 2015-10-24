@@ -1,24 +1,20 @@
-import {Component, bootstrap} from 'angular2/angular2';
+import {Component} from 'angular2/angular2';
+import {RouteConfig, RouterOutlet} from 'angular2/router';
 
-import {DraftListComponent} from './components/draft_list/draft_list';
+import {DraftListComponent} from './components/draft/list/list';
 
-import {FantasyTeamService} from './services/fantasy_team_service';
-import {PicksService} from './services/picks_service';
-import {NFLPlayerService} from './services/nfl_player_service';
+import {DraftBoardPage} from './components/pages/draft_board/draft_board';
 
+@RouteConfig([
+	{path: '/', component: DraftBoardPage, as: 'Draft'}
+])
 @Component({
 	selector: 'app',
-	directives: [DraftListComponent],
+	directives: [DraftListComponent, RouterOutlet],
 	template: `
 		<h1>My first Angular 2 App</h1>
 		<draft-list></draft-list>
+		<router-outlet></router-outlet>
 	`
 })
 export class AppComponent {}
-
-bootstrap(AppComponent, [
-		FantasyTeamService,
-		PicksService,
-		NFLPlayerService
-	]
-);
