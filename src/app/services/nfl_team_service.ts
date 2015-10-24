@@ -16,4 +16,11 @@ export class NFLTeamService {
 	randomTeam(): NFLTeam {
 		return this.teams[Math.floor(Math.random() * this.teams.length)];
 	}
+
+	getTeamByMascot(mascot: string) {
+		mascot = mascot.toLowerCase();
+		return this.teams.find(function(team) { 
+			return team.mascot.toLowerCase() === mascot;
+		});
+	}
 }

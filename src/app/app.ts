@@ -4,9 +4,13 @@ import {RouteConfig, RouterOutlet, RouterLink} from 'angular2/router';
 import {DraftListComponent} from './components/draft/list/list';
 
 import {DraftBoardPage} from './components/pages/draft_board/draft_board';
+import {TeamsPage} from './components/pages/teams/teams';
+import {TeamPage} from './components/pages/team/team';
 
 @RouteConfig([
-	{path: '/', component: DraftBoardPage, as: 'Draft'}
+	{path: '/', component: DraftBoardPage, as: 'Draft'},
+	{path: '/teams', component: TeamsPage, as: 'Teams'},
+	{path: '/teams/:mascot', component: TeamPage, as: 'Team'}
 ])
 @Component({
 	selector: 'app',
@@ -17,6 +21,9 @@ import {DraftBoardPage} from './components/pages/draft_board/draft_board';
 			<ul class="nav navbar-nav">
 				<li class="nav-item">
 					<a [router-link]="['/Draft']" class="nav-link">Draft Board</a>
+				</li>
+				<li class="nav-item">
+					<a [router-link]="['/Teams']" class="nav-link">NFL Teams</a>
 				</li>
 			</ul>
 		</nav>
