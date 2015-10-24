@@ -1,9 +1,8 @@
 import {Component, CORE_DIRECTIVES} from 'angular2/angular2';
 
-// import {Pick} from '../../../models/pick';
-// import {PickComponent} from '../../pick/pick';
-// import {PicksService} from '../../../services/picks_service'
-// import {FantasyTeamService} from '../../../services/fantasy_team_service'
+import {NFLPlayer} from '../../../models/nfl_player';
+import {PlayerComponent} from './player';
+import {NFLPlayerService} from '../../../services/nfl_player_service';
 
 @Component({
 	selector: 'draft-board',
@@ -12,6 +11,10 @@ import {Component, CORE_DIRECTIVES} from 'angular2/angular2';
 })
 export class DraftBoardComponent {
 
-	constructor() {}
+	constructor(private nflPlayerService: NFLPlayerService) {}
+
+	get players(): Array<NFLPlayer> {
+		return this.nflPlayerService.players;
+	}
 
 }
