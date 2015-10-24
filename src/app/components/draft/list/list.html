@@ -1,7 +1,5 @@
 <div class="draft-list">
 	<ul class="list-group">
-		<li *ng-for="#pick of picks" class="list-group-item pick">
-			<pick [pick]="pick"></pick>
-		</li>
+		<pick *ng-for="#pick of picks" [pick]="pick"></pick>
 	</ul>
 </div>

@@ -6,6 +6,7 @@ import {Pick} from '../models/pick';
 @Injectable()
 export class PicksService {
 	public picks: Array<Pick> = [];
+	private _current: number = 1;
 
 	constructor(private fantasyTeamService: FantasyTeamService) {
 		var size = this.fantasyTeamService.size();
@@ -22,5 +23,11 @@ export class PicksService {
 			this.picks.push(pick);
 		}
 	}
+
+	get currentPickNumber(): number {
+		return this._current;
+	}
+
+
 
 }
