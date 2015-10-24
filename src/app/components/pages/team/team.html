@@ -1,1 +1,6 @@
 <h1 class="text-center">{{ team.city }} {{ team.mascot }}</h1>
+<ul>
+	<li *ng-for="#player of players">
+		{{player.name}} - {{player.position}}
+	</li>
+</ul>

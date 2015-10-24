@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/angular2';
 
 import {NFLPlayer} from '../models/nfl_player';
+import {NFLTeam} from '../models/nfl_team';
 import {NFLTeamService} from './nfl_team_service';
 import {FakerService} from './faker_service';
 
@@ -14,6 +15,12 @@ export class NFLPlayerService {
 		this._createPlayers();
 		this._createDefenses();
 		this._shuffleArray(this.players)
+	}
+
+	getPlayersOnTeam(team: NFLTeam): Array<NFLPlayer> {
+		return this.players.filter(function(player) {
+			return player.team === team;
+		});
 	}
 
 	_randomPlayerPosition(): string {
