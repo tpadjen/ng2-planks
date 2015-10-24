@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "watch": {
+    "copy-dev": "src/**/*.*"
+  },
   "scripts": {
-    "tsc": "tsc -p src -w",
-    "start": "live-server --open=src"
+    "tsc": "tsc -p src --outDir build/dev/app -w",
+    "copy-dev": "./node_modules/copyfiles/copyup 'src/**/!(*.ts)' build/dev",
+    "start": "live-server --open=build/dev",
+    "watch": "npm-watch & npm run tsc"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +21,9 @@
     "systemjs": "0.19.2"
   },
   "devDependencies": {
+    "copyfiles": "^0.2.1",
     "live-server": "^0.8.2",
+    "npm-watch": "0.0.1",
     "typescript": "^1.6.2"
   }
 }
