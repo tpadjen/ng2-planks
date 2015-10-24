@@ -1,0 +1,10 @@
+.inner-pick {
+	color: #595241;
+}
+.number {
+	color: #FFFFFF;
+	float: left;
+}
+.team, .player {
+	float: right;
+}

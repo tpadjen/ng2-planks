@@ -1,6 +1,7 @@
-<ul>
-	<li *ng-for="#pick of picks">
-		{{pick.number}}
-		<pick [pick]="pick"></pick>
-	</li>
-</ul>
+<div class="draft-list">
+	<ul class="list-group">
+		<li *ng-for="#pick of picks" class="list-group-item pick">
+			<pick [pick]="pick"></pick>
+		</li>
+	</ul>
+</div>

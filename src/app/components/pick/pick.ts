@@ -5,7 +5,8 @@ import {Pick} from '../../models/pick';
 @Component({
 	selector: 'pick',
 	directives: [CORE_DIRECTIVES],
-	templateUrl: 'app/components/pick/pick.html'
+	templateUrl: 'app/components/pick/pick.html',
+	styleUrls: ['app/components/pick/pick.css']
 })
 export class PickComponent {
 	@Input() pick: Pick;

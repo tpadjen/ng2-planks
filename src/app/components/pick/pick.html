@@ -1,4 +1,6 @@
-<span class="pick">Pick: {{pick.round}}.{{pick.pickOfRound}}</span> 
-<span class="number">Number: {{pick.number}}</span> 
-<span class="player" *ng-if="player">Player: {{pick.player?.name}}</span> 
-<span class="team">Team: {{pick.team?.owner}}</span> 
+<span class="inner-pick">
+	<span class="pick">{{pick.round}}.{{pick.pickOfRound}}</span> 
+	<span class="player" *ng-if="player">Player: {{pick.player?.name}}</span> <br>
+	<span class="number">{{pick.number}}</span>
+	<span class="team">{{pick.team?.owner}}</span> <br>
+</span>
