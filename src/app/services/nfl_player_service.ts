@@ -1,7 +1,7 @@
 import {Injectable} from 'angular2/angular2';
 
-import {NFLPlayer} from '../models/nfl_player';
-import {NFLTeam} from '../models/nfl_team';
+import {NFLPlayer} from '../models/nfl_player/nfl_player';
+import {NFLTeam} from '../models/nfl_team/nfl_team';
 import {NFLTeamService} from './nfl_team_service';
 import {FakerService} from './faker_service';
 

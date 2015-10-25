@@ -1,6 +1,6 @@
 import {Component, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {NFLPlayer} from '../../../models/nfl_player';
+import {NFLPlayer} from '../../../models/nfl_player/nfl_player';
 import {NFLPlayerService} from '../../../services/nfl_player_service';
 
 @Component({

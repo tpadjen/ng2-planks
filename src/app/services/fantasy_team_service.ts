@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/angular2';
 
-import {FantasyTeam} from '../models/fantasy_team';
+import {FantasyTeam} from '../models/fantasy_team/fantasy_team';
 
 export class FantasyTeamService {
 	public teams: Array<FantasyTeam> = [

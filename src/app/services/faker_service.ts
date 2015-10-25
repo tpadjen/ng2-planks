@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/angular2';
 
-import {NFLTeam} from '../models/nfl_team';
+import {NFLTeam} from '../models/nfl_team/nfl_team';
 
 import {Cities} from './fake_data/cities';
 import {Mascots} from './fake_data/mascots';

@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/angular2';
 
-import {NFLTeam} from '../models/nfl_team';
+import {NFLTeam} from '../models/nfl_team/nfl_team';
 import {FakerService} from './faker_service';
 
 const TEAMS: number = 32;

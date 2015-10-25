@@ -1,6 +1,6 @@
 import {Component, CORE_DIRECTIVES, Input} from 'angular2/angular2';
 
-import {Pick} from '../../models/pick';
+import {Pick} from '../../models/pick/pick';
 import {PicksService} from '../../services/picks_service';
 
 @Component({

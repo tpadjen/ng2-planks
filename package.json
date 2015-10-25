@@ -12,6 +12,7 @@
     "clean-dev": "rm -rf build/dev",
     "sync-dev": "./node_modules/sync-files/bin/sync-files.js src build/dev",
     "start": "live-server --open=build/dev",
+    "test": "live-server --open=build/dev/unit-tests.html",
     "watch": "npm-watch"
   },
   "keywords": [],
@@ -23,6 +24,7 @@
     "systemjs": "0.19.2"
   },
   "devDependencies": {
+    "jasmine-core": "2.3.4",
     "live-server": "^0.8.2",
     "npm-watch": "0.0.1",
     "sync-files": "^1.0.3",

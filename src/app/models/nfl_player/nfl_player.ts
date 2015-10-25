@@ -1,4 +1,4 @@
-import {NFLTeam} from './nfl_team';
+import {NFLTeam} from '../nfl_team/nfl_team';
 
 export class NFLPlayer {
 	name: string;

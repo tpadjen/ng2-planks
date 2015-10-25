@@ -1,8 +1,8 @@
 import {Component, CORE_DIRECTIVES} from 'angular2/angular2';
 import {RouterLink, RouteParams} from 'angular2/router';
 
-import {NFLTeam} from '../../../models/nfl_team';
-import {NFLPlayer} from '../../../models/nfl_player';
+import {NFLTeam} from '../../../models/nfl_team/nfl_team';
+import {NFLPlayer} from '../../../models/nfl_player/nfl_player';
 import {NFLTeamService} from '../../../services/nfl_team_service';
 import {NFLPlayerService} from '../../../services/nfl_player_service';
 
