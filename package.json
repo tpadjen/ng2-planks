@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "watch": {
-    "copy-dev": "src/**/*.*"
+    "files-changed": "src/**/*.*"
   },
   "scripts": {
-    "tsc": "tsc -p src --outDir build/dev/app -w",
-    "copy-dev": "./node_modules/copyfiles/copyup 'src/**/!(*.ts)' build/dev",
+    "files-changed": "npm run sync-dev && npm run tsc",
+    "tsc": "tsc -p build/dev",
+    "clean-dev": "rm -rf build/dev",
+    "sync-dev": "./node_modules/sync-files/bin/sync-files.js src build/dev",
     "start": "live-server --open=build/dev",
-    "watch": "npm-watch & npm run tsc"
+    "watch": "npm-watch"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +23,9 @@
     "systemjs": "0.19.2"
   },
   "devDependencies": {
-    "copyfiles": "^0.2.1",
     "live-server": "^0.8.2",
     "npm-watch": "0.0.1",
+    "sync-files": "^1.0.3",
     "typescript": "^1.6.2"
   }
 }
