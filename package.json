@@ -11,7 +11,7 @@
     "tsc": "tsc -p build/dev",
     "clean-dev": "rm -rf build/dev",
     "sync-dev": "./node_modules/sync-files/bin/sync-files.js src build/dev",
-    "start": "live-server --open=build/dev",
+    "start": "live-server --open=build/dev --ignore=test,src,node_modules",
     "test": "./node_modules/karma/bin/karma start",
     "watch": "npm-watch"
   },
