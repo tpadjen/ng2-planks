@@ -11,8 +11,10 @@
     "tsc": "tsc -p build/dev",
     "clean-dev": "rm -rf build/dev",
     "sync-dev": "./node_modules/sync-files/bin/sync-files.js src build/dev",
-    "start": "live-server --open=build/dev --ignore=test,src,node_modules",
-    "test": "./node_modules/karma/bin/karma start",
+    "start": "live-server --open=build/dev --entry-file=index.html --ignore=test,src,node_modules",
+    "unit": "./node_modules/karma/bin/karma start",
+    "protractor": "protractor",
+    "e2e": "npm run protractor",
     "watch": "npm-watch"
   },
   "keywords": [],
