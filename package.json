@@ -3,19 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "watch": {
-    "files-changed": "{src,test}/**/*.*"
-  },
   "scripts": {
-    "files-changed": "npm run sync-dev && npm run tsc",
     "tsc": "tsc",
     "clean-dev": "rm -rf build/dev",
     "sync-dev": "./node_modules/sync-files/bin/sync-files.js src build/dev",
     "start": "live-server --open=build/dev --entry-file=index.html --ignore=test,src,node_modules",
     "unit": "./node_modules/karma/bin/karma start",
-    "protractor": "protractor",
-    "e2e": "npm run protractor",
-    "watch": "npm-watch"
+    "e2e": "protractor",
+    "watch-ts": "onchange '{build/dev,test}/**/*.ts' -- npm run ts-changed",
+    "watch-src": "onchange 'src/**/*.*' -- npm run src-changed",
+    "ts-changed": "npm run tsc",
+    "src-changed": "npm run sync-dev",
+    "watch": "npm run watch-ts & npm run watch-src"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +32,7 @@
     "karma-jasmine": "^0.3.6",
     "karma-verbose-reporter": "0.0.3",
     "live-server": "^0.8.2",
-    "npm-watch": "0.0.1",
+    "onchange": "^2.0.0",
     "sync-files": "^1.0.3",
     "typescript": "^1.6.2"
   }
