@@ -3,7 +3,7 @@ import {Injectable} from 'angular2/angular2';
 import {FantasyTeam} from '../models/fantasy_team/fantasy_team';
 
 export class FantasyTeamService {
-	public teams: Array<FantasyTeam> = [
+	_teams: Array<FantasyTeam> = [
 		{
 			owner: 'Team 1'
 		},
@@ -31,7 +31,15 @@ export class FantasyTeamService {
 
 	];
 
+	get teams(): Promise<any> {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve(this._teams);
+			}, 500);
+		});
+	}
+
 	size(): number {
-		return this.teams.length;
+		return this._teams.length;
 	}
 }

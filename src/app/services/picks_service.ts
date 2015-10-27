@@ -9,17 +9,18 @@ export class PicksService {
 	private _current: number = 1;
 
 	constructor(private fantasyTeamService: FantasyTeamService) {
-		var size = this.fantasyTeamService.size();
-		for (var i = 0; i < size*16; i++) {
-			var pick = new Pick(i + 1, this.fantasyTeamService);
-			var teamIndex = i % size;
-			if (Math.floor(i / size) % 2 == 1) {
-				teamIndex = (size - (i - Math.floor(i / size)*size) - 1) % size
+		this.fantasyTeamService.teams.then((teams) => {
+			for (var i = 0; i < teams.length*16; i++) {
+				var pick = new Pick(i + 1, this.fantasyTeamService);
+				var teamIndex = i % teams.length;
+				if (Math.floor(i / teams.length) % 2 == 1) {
+					teamIndex = (teams.length - (i - Math.floor(i / teams.length)*teams.length) - 1) % teams.length
+				}
+				pick.team = teams[teamIndex];
+				pick.player = null;
+				this.picks.push(pick);
 			}
-			pick.team = this.fantasyTeamService.teams[teamIndex];
-			pick.player = null;
-			this.picks.push(pick);
-		}
+		});
 	}
 
 	get currentPickNumber(): number {
