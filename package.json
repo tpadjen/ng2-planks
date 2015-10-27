@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "watch": {
-    "files-changed": "src/**/*.*"
+    "files-changed": "{src,test}/**/*.*"
   },
   "scripts": {
     "files-changed": "npm run sync-dev && npm run tsc",
-    "tsc": "tsc -p build/dev",
+    "tsc": "tsc",
     "clean-dev": "rm -rf build/dev",
     "sync-dev": "./node_modules/sync-files/bin/sync-files.js src build/dev",
     "start": "live-server --open=build/dev --entry-file=index.html --ignore=test,src,node_modules",
@@ -31,7 +31,6 @@
     "karma": "^0.13.14",
     "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "^0.3.6",
-    "karma-systemjs": "^0.8.1",
     "karma-verbose-reporter": "0.0.3",
     "live-server": "^0.8.2",
     "npm-watch": "0.0.1",

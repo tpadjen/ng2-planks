@@ -9,26 +9,35 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['systemjs', 'jasmine'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-        {pattern: 'build/dev/**/*.spec.js', included: true}
+        // paths loaded by Karma
+        {pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true},
+        {pattern: 'node_modules/angular2/bundles/angular2.js', included: true, watched: true},
+        {pattern: 'node_modules/angular2/bundles/testing.js', included: true, watched: true},
+        {pattern: 'karma-test-shim.js', included: true, watched: true},
+        // {pattern: 'src/test/matchers.js', included: true, watched: true},
+
+        // paths loaded via module imports
+        {pattern: 'build/dev/**/*.js', included: false, watched: true},
+
+        // paths loaded via Angular's component compiler
+        // (these paths need to be rewritten, see proxies section)
+        {pattern: 'build/dev/**/*.html', included: false, watched: true},
+        {pattern: 'build/dev/**/*.css', included: false, watched: true},
+
+        // paths to support debugging with source maps in dev tools
+        {pattern: 'build/dev/**/*.ts', included: false, watched: false},
+        {pattern: 'build/dev/**/*.js.map', included: false, watched: false}
     ],
 
-    systemjs: {
-        configFile: 'system.config.js',
-
-        files: [
-            {pattern: 'build/dev/**/*.spec.js', included: true}
-        ],
-
-        serveFiles: [
-            'node_modules/angular2/bundles/angular2.dev.js',
-            'build/dev/**/*.js'
-        ]
-
+    // proxied base paths
+    proxies: {
+        // required for component assests fetched by Angular's compiler
+        "/app/": "/base/build/dev/app/"
     },
 
     // list of files to exclude
@@ -72,7 +81,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: false,
 
     // Concurrency level
     // how many browser should be started simultanous
