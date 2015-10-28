@@ -1,31 +1,31 @@
 exports.config = {
-	baseUrl: 'http://localhost:8080/build/dev',
-	
-	allScriptsTimeout: 11000,
-	
-	framework: 'jasmine2',
-	
-	jasmineNodeOpts: {
-		defaultTimeoutInterval: 60000,
-		showTiming: false
-	},
+  baseUrl: 'http://localhost:8080/build/dev',
 
-	capabilities: {
-		browserName: 'chrome',
-		chromeOptions: {
-			// args: ['show-fps-counter=true']
-		}
-	},
+  allScriptsTimeout: 11000,
 
-	specs: ['test/**/*.e2e.js'],
-	
-	directConnect: true,
+  framework: 'jasmine2',
 
-	onPrepare: function() {
-		browser.ignoreSynchronization = true;
-	},
+  jasmineNodeOpts: {
+    defaultTimeoutInterval: 60000,
+    showTiming: false
+  },
 
-	// useAllAngular2AppRoots: true
-	rootElement: 'app'
+  capabilities: {
+    browserName: 'chrome',
+    chromeOptions: {
+      // args: ['show-fps-counter=true']
+    }
+  },
+
+  specs: ['test/**/*.e2e.js'],
+
+  directConnect: true,
+
+  onPrepare: function() {
+    browser.ignoreSynchronization = true;
+  },
+
+  // useAllAngular2AppRoots: true
+  rootElement: 'app'
 
 }

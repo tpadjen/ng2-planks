@@ -4,19 +4,19 @@ import {Pick} from '../../models/pick/pick';
 import {PicksService} from '../../services/picks_service';
 
 @Component({
-	selector: 'pick',
-	directives: [CORE_DIRECTIVES],
-	templateUrl: 'app/components/pick/pick.html',
-	styleUrls: ['app/components/pick/pick.css']
+  selector: 'pick',
+  directives: [CORE_DIRECTIVES],
+  templateUrl: 'app/components/pick/pick.html',
+  styleUrls: ['app/components/pick/pick.css']
 })
 export class PickComponent {
-	@Input() pick: Pick;
+  @Input() pick: Pick;
 
-	constructor(private picksService: PicksService) {
+  constructor(private picksService: PicksService) {
 
-	}
+  }
 
-	isCurrent():boolean {
-		return this.picksService.currentPickNumber == this.pick.number;
-	}
+  isCurrent():boolean {
+    return this.picksService.currentPickNumber == this.pick.number;
+  }
 }

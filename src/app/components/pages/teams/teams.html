@@ -1,6 +1,6 @@
 <h1 class="text-center">NFL Teams</h1>
 <div class="container">
-	<div *ng-for="#team of teams" class="col-xs-12 col-md-6 col-lg-4 col-xl-3 team">
-		<a class="btn btn-primary" [router-link]="['/Team', {mascot: team.mascot.toLowerCase()}]">{{ team.city }} {{ team.mascot }}</a>
-	</div>
+  <div *ng-for="#team of teams" class="col-xs-12 col-md-6 col-lg-4 col-xl-3 team">
+    <a class="btn btn-primary" [router-link]="['/Team', {mascot: team.mascot.toLowerCase()}]">{{ team.city }} {{ team.mascot }}</a>
+  </div>
 </ul>

@@ -1,17 +1,17 @@
 h1 {
-	padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 .team {
-	padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .team a {
-	background: #B8AE9C;
-	border-color: #B8AE9C;
-	color: #595241;
+  background: #B8AE9C;
+  border-color: #B8AE9C;
+  color: #595241;
 }
 
 .team a:hover {
-	background: #595241;
-	color: #FFFFFF;
+  background: #595241;
+  color: #FFFFFF;
 }

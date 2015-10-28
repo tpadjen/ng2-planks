@@ -9,56 +9,56 @@ const POSITIONS = ['QB', 'RB', 'WR', 'TE', 'DEF', 'K'];
 
 @Injectable()
 export class NFLPlayerService {
-	players: Array<NFLPlayer> = [];
+  players: Array<NFLPlayer> = [];
 
-	constructor(private nflTeamService: NFLTeamService, private fakerService: FakerService) {
-		this._createPlayers();
-		this._createDefenses();
-		this._shuffleArray(this.players)
-	}
+  constructor(private nflTeamService: NFLTeamService, private fakerService: FakerService) {
+    this._createPlayers();
+    this._createDefenses();
+    this._shuffleArray(this.players)
+  }
 
-	getPlayersOnTeam(team: NFLTeam): Array<NFLPlayer> {
-		return this.players.filter(function(player) {
-			return player.team === team;
-		});
-	}
+  getPlayersOnTeam(team: NFLTeam): Array<NFLPlayer> {
+    return this.players.filter(function(player) {
+      return player.team === team;
+    });
+  }
 
-	_randomPlayerPosition(): string {
-		var pos = '';
-		while (pos == '' || pos == 'DEF') {
-			pos = POSITIONS[Math.floor(Math.random() * POSITIONS.length)]
-		}
-		return pos;
-	}
+  _randomPlayerPosition(): string {
+    var pos = '';
+    while (pos == '' || pos == 'DEF') {
+      pos = POSITIONS[Math.floor(Math.random() * POSITIONS.length)]
+    }
+    return pos;
+  }
 
-	_shuffleArray(array) {
-	    for (var i = array.length - 1; i > 0; i--) {
-	        var j = Math.floor(Math.random() * (i + 1));
-	        var temp = array[i];
-	        array[i] = array[j];
-	        array[j] = temp;
-	    }
-	    return array;
-	}
+  _shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+      }
+      return array;
+  }
 
-	_createPlayers() {
-		for (var i = 0; i < 168; i++) {
-			this.players.push({
-				name: this.fakerService.name(),
-				position: this._randomPlayerPosition(),
-				team: this.nflTeamService.randomTeam()
-			})
-		}
-	}
+  _createPlayers() {
+    for (var i = 0; i < 168; i++) {
+      this.players.push({
+        name: this.fakerService.name(),
+        position: this._randomPlayerPosition(),
+        team: this.nflTeamService.randomTeam()
+      })
+    }
+  }
 
-	_createDefenses() {
-		for (var team in this.nflTeamService.teams) {
-			this.players.push({
-				name: this.nflTeamService.teams[team].mascot,
-				position: 'DEF',
-				team: this.nflTeamService.teams[team]
-			})
-		}
-	}
+  _createDefenses() {
+    for (var team in this.nflTeamService.teams) {
+      this.players.push({
+        name: this.nflTeamService.teams[team].mascot,
+        position: 'DEF',
+        team: this.nflTeamService.teams[team]
+      })
+    }
+  }
 
 }

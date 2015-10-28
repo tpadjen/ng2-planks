@@ -13,8 +13,8 @@ import {FantasyTeamService} from '../../../services/fantasy_team_service'
 })
 export class DraftListComponent {
 	picks: Array<Pick>;
-	
-	constructor(public picksService : PicksService) { 
+
+	constructor(public picksService : PicksService) {
 		this.picks = this.picksService.picks;
 	}
 

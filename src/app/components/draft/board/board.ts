@@ -4,16 +4,16 @@ import {NFLPlayer} from '../../../models/nfl_player/nfl_player';
 import {NFLPlayerService} from '../../../services/nfl_player_service';
 
 @Component({
-	selector: 'draft-board',
-	directives: [CORE_DIRECTIVES],
-	templateUrl: 'app/components/draft/board/board.html'
+  selector: 'draft-board',
+  directives: [CORE_DIRECTIVES],
+  templateUrl: 'app/components/draft/board/board.html'
 })
 export class DraftBoardComponent {
 
-	constructor(private nflPlayerService: NFLPlayerService) {}
+  constructor(private nflPlayerService: NFLPlayerService) {}
 
-	get players(): Array<NFLPlayer> {
-		return this.nflPlayerService.players;
-	}
+  get players(): Array<NFLPlayer> {
+    return this.nflPlayerService.players;
+  }
 
 }

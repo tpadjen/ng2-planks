@@ -7,20 +7,20 @@ const TEAMS: number = 32;
 
 @Injectable()
 export class NFLTeamService {
-	teams: Array<NFLTeam> = [];
+  teams: Array<NFLTeam> = [];
 
-	constructor(fakerService: FakerService) {
-		this.teams = fakerService.uniqueRandomTeams(TEAMS).sort(NFLTeam.alphabetical);
-	}
+  constructor(fakerService: FakerService) {
+    this.teams = fakerService.uniqueRandomTeams(TEAMS).sort(NFLTeam.alphabetical);
+  }
 
-	randomTeam(): NFLTeam {
-		return this.teams[Math.floor(Math.random() * this.teams.length)];
-	}
+  randomTeam(): NFLTeam {
+    return this.teams[Math.floor(Math.random() * this.teams.length)];
+  }
 
-	getTeamByMascot(mascot: string) {
-		mascot = mascot.toLowerCase();
-		return this.teams.find(function(team) { 
-			return team.mascot.toLowerCase() === mascot;
-		});
-	}
+  getTeamByMascot(mascot: string) {
+    mascot = mascot.toLowerCase();
+    return this.teams.find(function(team) {
+      return team.mascot.toLowerCase() === mascot;
+    });
+  }
 }

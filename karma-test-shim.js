@@ -10,55 +10,55 @@ __karma__.loaded = function() {};
 
 
 System.config({
-	packages: {
-		'base/build/dev': {
-			defaultExtension: 'js',
-			format: 'register',
-			map: Object.keys(window.__karma__.files).
-						filter(onlyAppFiles).
-						reduce(function createPathRecords(pathsMapping, appPath) {
-							// creates local module name mapping to global path with karma's fingerprint in path, e.g.:
-							// './hero.service': '/base/src/app/hero.service.js?f4523daf879cfb7310ef6242682ccf10b2041b3e'
-							var moduleName = appPath.replace(/^\/base\/build\/dev\//, './').replace(/\.js$/, '');
-							pathsMapping[moduleName] = appPath + '?' + window.__karma__.files[appPath]
-							return pathsMapping;
-						}, {})
+  packages: {
+    'base/build/dev': {
+      defaultExtension: 'js',
+      format: 'register',
+      map: Object.keys(window.__karma__.files).
+            filter(onlyAppFiles).
+              reduce(function createPathRecords(pathsMapping, appPath) {
+                // creates local module name mapping to global path with karma's fingerprint in path, e.g.:
+                // './hero.service': '/base/src/app/hero.service.js?f4523daf879cfb7310ef6242682ccf10b2041b3e'
+                var moduleName = appPath.replace(/^\/base\/build\/dev\//, './').replace(/\.js$/, '');
+                pathsMapping[moduleName] = appPath + '?' + window.__karma__.files[appPath]
+                return pathsMapping;
+              }, {})
 
-			}
-		}
+      }
+    }
 });
 
 System.import('angular2/src/core/dom/browser_adapter').then(function(browser_adapter) {
-	browser_adapter.BrowserDomAdapter.makeCurrent();
+  browser_adapter.BrowserDomAdapter.makeCurrent();
 }).then(function() {
-	return Promise.all(
-		Object.keys(window.__karma__.files) // All files served by Karma.
-		.filter(onlySpecFiles)
-		// .map(filePath2moduleName)        // Normalize paths to module names.
-		.map(function(moduleName) {
-			// loads all spec files via their global module names (e.g. 'base/src/app/hero.service.spec')
-			return System.import(moduleName);
-		}));
+  return Promise.all(
+    Object.keys(window.__karma__.files) // All files served by Karma.
+    .filter(onlySpecFiles)
+    // .map(filePath2moduleName)        // Normalize paths to module names.
+    .map(function(moduleName) {
+      // loads all spec files via their global module names (e.g. 'base/src/app/hero.service.spec')
+      return System.import(moduleName);
+    }));
 })
 .then(function() {
-	__karma__.start();
+  __karma__.start();
 }, function(error) {
-	__karma__.error(error.stack || error);
+  __karma__.error(error.stack || error);
 });
 
 
 function filePath2moduleName(filePath) {
-	return filePath.
-					 replace(/^\//, '').              // remove / prefix
-					 replace(/\.\w+$/, '');           // remove suffix
+  return filePath.
+           replace(/^\//, '').              // remove / prefix
+           replace(/\.\w+$/, '');           // remove suffix
 }
 
 
 function onlyAppFiles(filePath) {
-	return /^\/base\/build\/dev\/.*\.js$/.test(filePath);
+  return /^\/base\/build\/dev\/.*\.js$/.test(filePath);
 }
 
 
 function onlySpecFiles(path) {
-	return /\.spec\.js$/.test(path);
+  return /\.spec\.js$/.test(path);
 }

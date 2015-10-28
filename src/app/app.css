@@ -1,36 +1,36 @@
 .navbar {
-	background: #595241;
-	color: #FFFFFF;
+  background: #595241;
+  color: #FFFFFF;
 }
 
 .navbar .navbar-brand {
-	color: #ACCFCC;
+  color: #ACCFCC;
 }
 
 .nav-item:hover .nav-link {
-	color: #8A0917;
+  color: #8A0917;
 }
 
 .nav-link {
-	color: #B8AE9C;
+  color: #B8AE9C;
 }
 
 .nav-link.router-link-active {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .sidebar {
-	position: fixed;
-	top: 53px;
-	bottom: 0;
-	left: 0;
-	z-index: 1000;
-	display: block;
-	overflow-x: hidden;
-	overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-	background-color: #B8AE9C;
-	border-right: 1px solid #eee;
-	width: 14rem;
+  position: fixed;
+  top: 53px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #B8AE9C;
+  border-right: 1px solid #eee;
+  width: 14rem;
 }
 
 .main {

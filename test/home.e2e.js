@@ -5,19 +5,19 @@ function waitForElement(selector) {
 
 
 describe('Homepage', function() {
-  
-	beforeEach(function() {
-		browser.get(browser.baseUrl + '/');
-	});
 
-	it('should have a title', function() {
-		expect(browser.getTitle()).toEqual('Angular Draft');
-	});
+  beforeEach(function() {
+    browser.get(browser.baseUrl + '/');
+  });
 
-	it('should display the picks', function() {
-		waitForElement('.sidebar')
-		var picks = $('.sidebar').all(by.tagName('pick'));
-		expect(picks.count()).toBe(128);
-	});
+  it('should have a title', function() {
+    expect(browser.getTitle()).toEqual('Angular Draft');
+  });
+
+  it('should display the picks', function() {
+    waitForElement('.sidebar')
+    var picks = $('.sidebar').all(by.tagName('pick'));
+    expect(picks.count()).toBe(128);
+  });
 
 });

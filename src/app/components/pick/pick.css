@@ -1,15 +1,15 @@
 .pick {
-	color: #595241;
-	background: #ACCFCC;
+  color: #595241;
+  background: #ACCFCC;
 }
 .pick.current {
-	background: #FFFFFF;
-	border: 4px solid #8A0917;
+  background: #FFFFFF;
+  border: 4px solid #8A0917;
 }
 .number {
-	color: #B8AE9C;
-	float: left;
+  color: #B8AE9C;
+  float: left;
 }
 .team, .player {
-	float: right;
+  float: right;
 }

@@ -7,19 +7,19 @@ import {NFLTeamService} from '../../../services/nfl_team_service';
 import {NFLPlayerService} from '../../../services/nfl_player_service';
 
 @Component({
-	selector: 'team-page',
-	directives: [CORE_DIRECTIVES, RouterLink],
-	templateUrl: 'app/components/pages/team/team.html'
+  selector: 'team-page',
+  directives: [CORE_DIRECTIVES, RouterLink],
+  templateUrl: 'app/components/pages/team/team.html'
 })
 export class TeamPage {
-	team: NFLTeam;
-	players: Array<NFLPlayer>;
+  team: NFLTeam;
+  players: Array<NFLPlayer>;
 
-	constructor(private nflTeamService: NFLTeamService, 
-				private nflPlayerService: NFLPlayerService, 
-				params: RouteParams) 
-	{ 
-		this.team = this.nflTeamService.getTeamByMascot(params.get('mascot'));
-		this.players = this.nflPlayerService.getPlayersOnTeam(this.team);
-	}
+  constructor(private nflTeamService: NFLTeamService,
+        private nflPlayerService: NFLPlayerService,
+        params: RouteParams)
+  {
+    this.team = this.nflTeamService.getTeamByMascot(params.get('mascot'));
+    this.players = this.nflPlayerService.getPlayersOnTeam(this.team);
+  }
 }

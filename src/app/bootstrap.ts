@@ -7,20 +7,20 @@ import {NFLTeamService} from './services/nfl_team_service';
 import {FakerService} from './services/faker_service';
 
 import {
-	ROUTER_PROVIDERS,
-	LocationStrategy,
-	HashLocationStrategy
+  ROUTER_PROVIDERS,
+  LocationStrategy,
+  HashLocationStrategy
 } from 'angular2/router';
 
 import {AppComponent} from './app'
 
 bootstrap(AppComponent, [
-	FantasyTeamService,
-	PicksService,
-	NFLPlayerService,
-	NFLTeamService,
-	FakerService,
-	ROUTER_PROVIDERS,
-	provide(LocationStrategy, { useClass: HashLocationStrategy })
-]
+    FantasyTeamService,
+    PicksService,
+    NFLPlayerService,
+    NFLTeamService,
+    FakerService,
+    ROUTER_PROVIDERS,
+    provide(LocationStrategy, { useClass: HashLocationStrategy })
+  ]
 );
