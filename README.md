@@ -1,7 +1,7 @@
 # Angular Draft
 
-## Dev
-Start the live development server:
+## Startup
+Run the live development server:
 ```
   $ npm start
 ```
