@@ -1,13 +1,12 @@
 # Angular Draft
 
-## Run Dev Server
-
-In one console, watch for changes and compile typescript:
-```
-  $ npm run watch
-```
-
-In another, start the live server:
+## Dev
+Start the live development server:
 ```
   $ npm start
+```
+
+## Test
+```
+  $ npm test
 ```
