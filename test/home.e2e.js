@@ -11,13 +11,7 @@ describe('Homepage', function() {
   });
 
   it('should have a title', function() {
-    expect(browser.getTitle()).toEqual('Angular Draft');
-  });
-
-  it('should display the picks', function() {
-    waitForElement('.sidebar')
-    var picks = $('.sidebar').all(by.tagName('pick'));
-    expect(picks.count()).toBe(128);
+    expect(browser.getTitle()).toEqual('ng2-seed');
   });
 
 });

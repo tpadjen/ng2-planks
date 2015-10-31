@@ -1,45 +1,24 @@
 .navbar {
-  background: #595241;
+  background: #444;
   color: #FFFFFF;
 }
 
 .navbar .navbar-brand {
-  color: #ACCFCC;
+  color: #ddd;
 }
 
 .nav-item:hover .nav-link {
-  color: #8A0917;
+  color: #ddd;
 }
 
 .nav-link {
-  color: #B8AE9C;
+  color: #ddd;
 }
 
 .nav-link.router-link-active {
   text-decoration: underline;
 }
 
-.sidebar {
-  position: fixed;
-  top: 53px;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  display: block;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  background-color: #B8AE9C;
-  border-right: 1px solid #eee;
-  width: 14rem;
-}
-
 .main {
   padding: 20px;
-  margin-left: 14rem;
-}
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
 }
