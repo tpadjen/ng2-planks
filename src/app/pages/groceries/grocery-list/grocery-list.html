@@ -1,0 +1,11 @@
+<div class="grocery-list">
+  <h1 class="text-center">Groceries</h1>
+  <hr>
+  <div class="groceries">
+    <div *ng-for="#item of groceryService.items">
+      <div class="card">
+        {{item.name}} <span class="quantity">{{item.quantity}} {{item.units || ''}}</span>
+      </div>
+    </div>
+  </div>
+</div>

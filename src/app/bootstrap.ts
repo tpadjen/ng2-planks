@@ -1,5 +1,6 @@
 import {bootstrap, provide} from 'angular2/angular2';
 
+import {GroceryService} from './services/grocery-service';
 
 import {
   ROUTER_PROVIDERS,
@@ -10,6 +11,7 @@ import {
 import {AppComponent} from './app'
 
 bootstrap(AppComponent, [
+    GroceryService,
     ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy })
   ]

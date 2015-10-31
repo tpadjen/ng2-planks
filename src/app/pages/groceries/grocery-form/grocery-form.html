@@ -1,0 +1,52 @@
+<div class="grocery-form">
+  <h1 class="text-center">Add Item</h1>
+  <hr>
+  <form class="form-inline" (ng-submit)="onSubmit(nameInput, name)" #gf="form">
+    <div class="form-group">
+      <label for="item">Item</label>
+      <span class="full-width">
+        <input
+          class="form-control name"
+          type="text"
+          placeholder="Grocery Item"
+          required
+          autofocus
+          [(ng-model)]="item.name"
+          ng-control="name"
+          #name="form"
+          #name-input>
+      </span>
+      <div
+        [hidden]="name.valid || (name.pristine && !name.touched)"
+        class="alert alert-danger">Name is required</div>
+    </div>
+    <div class="form-section">
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input
+          class="form-control number"
+          type="number"
+          required
+          [(ng-model)]="item.quantity"
+          ng-control="quantity"
+          #quantity="form" #spy>
+        <div
+          [hidden]="quantity.valid || quantity.untouched"
+          class="alert alert-danger">Quantity is required</div>
+      </div>
+      <div class="form-group">
+        <label for="unit">Unit</label>
+        <select
+          class="form-control"
+          [(ng-model)]="item.units">
+          <option value=""></option>
+          <option *ng-for="#u of units" [value]="u">{{u}}</option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg"
+        [disabled]="!gf.form.valid">Add Item</button>
+    </div>
+  </form>
+</div>
