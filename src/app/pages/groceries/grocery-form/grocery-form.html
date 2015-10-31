@@ -1,12 +1,12 @@
 <div class="grocery-form">
   <h1 class="text-center">Add Item</h1>
   <hr>
-  <form class="form-inline" (ng-submit)="onSubmit(nameInput, name)" #gf="form">
+  <form class="form-inline" (ng-submit)="onSubmit()" #gf="form">
     <div class="form-group">
       <label for="item">Item</label>
       <span class="full-width">
         <input
-          class="form-control name"
+          class="form-control"
           type="text"
           placeholder="Grocery Item"
           required
@@ -14,7 +14,8 @@
           [(ng-model)]="item.name"
           ng-control="name"
           #name="form"
-          #name-input>
+          resettable
+          refocus>
       </span>
       <div
         [hidden]="name.valid || (name.pristine && !name.touched)"
