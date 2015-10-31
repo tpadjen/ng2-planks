@@ -13,8 +13,7 @@ var inject = require('gulp-inject');
 
 gulp.task('default', function() {
   runSequence(
-    'dev:setup',
-    'watch'
+    'dev:setup'
   );
 });
 
@@ -80,6 +79,10 @@ gulp.task('watch:src', function () {
       var destFilePath = path.resolve('build/dev', filePathFromSrc);
       del.sync(destFilePath);
     }
+  });
+
+  watcher.on('error', function(event) {
+    runSequence('dev:setup');
   });
 });
 
