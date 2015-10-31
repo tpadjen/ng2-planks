@@ -21,11 +21,10 @@ import {Refocus} from './directives/refocus';
 })
 export class GroceryForm {
   public item: GroceryItem;
-  units: Array<string> = GroceryItem.UNITS;
   @ViewChild(Refocus) firstInput: Refocus;
   @ViewChildren(ControlResettable) resets: QueryList<ControlResettable>;
 
-  constructor(private GroceryService: GroceryService) {
+  constructor(public GroceryService: GroceryService) {
     this.item = GroceryService.getBlankItem();
   }
 

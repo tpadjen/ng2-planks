@@ -40,7 +40,7 @@
           class="form-control"
           [(ng-model)]="item.units">
           <option value=""></option>
-          <option *ng-for="#u of units" [value]="u">{{u}}</option>
+          <option *ng-for="#u of GroceryService.units" [value]="u">{{u}}</option>
         </select>
       </div>
       <button

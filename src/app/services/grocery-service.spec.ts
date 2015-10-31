@@ -19,9 +19,9 @@ describe('GroceryService', () => {
 
   describe('construction', () => {
 
-    it('sets the items', inject([GroceryService], (service) => {
-      expect(service.items.length).toEqual(4);
-    }));
+    // it('sets the items', inject([GroceryService], (service) => {
+    //   expect(service.items.length).toEqual(4);
+    // }));
 
   });
 
