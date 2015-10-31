@@ -5,6 +5,7 @@
     <div *ng-for="#item of groceryService.items">
       <div class="card">
         {{item.name}} <span class="quantity">{{item.quantity}} {{item.units || ''}}</span>
+        <button (click)="removeItem(item)" class="btn btn-danger">X</button>
       </div>
     </div>
   </div>

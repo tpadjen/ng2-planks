@@ -36,15 +36,30 @@ export class GroceryService {
     this.itemsRef.push(item);
   }
 
+  removeItem(item: GroceryItem) {
+    this.itemsRef.child(item.key).remove(error => {
+      if (error) {
+        console.log(error);
+      } else {
+        'Successfully removed ' + item.key;
+      }
+    });
+  }
+
   getBlankItem(): GroceryItem {
     return {
       name: '',
-      quantity: 1,
-      units: null
+      quantity: null,
+      units: null,
+      key: null
     }
   }
 
   _snapshotToItem(snapshotValue): any[] {
-    return Object.keys(snapshotValue).map(_ => snapshotValue[_]).reverse();
+    return Object.keys(snapshotValue).map(key => {
+      var item = snapshotValue[key];
+      item.key = key;
+      return item;
+    }).reverse();
   }
 }

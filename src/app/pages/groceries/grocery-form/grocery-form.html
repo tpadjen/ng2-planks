@@ -9,7 +9,6 @@
           class="form-control"
           type="text"
           placeholder="Grocery Item"
-          required
           autofocus
           [(ng-model)]="item.name"
           ng-control="name"
@@ -26,7 +25,6 @@
         <input
           class="form-control number"
           type="number"
-          required
           [(ng-model)]="item.quantity"
           ng-control="quantity"
           #quantity="form" #spy>
