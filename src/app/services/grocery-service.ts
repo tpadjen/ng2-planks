@@ -36,6 +36,14 @@ export class GroceryService {
     this.itemsRef.push(item);
   }
 
+  updateItem(key: string, update: any) {
+    this.itemsRef.child(key).update(update, function(error) {
+      if (error) {
+        console.log(error);
+      }
+    });
+  }
+
   removeItem(item: GroceryItem) {
     this.itemsRef.child(item.key).remove(error => {
       if (error) {
