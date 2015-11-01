@@ -10,14 +10,12 @@
           type="text"
           placeholder="Grocery Item"
           autofocus
+          required
           [(ng-model)]="item.name"
           ng-control="name"
           #name="form"
           refocus>
       </span>
-      <div
-        [hidden]="name.hide"
-        class="alert alert-danger">Name is required</div>
     </div>
     <div class="form-section">
       <div class="form-group">

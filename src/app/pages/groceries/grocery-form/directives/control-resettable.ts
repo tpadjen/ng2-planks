@@ -36,8 +36,4 @@ export class ControlResettable extends NgControlName {
       (<any>this.control)._touched = false;
       (<any>this.control)._pristine = true;
     }
-
-    get hide() {
-      return this.valid || (this.pristine && !this.touched);
-    }
 }
