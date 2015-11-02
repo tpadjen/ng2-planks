@@ -16,10 +16,14 @@ module.exports = function(config) {
     files: [
       // paths loaded by Karma
       {pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true},
+      {pattern: 'build/dev/vendor/firebase.js', included: true, watched: true},
       {pattern: 'node_modules/angular2/bundles/angular2.js', included: true, watched: true},
       {pattern: 'node_modules/angular2/bundles/testing.js', included: true, watched: true},
       {pattern: 'karma-test-shim.js', included: true, watched: true},
       // {pattern: 'src/test/matchers.js', included: true, watched: true},
+
+      // load test helper first
+      {pattern: 'build/dev/app/test/helper.js', included: true, watched: true},
 
       // paths loaded via module imports
       {pattern: 'build/dev/**/*.js', included: false, watched: true},
@@ -37,7 +41,7 @@ module.exports = function(config) {
     // proxied base paths
     proxies: {
         // required for component assests fetched by Angular's compiler
-        "/app/": "/base/build/dev/app/"
+        "/app/": "/base/build/dev/app/",
     },
 
     // list of files to exclude
@@ -52,7 +56,7 @@ module.exports = function(config) {
 
 
     // test results reporter to use
-    // possible values: 'dots', 'progress'
+    // possible values: 'dots', 'progress', 'verbose'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 

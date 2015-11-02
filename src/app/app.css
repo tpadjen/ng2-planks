@@ -22,3 +22,8 @@
 .main {
   padding: 20px;
 }
+
+.thumb {
+  height: 36px;
+  float: right;
+}

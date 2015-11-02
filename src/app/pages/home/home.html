@@ -1,3 +1,6 @@
-<h1>Home</h1>
-
-<p>{{greeting}}</p>
+<div class="sign-in" *ng-if="!isLoggedIn()">
+  <button class="btn btn-lg btn-primary" (click)="signIn()">Sign in with Google</button>
+</div>
+<div class="groceries" *ng-if="isLoggedIn()">
+  Welcome {{User.profile.name}}
+</div>
