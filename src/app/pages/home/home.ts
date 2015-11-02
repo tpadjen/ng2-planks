@@ -1,6 +1,10 @@
-import {Component, NgIf} from 'angular2/angular2';
+import {Component, NgIf, Injector, provide} from 'angular2/angular2';
+import {Router} from 'angular2/router';
+
+import {AuthenticatedPage} from '../authenticated-page';
 
 import {UserService} from '../../services/user-service';
+import {FirebaseService} from '../../services/firebase-service';
 
 @Component({
   selector: 'home-page',
@@ -9,16 +13,10 @@ import {UserService} from '../../services/user-service';
   styles: ['app/pages/home/home.css'],
   templateUrl: 'app/pages/home/home.html'
 })
-export class HomePage {
+export class HomePage extends AuthenticatedPage {
 
-  constructor(public User: UserService) {}
-
-  signIn() {
-    this.User.authWithGoogle();
-  }
-
-  isLoggedIn() {
-    return this.User.isLoggedIn();
+  constructor(public User: UserService, public router: Router) {
+    super(User, router);
   }
 
 }
