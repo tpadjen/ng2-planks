@@ -46,6 +46,18 @@ export class UserService {
     });
   }
 
+  get plankRecords() {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.plankRecords.once('value', snapshot => {
+        resolve(snapshot);
+      })
+    });
+  }
+
+  set plankRecords(records) {
+
+  }
+
   get profile() {
     return this.user ? this.user.profile : null;
   }

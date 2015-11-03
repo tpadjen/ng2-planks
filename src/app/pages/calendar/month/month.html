@@ -4,7 +4,12 @@
     <tbody>
 
       <tr *ng-for="#week of weeks">
-        <td class="day" day *ng-for="#date of week; #d = index" [date]="date"></td>
+        <td
+          class="day"
+          day
+          *ng-for="#date of week; #d = index"
+          [date]="date"
+          [objective]="objectiveFor(date)"></td>
       </tr>
 
     </tbody>

@@ -18,6 +18,8 @@ import {Component, Input, Attribute, NgIf} from 'angular2/angular2';
 })
 export class Day {
   @Input() date: Date;
+  @Input() objective: number;
+
   planked: boolean = false;
   animateIn: boolean = false;
   animateOut: boolean = false;

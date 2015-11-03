@@ -15,6 +15,12 @@ export class FirebaseWrapper extends Firebase {
       callback(this.typeClass.convertSnapshot(snapshot.val()));
     });
   };
+
+  get(eventType: string, callback): void {
+    this.once(eventType, snapshot => {
+      callback(this.typeClass.convertSnapshot(snapshot.val()));
+    });
+  }
 }
 
 
@@ -23,15 +29,18 @@ export class FirebaseService {
   public ref: Firebase;
   public url: string;
   public plankRecordsUrl = 'https://planks.firebaseio.com/plank-records';
+  public plankObjectivesUrl = 'https://planks.firebaseio.com/plank-objectives';
   public usersUrl = 'https://planks.firebaseio.com/users';
   public groupsUrl = 'https://planks.firebaseio.com/groups';
   public plankRecords: FirebaseWrapper;
+  public plankObjectives: Firebase;
   public users: FirebaseWrapper;
   public groups: FirebaseWrapper;
 
   constructor() {
     this.url = this.usersUrl;
     this.plankRecords = new FirebaseWrapper(this.plankRecordsUrl, PlankRecord);
+    this.plankObjectives = new Firebase(this.plankObjectivesUrl);
     this.users = new FirebaseWrapper(this.usersUrl, User);
     this.groups = new FirebaseWrapper(this.groupsUrl, Group);
     this.ref = this.users;

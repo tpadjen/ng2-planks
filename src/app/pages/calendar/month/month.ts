@@ -5,7 +5,8 @@ import {
 } from 'angular2/angular2';
 
 // import {GroceryItem} from '../../../models/grocery-item/grocery-item';
-// import {GroceryService} from '../../../services/grocery-service';
+import {UserService} from '../../../services/user-service';
+import {PlanksService} from '../../../services/planks-service';
 import {Day} from '../day/day';
 
 @Component({
@@ -27,8 +28,41 @@ export class Month {
   //                   'Friday', 'Saturday'];
   dates = getDates(this.startDate, addDays(this.startDate, this.nDays - 1));
   weeks = chunk(this.dates, 7);
+  objectives;
 
-  constructor() {}
+  constructor(public User: UserService, public Planks: PlanksService) {
+    this.Planks.objectives.then((objectives) => {
+      console.log("Objectives");
+      console.log(objectives.val());
+      this.objectives = objectives.val();
+    }, (error) => {
+      console.log("Error");
+      console.log(error);
+    })
+    // this.User.plankRecords.then((snapshot) => {
+    //   console.log(snapshot.val());
+    // });
+
+    // var objectives = {};
+    // var values = [20, 30, 30, 35, 0, 40, 45, 45, 50, 0, 60, 60, 70, 80, 0,
+    //       80, 90, 90, 105, 0, 105, 105, 120, 120, 0, 135, 135, 150, 165, 180]
+
+    // this.dates.forEach((date, index) => {
+    //   var clone = new Date(date.getTime()).setHours(0,0,0,0);
+    //   objectives[clone] = values[index];
+    // });
+
+    // this.Planks.setObjectives(objectives).then((value) => {console.log("Success");}, (error) => {console.log(error);})
+  }
+
+  objectiveFor(date) {
+    if (!this.objectives) return 0;
+
+    var clone = new Date(date.getTime()).setHours(0,0,0,0);
+    return this.objectives[clone];
+  }
+
+
 
 }
 

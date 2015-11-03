@@ -18,13 +18,23 @@ h2 {
   font-size: 0.8rem;
 }
 
+h2.objective {
+  position: absolute;
+  left: -2px;
+  bottom: -10px;
+}
+
 .day {
+  position: relative;
   padding: 0px;
   min-height: 63px;
 }
 
 .smile {
   /*visibility: hidden;*/
+  position: relative;
+  right: -4px;
+  top: -4px;
   clear: both;
   width: 70%;
   opacity:0;
@@ -45,6 +55,16 @@ h2 {
 
   h2 {
     font-size: 1.0rem;
+  }
+
+  h2.objective {
+    left: 2px;
+    bottom: -8px;
+  }
+
+  .smile {
+    right: -6px;
+    top: -6px;
   }
 
   .day {
@@ -79,6 +99,10 @@ h2 {
 
   h2 {
     font-size: 1.4rem;
+  }
+
+  h2.objective {
+    left: 4px;
   }
 
   .day {

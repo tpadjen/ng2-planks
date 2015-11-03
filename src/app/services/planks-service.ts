@@ -40,6 +40,26 @@ export class PlanksService {
     // });
   }
 
+  get objectives() {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.plankObjectives.once('value', snapshot => {
+        resolve(snapshot);
+      });
+    });
+  }
+
+  setObjectives(objectives) {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.plankObjectives.set(objectives, error => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  }
+
   getBlankItem(): PlankRecord {
     return new PlankRecord();
   }
