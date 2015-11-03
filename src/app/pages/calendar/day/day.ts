@@ -19,6 +19,8 @@ import {Component, Input, Attribute, NgIf} from 'angular2/angular2';
 export class Day {
   @Input() date: Date;
   planked: boolean = false;
+  animateIn: boolean = false;
+  animateOut: boolean = false;
 
   days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   daysAbbr = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -43,6 +45,15 @@ export class Day {
     if (!this.onOrBeforeToday) return;
 
     this.planked = !this.planked;
+    if (this.planked) {
+      this.animateIn = true;
+    } else {
+      this.animateOut = true;
+    }
+    setTimeout(() => {
+      this.animateIn = false;
+      this.animateOut = false;
+    }, 1000);
   }
 
 }

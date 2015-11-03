@@ -24,13 +24,17 @@ h2 {
 }
 
 .smile {
-  visibility: hidden;
+  /*visibility: hidden;*/
   clear: both;
   width: 70%;
+  opacity:0;
+  /*transition: opacity 1s linear;*/
+  transition-duration: 0.5s;
 }
 
 .smile.visible {
-  visibility: visible;
+  /*visibility: visible;*/
+  opacity: 1;
 }
 
 @media (min-width: 34em) {
