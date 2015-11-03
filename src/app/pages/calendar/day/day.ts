@@ -14,12 +14,13 @@ import {PlankRecord} from '../../../models/plank-record/plank-record';
     '[class.past]': 'onOrBeforeToday',
     '[class.today]': 'today',
     '[class.planked]': 'planked',
+    '[class.rest]': 'rest',
     '(click)': 'onClick($event)'
   }
 })
 export class Day {
   @Input() date: Date;
-  @Input() objective: number;
+  @Input() objective: any;
 
   animateIn: boolean = true;
   animateOut: boolean = false;
@@ -43,6 +44,10 @@ export class Day {
     return this.User.plankedOn(this._dateAtMidnight());
   }
 
+  get rest() {
+    return this.objective == "Rest";
+  }
+
   get onOrBeforeToday() {
     var clone = new Date(this.date.getTime()).setHours(0,0,0,0);
     return this._todayAtMidnight() >= this._dateAtMidnight();
@@ -54,6 +59,7 @@ export class Day {
 
   onClick(event) {
     if (!this.onOrBeforeToday) return;
+    if (this.objective == "Rest") return;
 
     if (!this.planked) {
       this.User.setPlankRecord(this._dateAtMidnight());

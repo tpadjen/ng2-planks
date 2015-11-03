@@ -26,6 +26,11 @@
   background-color: #BFEFFF;
 }
 
+.day.rest {
+  background-color: #ddd;
+  cursor: default;
+}
+
 .month {
   positive: relative;
 }
