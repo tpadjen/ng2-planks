@@ -4,25 +4,23 @@ import {Router, Location} from 'angular2/router';
 import {User} from '../models/user/user';
 
 import {FirebaseService} from './firebase-service';
+import {PlanksService} from './planks-service';
 
 @Injectable()
 export class UserService {
   public user: User;
+  public objectives;
 
   constructor(
     private FirebaseService: FirebaseService,
+    private PlanksService: PlanksService,
     private router: Router,
     private location: Location
   ) {
-    this.FirebaseService.onAuth((user) => {
-      if (user) {
-        this.user = new User(user);
-        this.FirebaseService.users.child(user.uid).update({name: this.user.profile.name}, error => {
-          if (error) console.log(error);
-        });
-        this.FirebaseService.plankRecords.child(user.uid).on('value', snapshot => {
-          this.user.plankRecords = snapshot.val();
-        });
+    this.FirebaseService.onAuth((userData) => {
+      if (userData) {
+        this.user = new User(userData, FirebaseService);
+
         if (this.location.path() == "") {
           this.router.navigate(['/Home']);
         }
@@ -63,6 +61,13 @@ export class UserService {
       .remove();
   }
 
+  objectiveFor(date) {
+    if (!this.objectives) return 0;
+
+    var clone = new Date(date.getTime()).setHours(0,0,0,0);
+    return this.objectives[clone];
+  }
+
   get profile() {
     return this.user ? this.user.profile : null;
   }
@@ -75,8 +80,32 @@ export class UserService {
     return this.user ? this.user.plankRecords : null;
   }
 
+  get daysPlanked() {
+    return this.user.daysPlanked;
+  }
+
+  get timePlanked(): number {
+    if (!this.plankRecords) return 0;
+
+    return Object.keys(this.plankRecords).map(datetime => {
+      return this.PlanksService.objectiveFor(new Date(parseInt(datetime)));
+    }).reduce((a, b) => { return a + b; });
+  }
+
   plankedOn(datetime) {
     return this.plankRecords && this.plankRecords[parseInt(datetime)];
   }
+
+  // setObjectives(objectives) {
+  //   return new Promise((resolve, reject) => {
+  //     this.FirebaseService.plankObjectives.set(objectives, error => {
+  //       if (error) {
+  //         reject(error);
+  //       } else {
+  //         resolve(null);
+  //       }
+  //     });
+  //   });
+  // }
 
 }

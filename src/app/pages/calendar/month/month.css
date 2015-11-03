@@ -1,3 +1,8 @@
+.month-name {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
 .day {
   text-align: center;
   border: 1px solid #aaa;

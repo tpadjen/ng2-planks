@@ -8,5 +8,5 @@
         [class.tada]="animateIn"
         [class.fadeOut]="animateOut"
         src="app/pages/calendar/day/img/star.png" alt="By Eduemoni (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons">
-  <h2 class="objective">{{objective}}</h2>
+  <h2 class="objective" [hidden]="objective <= 0">{{objective}}</h2>
 </div>

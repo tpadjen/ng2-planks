@@ -12,7 +12,7 @@ import {UserService} from '../../services/user-service';
   selector: 'calendar-page',
   directives: [NgIf, Month],
   pipes: [],
-  styles: [`h1 {text-align: center; padding-bottom: 10px;}`],
+  styleUrls: ['app/pages/calendar/calendar.css'],
   templateUrl: 'app/pages/calendar/calendar.html'
 })
 export class CalendarPage extends AuthenticatedPage {

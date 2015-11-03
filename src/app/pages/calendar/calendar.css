@@ -1,0 +1,32 @@
+h2.info {
+  font-size: 1.2rem;
+  background-color: #ccc;
+  color: #333;
+  position: fixed;
+  padding: 10px;
+  z-index: 100;
+  display: inline-block;
+  opacity: 1;
+  transition: 0.3s linear;
+}
+
+h2.info.hidden {
+  opacity: 0;
+}
+
+.dashboard {
+  position: relative;
+  padding-bottom: 38px;
+}
+
+.days-planked {
+  left: 0px;
+  top: 54px;
+  border-bottom-right-radius: 4px;
+}
+
+.time-planked {
+  right: 0px;
+  top: 54px;
+  border-bottom-left-radius: 4px;
+}
