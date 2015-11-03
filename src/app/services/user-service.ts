@@ -46,16 +46,26 @@ export class UserService {
     });
   }
 
+  setPlankRecord(datetime) {
+    this.FirebaseService.plankRecords
+      .child(this.uid)
+      .child(datetime+"")
+      .set(true);
+  }
+
+  removePlankRecord(datetime) {
+    this.FirebaseService.plankRecords
+      .child(this.uid)
+      .child(datetime+"")
+      .remove();
+  }
+
   get plankRecords() {
     return new Promise((resolve, reject) => {
       this.FirebaseService.plankRecords.once('value', snapshot => {
         resolve(snapshot);
       })
     });
-  }
-
-  set plankRecords(records) {
-
   }
 
   get profile() {

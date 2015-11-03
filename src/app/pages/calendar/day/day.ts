@@ -1,7 +1,8 @@
 import {Component, Input, Attribute, NgIf} from 'angular2/angular2';
 
-// import {GroceryService} from '../../../services/grocery-service';
-// import {ItemName} from './item-name/item-name';
+import {UserService} from '../../../services/user-service';
+import {FirebaseService} from '../../../services/firebase-service';
+import {PlankRecord} from '../../../models/plank-record/plank-record';
 
 @Component({
   selector: 'td[day]',
@@ -31,16 +32,15 @@ export class Day {
             'August','September','October',
             'November','December'];
 
-  constructor() {}
+  constructor(public User: UserService) {}
 
   get onOrBeforeToday() {
     var clone = new Date(this.date.getTime()).setHours(0,0,0,0);
-    return new Date().setHours(0,0,0,0) >= clone;
+    return this._todayAtMidnight() >= this._dateAtMidnight();
   }
 
   get today() {
-    var clone = new Date(this.date.getTime()).setHours(0,0,0,0);
-    return new Date().setHours(0,0,0,0) == clone;
+    return this._todayAtMidnight() == this._dateAtMidnight();
   }
 
   onClick(event) {
@@ -48,14 +48,32 @@ export class Day {
 
     this.planked = !this.planked;
     if (this.planked) {
+      this.User.setPlankRecord(this._dateAtMidnight());
       this.animateIn = true;
     } else {
+      this.User.removePlankRecord(this._dateAtMidnight());
       this.animateOut = true;
     }
     setTimeout(() => {
       this.animateIn = false;
       this.animateOut = false;
     }, 1000);
+  }
+
+  _dateAtMidnight(): number {
+    return this._timeAtMidnight(this._cloneDate(this.date))
+  }
+
+  _todayAtMidnight() {
+    return this._timeAtMidnight(new Date());
+  }
+
+  _cloneDate(date): Date {
+    return new Date(date.getTime());
+  }
+
+  _timeAtMidnight(date): number {
+    return date.setHours(0,0,0,0);
   }
 
 }

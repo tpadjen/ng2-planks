@@ -1,6 +1,6 @@
 export class PlankRecord {
-  public date: Date;
-  public time: number;
+  public date: number;
+  public uid: string;
 
   static convertSnapshot = function(snapshotValue): any[] {
     return snapshotValue;
