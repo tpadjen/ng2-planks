@@ -20,31 +20,10 @@ export class Month {
 
   startDate: Date = new Date('November 1, 2015 11:00:53 AM');
   nDays: number = daysInMonth(this.startDate);
-  // days: any[] = new Array(this.nDays);
-  // nWeeks: number = Math.ceil(this.nDays / 7);
-  // // weeks: any[] = new Array(this.nWeeks);
-  // daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday',
-  //                   'Wednesday', 'Thursday',
-  //                   'Friday', 'Saturday'];
   dates = getDates(this.startDate, addDays(this.startDate, this.nDays - 1));
   weeks = chunk(this.dates, 7);
-  objectives;
 
-  constructor(public User: UserService, public Planks: PlanksService) {
-    this.Planks.objectives.then((objectives: FirebaseDataSnapshot) => {
-      this.objectives = objectives.val();
-    }, (error) => {
-      console.log("Error loading Objectives");
-      console.log(error);
-    })
-  }
-
-  objectiveFor(date) {
-    if (!this.objectives) return 0;
-
-    var clone = new Date(date.getTime()).setHours(0,0,0,0);
-    return this.objectives[clone];
-  }
+  constructor(public User: UserService, public Planks: PlanksService) { }
 
 }
 
