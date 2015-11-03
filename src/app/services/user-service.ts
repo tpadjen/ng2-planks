@@ -20,6 +20,9 @@ export class UserService {
         this.FirebaseService.users.child(user.uid).update({name: this.user.profile.name}, error => {
           if (error) console.log(error);
         });
+        this.FirebaseService.plankRecords.child(user.uid).on('value', snapshot => {
+          this.user.plankRecords = snapshot.val();
+        });
         if (this.location.path() == "") {
           this.router.navigate(['/Home']);
         }
@@ -60,20 +63,20 @@ export class UserService {
       .remove();
   }
 
-  get plankRecords() {
-    return new Promise((resolve, reject) => {
-      this.FirebaseService.plankRecords.once('value', snapshot => {
-        resolve(snapshot);
-      })
-    });
-  }
-
   get profile() {
     return this.user ? this.user.profile : null;
   }
 
   get uid() {
     return this.user ? this.user.uid : null;
+  }
+
+  get plankRecords() {
+    return this.user ? this.user.plankRecords : null;
+  }
+
+  plankedOn(datetime) {
+    return this.plankRecords && this.plankRecords[parseInt(datetime)];
   }
 
 }

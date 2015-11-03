@@ -21,9 +21,9 @@ export class Day {
   @Input() date: Date;
   @Input() objective: number;
 
-  planked: boolean = false;
-  animateIn: boolean = false;
+  animateIn: boolean = true;
   animateOut: boolean = false;
+  _planked: boolean = false;
 
   days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   daysAbbr = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -32,7 +32,16 @@ export class Day {
             'August','September','October',
             'November','December'];
 
-  constructor(public User: UserService) {}
+  constructor(public User: UserService) { }
+
+  onInit() {
+    this.animateIn = true;
+    this.animateFor(1000);
+  }
+
+  get planked() {
+    return this.User.plankedOn(this._dateAtMidnight());
+  }
 
   get onOrBeforeToday() {
     var clone = new Date(this.date.getTime()).setHours(0,0,0,0);
@@ -46,18 +55,23 @@ export class Day {
   onClick(event) {
     if (!this.onOrBeforeToday) return;
 
-    this.planked = !this.planked;
-    if (this.planked) {
+    if (!this.planked) {
       this.User.setPlankRecord(this._dateAtMidnight());
       this.animateIn = true;
     } else {
       this.User.removePlankRecord(this._dateAtMidnight());
       this.animateOut = true;
     }
+
+    this.animateFor(1000);
+
+  }
+
+  animateFor(time) {
     setTimeout(() => {
       this.animateIn = false;
       this.animateOut = false;
-    }, 1000);
+    }, time);
   }
 
   _dateAtMidnight(): number {
