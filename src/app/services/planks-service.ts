@@ -10,12 +10,12 @@ export class PlanksService {
   public items = [];
 
   constructor(private FirebaseService: FirebaseService, private User: UserService) {
-    this.FirebaseService.units.change('value', units => {
-      this.units = units;
-    });
-    this.FirebaseService.items.change('value', items => {
-      this.items = items;
-    });
+    // this.FirebaseService.units.change('value', units => {
+    //   this.units = units;
+    // });
+    // this.FirebaseService.items.change('value', items => {
+    //   this.items = items;
+    // });
   }
 
   addItem(pr: PlankRecord) {
@@ -33,11 +33,11 @@ export class PlanksService {
   }
 
   removeItem(pr: PlankRecord) {
-    this.FirebaseService.items.child(pr.key).remove(error => {
-      if (error) {
-        console.log(error);
-      }
-    });
+    // this.FirebaseService.items.child(pr.key).remove(error => {
+    //   if (error) {
+    //     console.log(error);
+    //   }
+    // });
   }
 
   getBlankItem(): PlankRecord {

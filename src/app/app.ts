@@ -36,7 +36,7 @@ import {UserService} from './services/user-service';
         </li>
       </ul>
       <ul class="nav navbar-nav pull-right" *ng-if="User.isLoggedIn()">
-        <li class="nav-item">
+        <li class="nav-item user-name">
           <a href="{{User.profile?.link}}" class="nav-link">{{User.profile?.name}}</a>
         </li>
         <li class="nav-item">

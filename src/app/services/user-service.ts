@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/angular2';
-import {Router} from 'angular2/router';
+import {Router, Location} from 'angular2/router';
 
 import {User} from '../models/user/user';
 
@@ -9,14 +9,20 @@ import {FirebaseService} from './firebase-service';
 export class UserService {
   public user: User;
 
-  constructor(private FirebaseService: FirebaseService, private router: Router) {
+  constructor(
+    private FirebaseService: FirebaseService,
+    private router: Router,
+    private location: Location
+  ) {
     this.FirebaseService.onAuth((user) => {
       if (user) {
         this.user = new User(user);
         this.FirebaseService.users.child(user.uid).update({name: this.user.profile.name}, error => {
           if (error) console.log(error);
         });
-        this.router.navigate(['/Home']);
+        if (this.location.path() == "") {
+          this.router.navigate(['/Home']);
+        }
       } else {
         this.user = null;
         this.router.navigate(['/Root']);

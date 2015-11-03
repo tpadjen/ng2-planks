@@ -20,7 +20,25 @@
 }
 
 .main {
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.user-name {
+  display: none;
+}
+
+@media (min-width: 34em) {
+
+  .user-name {
+    display: block;
+  }
+
+  .main {
+    padding: 20px;
+  }
 }
 
 .thumb {

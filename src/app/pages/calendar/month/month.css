@@ -1,0 +1,52 @@
+.day {
+  text-align: center;
+  border: 1px solid #aaa;
+  width: 14%;
+}
+
+.day h1 {
+  font-size: 1.5rem;
+}
+
+.day.past {
+  background-color: pink;
+  cursor: pointer;
+}
+
+.day.today {
+  background-color: #BFEFFF;
+}
+
+.day.planked {
+  background-color: #BDFCC9;
+}
+
+.month {
+  positive: relative;
+}
+
+  /*.table {
+    position: relative;
+    left: 0px;
+  }*/
+
+td.day {
+  padding: 4px;
+}
+
+
+@media (min-width: 34em) {
+
+  td.day {
+    padding: 4px;
+  }
+
+}
+
+@media (min-width: 48em) {
+
+  td.day {
+    padding: 8px;
+  }
+
+}

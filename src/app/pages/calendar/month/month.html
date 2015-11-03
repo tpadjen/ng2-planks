@@ -1,0 +1,13 @@
+<div class="month">
+  <table class="table">
+
+    <tbody>
+
+      <tr *ng-for="#week of weeks">
+        <td class="day" day *ng-for="#date of week; #d = index" [date]="date"></td>
+      </tr>
+
+    </tbody>
+
+  </table>
+</div>

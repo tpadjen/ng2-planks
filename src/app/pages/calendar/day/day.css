@@ -1,0 +1,85 @@
+h1 {
+  font-size: 2.0rem;
+}
+
+h1.name {
+  float: left;
+}
+h1.ordinal {
+  float: right;
+}
+
+
+h1 {
+  font-size: 1.0rem;
+}
+
+h2 {
+  font-size: 0.8rem;
+}
+
+.day {
+  padding: 0px;
+  min-height: 63px;
+}
+
+.smile {
+  visibility: hidden;
+  clear: both;
+  width: 70%;
+}
+
+.smile.visible {
+  visibility: visible;
+}
+
+@media (min-width: 34em) {
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  h2 {
+    font-size: 1.0rem;
+  }
+
+  .day {
+    padding: 2px;
+    min-height: 80px;
+  }
+
+}
+
+@media (min-width: 48em) {
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .day {
+    padding: 4px;
+    min-height: 90px;
+  }
+
+}
+
+@media (min-width: 62em) {
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .day {
+    padding: 4px;
+    min-height: 120px;
+  }
+
+}
