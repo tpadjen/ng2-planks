@@ -18,12 +18,12 @@
   cursor: pointer;
 }
 
-.day.today {
-  background-color: #BFEFFF;
-}
-
 .day.planked {
   background-color: #BDFCC9;
+}
+
+.day.today {
+  background-color: #BFEFFF;
 }
 
 .month {
