@@ -2,6 +2,7 @@ import {FirebaseService} from '../../services/firebase-service';
 
 export class User {
   public plankRecords;
+  public loadingPlankRecords: boolean = true;
 
   constructor(
     private authData: any,
@@ -30,7 +31,10 @@ export class User {
 
   _loadPlankRecords() {
     this.FirebaseService.plankRecords.child(this.uid)
-      .on('value', snapshot => { this.plankRecords = snapshot.val(); });
+      .on('value', snapshot => {
+        this.plankRecords = snapshot.val();
+        this.loadingPlankRecords = false;
+      });
   }
 
   _persistUser() {

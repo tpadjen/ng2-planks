@@ -92,6 +92,10 @@ export class UserService {
     }).reduce((a, b) => { return a + b; });
   }
 
+  loadingPlankRecords() {
+    return this.user.loadingPlankRecords;
+  }
+
   plankedOn(datetime) {
     return this.plankRecords && this.plankRecords[parseInt(datetime)];
   }

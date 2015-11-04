@@ -40,20 +40,32 @@ export class Day {
     this.animateFor(800);
   }
 
+  get loading() {
+    return this.User.loadingPlankRecords();
+  }
+
   get planked() {
+    if (this.loading) return false;
+
     return this.User.plankedOn(this._dateAtMidnight());
   }
 
   get rest() {
+    if (this.loading) return false;
+
     return this.objective == "Rest";
   }
 
   get onOrBeforeToday() {
+    if (this.loading) return false;
+
     var clone = new Date(this.date.getTime()).setHours(0,0,0,0);
     return this._todayAtMidnight() >= this._dateAtMidnight();
   }
 
   get today() {
+    if (this.loading) return false;
+
     return this._todayAtMidnight() == this._dateAtMidnight();
   }
 
