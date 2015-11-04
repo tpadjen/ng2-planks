@@ -8,10 +8,11 @@ import {
 import {UserService} from '../../../services/user-service';
 import {PlanksService} from '../../../services/planks-service';
 import {Day} from '../day/day';
+import {Help} from './help/help';
 
 @Component({
   selector: 'month',
-  directives: [Day, FORM_DIRECTIVES, NgFor],
+  directives: [Day, Help, FORM_DIRECTIVES, NgFor],
   pipes: [],
   styleUrls: ['app/pages/calendar/month/month.css'],
   templateUrl: 'app/pages/calendar/month/month.html'

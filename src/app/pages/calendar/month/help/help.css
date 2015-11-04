@@ -1,0 +1,98 @@
+.day {
+  text-align: center;
+  border: 1px solid #aaa;
+  width: 14%;
+}
+
+.day.past {
+  background-color: pink;
+}
+
+.day.planked {
+  background-color: #BDFCC9;
+}
+
+.day.today {
+  background-color: #BFEFFF;
+}
+
+.day.rest {
+  background-color: #ddd;
+}
+
+.btn-help {
+  position: absolute;
+  z-index: 102;
+  top: 114px;
+  margin-left: 10px;
+}
+
+@media (min-width: 34em) {
+
+  .btn-help {
+    margin-left: 0;
+  }
+}
+
+.instructions {
+  visibility: hidden;
+  position: absolute;
+  background-color: white;
+  z-index: 0;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 10px;
+  width: 240px;
+}
+
+.instructions.animated {
+  z-index: 101;
+  visibility: visible;
+}
+
+.instructions.slideInLeft {
+  z-index: 101;
+  display: block;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+}
+
+.instructions.slideOutLeft {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+}
+
+.instructions table {
+  width: 74%;
+  margin-left: 13%;
+  margin-bottom: 20px;
+}
+
+.instructions table td.description {
+  border-top: none;
+}
+
+/*.instructions table td:first-child {
+  border-top: 1px solid #eeefff;
+}*/
+
+.instructions h1 {
+  font-size: 1.0rem;
+  font-weight: normal;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.instructions .day {
+  min-width: 50px;
+}
+
+.instructions .description {
+  max-width: 100%;
+}
+
+.instructions .btn-close {
+  float: right;
+}

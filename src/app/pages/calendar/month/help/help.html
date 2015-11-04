@@ -1,0 +1,36 @@
+<div class="help">
+  <button class="btn btn-warning btn-help"
+          (click)="showInstructions()"
+          [hidden]="!buttonIsVisible">Help!</button>
+  <div class="instructions animated"
+      [class.animated]="beenShown"
+      [class.slideOutLeft]="!instructionsAreVisible"
+      [class.slideInLeft]="instructionsAreVisible">
+    <h1>Tap the days you've planked!</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="legend day past"></td>
+          <td class="description">No Plank :(</td>
+        </tr>
+        <tr>
+          <td class="legend day planked"></td>
+          <td class="description">Plank :)</td>
+        </tr>
+        <tr>
+          <td class="legend day today"></td>
+          <td class="description">Today</td>
+        </tr>
+        <tr>
+          <td class="legend day rest"></td>
+          <td class="description">Rest Day</td>
+        </tr>
+        <tr>
+          <td class="legend day"></td>
+          <td class="description">Future</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-success btn-close" (click)="hideInstructions()">Got It!</button>
+  </div>
+</div>
