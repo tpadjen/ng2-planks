@@ -16,9 +16,14 @@ import {UserService} from '../../services/user-service';
   templateUrl: 'app/pages/calendar/calendar.html'
 })
 export class CalendarPage extends AuthenticatedPage {
+  loading: boolean = true;
 
   constructor(public User: UserService, public router: Router) {
     super(User, router);
+  }
+
+  afterViewInit() {
+    this.loading = false;
   }
 
 }

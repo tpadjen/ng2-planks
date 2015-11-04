@@ -1,7 +1,7 @@
 <div class="dashboard">
   <h2 class="info days-planked"
-      [class.hidden]="User.daysPlanked <= 0">Days Planked: {{User.daysPlanked}}</h2>
+      [class.hidden]="loading">Days Planked: {{User.daysPlanked}}</h2>
   <h2 class="info time-planked"
-      [class.hidden]="User.timePlanked <= 0">Time Planked: {{User.timePlanked}}</h2>
+      [class.hidden]="loading">Time Planked: {{User.timePlanked}}</h2>
 </div>
 <month></month>
