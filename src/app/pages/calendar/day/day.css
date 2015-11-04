@@ -31,19 +31,25 @@ h2.objective {
 }
 
 .smile {
-  /*visibility: hidden;*/
   position: relative;
   right: -4px;
   top: -4px;
   clear: both;
   width: 70%;
   opacity:0;
-  /*transition: opacity 1s linear;*/
-  transition-duration: 0.5s;
+}
+
+.smile.tada {
+  -webkit-animation-duration: 0.8s;
+  animation-duration: 0.8s;
+}
+
+.smile.fadeOut {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
 }
 
 .smile.visible {
-  /*visibility: visible;*/
   opacity: 1;
 }
 

@@ -37,7 +37,7 @@ export class Day {
 
   onInit() {
     this.animateIn = true;
-    this.animateFor(1000);
+    this.animateFor(800);
   }
 
   get planked() {
@@ -58,19 +58,20 @@ export class Day {
   }
 
   onClick(event) {
-    if (!this.onOrBeforeToday) return;
-    if (this.objective == "Rest") return;
+    if (!this.onOrBeforeToday) return false;
+    if (this.objective == "Rest") return false;
 
     if (!this.planked) {
       this.User.setPlankRecord(this._dateAtMidnight());
       this.animateIn = true;
+      this.animateFor(800);
     } else {
       this.User.removePlankRecord(this._dateAtMidnight());
       this.animateOut = true;
+      this.animateFor(300);
     }
 
-    this.animateFor(1000);
-
+    return false;
   }
 
   animateFor(time) {
