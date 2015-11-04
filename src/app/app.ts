@@ -24,36 +24,8 @@ import {UserService} from './services/user-service';
   selector: 'app',
   directives: [RouterOutlet, RouterLink, NgIf],
   pipes: [],
-  template: `
-    <nav class="navbar navbar-fixed-top">
-      <a [router-link]="['/Root']" class="navbar-brand">Planks!</a>
-      <ul class="nav navbar-nav" *ng-if="User.isLoggedIn()">
-        <li class="nav-item">
-          <a [router-link]="['/Home']" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item">
-          <a [router-link]="['/Calendar']" class="nav-link">Calendar</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav pull-right" *ng-if="User.isLoggedIn()">
-        <li class="nav-item user-name">
-          <a href="{{User.profile?.link}}" class="nav-link">{{User.profile?.name}}</a>
-        </li>
-        <li class="nav-item">
-          <a href="{{User.profile?.link}}">
-            <img class="thumb" src="{{User.profile?.picture}}" />
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="User.signOut()">Sign Out</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="container-fluid main">
-      <router-outlet></router-outlet>
-    </div>
-  `,
-  styleUrls: ['app/app.css']
+  styleUrls: ['app/app.css'],
+  templateUrl: 'app/app.html'
 })
 export class AppComponent {
 
