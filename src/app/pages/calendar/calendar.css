@@ -15,6 +15,7 @@ h2.info.hidden {
 }
 
 .dashboard {
+  z-index: 103;
   position: relative;
   padding-bottom: 38px;
 }
