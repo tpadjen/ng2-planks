@@ -148,6 +148,7 @@ export class UserService {
           if (error) {
             reject(error);
           } else {
+            this.user.groups.push(group);
             resolve();
           }
         });
