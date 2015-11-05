@@ -1,6 +1,6 @@
 .this {
   padding-top: 18px;
-  background-color: #aaa;
+  background-color: #777;
 
   padding-right: 0;
   padding-left: 0;
@@ -15,7 +15,12 @@
 }
 
 .this.interactive {
-  background-color: #fff;
+  background-color: #f8f8f8;
+}
+
+h1,
+h2 {
+  color: white;
 }
 
 h2.info {
@@ -28,6 +33,10 @@ h2.info {
   display: inline-block;
   opacity: 1;
   transition: 0.3s linear;
+}
+
+.this.interactive h2.info {
+  background-color: #fff;
 }
 
 h2.info.hidden {
@@ -50,4 +59,9 @@ h2.info.hidden {
   right: 0px;
   top: 54px;
   border-bottom-left-radius: 4px;
+}
+
+.interactive .days-planked,
+.interactive .time-planked {
+  border-bottom: 2px solid #ccc;
 }
