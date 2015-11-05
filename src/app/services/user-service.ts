@@ -27,12 +27,8 @@ export class UserService {
 
       this.user.loading.then(() => {
         this.isAuthorizing = false;
-        if (this.user.groups != null && this.location.path() == "") {
-          if (!this.user.groups || this.user.groups.length == 0) {
-            this.router.navigate(['/Join']);
-          } else {
-            this.router.navigate(['/Group', {group: this.user.groups[0]}]);
-          }
+        if (this.location.path() == "") {
+          this.router.navigate(['/Member', {id: this.id}]);
         }
       });
     } else {
