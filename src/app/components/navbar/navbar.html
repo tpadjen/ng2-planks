@@ -17,12 +17,21 @@
         <a href="{{User.profile?.link}}" class="nav-link">{{User.profile?.name}}</a>
       </li>
       <li class="nav-item">
-        <a href="{{User.profile?.link}}">
+        <div class="btn-group" dropdown>
           <img class="thumb" src="{{User.profile?.picture}}" />
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" (click)="User.signOut()">Sign Out</a>
+          <button
+            type="button"
+            class="btn btn-primary btn-drop"
+            dropdown-toggle><span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu user-menu" role="menu" aria-labelledby="split-button">
+            <li role="menuitem"><a class="dropdown-item" href="{{User.profile?.link}}">Google Profile</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="#" (click)="User.signOut()">Sign Out</a>
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
   </nav>
