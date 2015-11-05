@@ -43,8 +43,8 @@
 }
 
 .day.rest {
-  background-color: #ddd;
-  cursor: default;
+  background-color: #ddd !important;
+  cursor: default !important;
 }
 
 .month {
