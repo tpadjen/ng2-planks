@@ -3,10 +3,13 @@
     <a [router-link]="['/Root']" class="navbar-brand">Planks!</a>
     <ul class="nav navbar-nav" *ng-if="User.isLoggedIn()">
       <li class="nav-item">
-        <a [router-link]="['/Home']" class="nav-link">Home</a>
+        <a [router-link]="['/Join']" class="nav-link">Join a Group</a>
+      </li>
+      <li class="nav-item" *ng-for="#group of User.groups">
+        <a [router-link]="['/Group', {group: group}]" class="nav-link">{{group}}</a>
       </li>
       <li class="nav-item">
-        <a [router-link]="['/Calendar']" class="nav-link">Calendar</a>
+        <a [router-link]="['/Member', {id: User.id}]" class="nav-link">Calendar</a>
       </li>
     </ul>
     <ul class="nav navbar-nav pull-right" *ng-if="User.isLoggedIn()">
@@ -23,7 +26,5 @@
       </li>
     </ul>
   </nav>
-  <div class="container-fluid main">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </div>

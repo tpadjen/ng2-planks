@@ -8,7 +8,7 @@ export class AuthenticatedPage {
   constructor(public User: UserService, public router: Router) {}
 
   onActivate() {
-    if (!this.User.isLoggedIn()) {
+    if (!this.User.doesExist()) {
       this.router.navigate(['/Root']);
       return false;
     }

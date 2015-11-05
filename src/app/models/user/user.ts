@@ -3,13 +3,25 @@ import {FirebaseService} from '../../services/firebase-service';
 export class User {
   public plankRecords;
   public loadingPlankRecords: boolean = true;
+  public groups: string[];
+  public loading: Promise<any>;
+  private _isLoaded: boolean = false;
 
   constructor(
     private authData: any,
     private FirebaseService: FirebaseService
   ) {
-    this._loadPlankRecords();
-    this._persistUser();
+    this.loading = Promise.all([
+      this._loadGroups(),
+      this._loadPlankRecords(),
+      this._persistUser()
+    ]).then(() => {
+      this._isLoaded = true;
+    });
+  }
+
+  isLoaded() {
+    return this._isLoaded;
   }
 
   get name(): string {
@@ -29,18 +41,35 @@ export class User {
     return Object.keys(this.plankRecords).length;
   }
 
-  _loadPlankRecords() {
-    this.FirebaseService.plankRecords.child(this.uid)
-      .on('value', snapshot => {
-        this.plankRecords = snapshot.val();
-        this.loadingPlankRecords = false;
+  _loadPlankRecords(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.plankRecords.child(this.uid)
+        .on('value', snapshot => {
+          this.plankRecords = snapshot.val();
+          this.loadingPlankRecords = false;
+          resolve();
       });
+    });
   }
 
-  _persistUser() {
-    this.FirebaseService.users.child(this.uid)
-      .update({name: this.profile.name}, error => {
-        if (error) console.log(error);
+  _loadGroups(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.users.child(this.uid).child('groups')
+        .once('value',(groups) => {
+          let val = groups.val();
+          this.groups = val ? Object.keys(val) : [];
+          resolve();
+      });
+    });
+  }
+
+  _persistUser(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.users.child(this.uid)
+        .update({name: this.profile.name}, error => {
+          if (error) console.log(error);
+      });
+      resolve();
     });
   }
 

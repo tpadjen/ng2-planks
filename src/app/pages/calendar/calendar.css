@@ -1,3 +1,24 @@
+.wrapper {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+@media (min-width: 34em) {
+
+  .wrapper {
+    padding-right: .9375rem;
+    padding-left: .9375rem;
+  }
+}
+
+.calendar {
+  background-color: #aaa;
+}
+
+.calendar.interactive {
+  background-color: #fff;
+}
+
 h2.info {
   font-size: 1.2rem;
   background-color: #ccc;

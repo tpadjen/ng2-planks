@@ -1,0 +1,16 @@
+h1 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+table.groups-table {
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.number {
+  text-align: right;
+  width: 130px;
+}

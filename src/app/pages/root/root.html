@@ -1,6 +1,8 @@
-<div class="sign-in" *ng-if="!isLoggedIn()">
-  <button class="btn btn-lg btn-primary" (click)="signIn()">Sign in with Google</button>
-</div>
-<div class="groceries" *ng-if="isLoggedIn()">
-  Welcome {{User.profile.name}}
+<div class="root">
+  <div class="sign-in" [hidden]="User.isLoggedIn() || User.isAuthorizing" >
+    <button class="btn btn-lg btn-primary" (click)="signIn()">Sign in with Google</button>
+  </div>
+  <div class="groceries" *ng-if="User.isLoggedIn()" [hidden]="User.isAuthorizing">
+    Time to Plank! Use the links above.
+  </div>
 </div>

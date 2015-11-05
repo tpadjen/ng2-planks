@@ -62,6 +62,9 @@ export class FirebaseService {
     if (this.plankRecords) {
       this.plankRecords.off();
     }
+    if (this.plankObjectives) {
+      this.plankObjectives.off();
+    }
     if (this.users) {
       this.users.off();
     }

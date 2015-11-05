@@ -1,7 +1,9 @@
 import {
   Component,
   FORM_DIRECTIVES,
-  NgFor
+  NgFor,
+  NgIf,
+  Input
 } from 'angular2/angular2';
 
 // import {GroceryItem} from '../../../models/grocery-item/grocery-item';
@@ -12,12 +14,14 @@ import {Help} from './help/help';
 
 @Component({
   selector: 'month',
-  directives: [Day, Help, FORM_DIRECTIVES, NgFor],
+  directives: [Day, Help, FORM_DIRECTIVES, NgFor, NgIf],
   pipes: [],
   styleUrls: ['app/pages/calendar/month/month.css'],
   templateUrl: 'app/pages/calendar/month/month.html'
 })
 export class Month {
+  @Input() interactive: boolean;
+  @Input() member: any;
 
   startDate: Date = new Date('November 1, 2015 11:00:53 AM');
   nDays: number = daysInMonth(this.startDate);
@@ -45,9 +49,9 @@ function getDates(startDate, stopDate) {
 }
 
 function addDays(start, days) {
-  var dat = new Date(start.valueOf())
-  dat.setDate(dat.getDate() + days);
-  return dat;
+  var date = new Date(start.valueOf())
+  date.setDate(date.getDate() + days);
+  return date;
 }
 
 function chunk(a, chunkSize) {

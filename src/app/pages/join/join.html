@@ -1,0 +1,32 @@
+<div class="join">
+  <form (ng-submit)="joinGroup()" #f="form" class="group-form">
+    <fieldset class="form-group">
+      <label for="group">Group</label>
+      <input
+        type="text"
+        [(ng-model)]="joinData.group"
+        ng-control="group"
+        class="form-control"
+        name="group"
+        required
+        autofocus>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        [(ng-model)]="joinData.password"
+        ng-control="password"
+        class="form-control"
+        name="password"
+        required
+        autofocus>
+    </fieldset>
+    <div class="submit-section">
+      <button
+        type="submit"
+        class="btn btn-lg btn-primary"
+        [disabled]="!f.form.valid">Join Group</button>
+    </div>
+  </form>
+</div>

@@ -23,20 +23,21 @@
 .btn-help {
   position: absolute;
   z-index: 102;
-  top: 114px;
-  margin-left: 10px;
+  top: 124px;
+  /*margin-left: 10px;*/
 }
 
-@media (min-width: 34em) {
+/*@media (max-width: 34em) {
 
   .btn-help {
     margin-left: 0;
   }
-}
+}*/
 
 .instructions {
   visibility: hidden;
-  position: absolute;
+  position: fixed;
+  top: 124px;
   background-color: white;
   z-index: 0;
   border: 1px solid #aaa;
@@ -46,12 +47,12 @@
 }
 
 .instructions.animated {
-  z-index: 101;
+  z-index: 110;
   visibility: visible;
 }
 
 .instructions.slideInLeft {
-  z-index: 101;
+  z-index: 110;
   display: block;
   -webkit-animation-duration: 0.4s;
   animation-duration: 0.4s;

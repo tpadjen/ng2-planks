@@ -21,6 +21,8 @@ import {PlankRecord} from '../../../models/plank-record/plank-record';
 export class Day {
   @Input() date: Date;
   @Input() objective: any;
+  @Input() interactive: boolean;
+  @Input() member: any;
 
   animateIn: boolean = true;
   animateOut: boolean = false;
@@ -33,7 +35,7 @@ export class Day {
             'August','September','October',
             'November','December'];
 
-  constructor(public User: UserService) { }
+  constructor() { }
 
   onInit() {
     this.animateIn = true;
@@ -41,13 +43,13 @@ export class Day {
   }
 
   get loading() {
-    return this.User.loadingPlankRecords();
+    return this.member.loadingPlankRecords();
   }
 
   get planked() {
     if (this.loading) return false;
 
-    return this.User.plankedOn(this._dateAtMidnight());
+    return this.member.plankedOn(this._dateAtMidnight());
   }
 
   get rest() {
@@ -70,15 +72,17 @@ export class Day {
   }
 
   onClick(event) {
+    if (!this.interactive) return false;
+
     if (!this.onOrBeforeToday) return false;
     if (this.objective == "Rest") return false;
 
     if (!this.planked) {
-      this.User.setPlankRecord(this._dateAtMidnight());
+      this.member.setPlankRecord(this._dateAtMidnight());
       this.animateIn = true;
       this.animateFor(800);
     } else {
-      this.User.removePlankRecord(this._dateAtMidnight());
+      this.member.removePlankRecord(this._dateAtMidnight());
       this.animateOut = true;
       this.animateFor(300);
     }
@@ -94,7 +98,7 @@ export class Day {
   }
 
   _dateAtMidnight(): number {
-    return this._timeAtMidnight(this._cloneDate(this.date))
+    return this._timeAtMidnight(this._cloneDate(this.date));
   }
 
   _todayAtMidnight() {

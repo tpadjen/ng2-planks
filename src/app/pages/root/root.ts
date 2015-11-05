@@ -1,12 +1,13 @@
-import {Component, NgIf} from 'angular2/angular2';
+import {Component, NgIf, FORM_DIRECTIVES} from 'angular2/angular2';
+import {RouterLink} from 'angular2/router';
 
 import {UserService} from '../../services/user-service';
 
 @Component({
   selector: 'root-page',
-  directives: [NgIf],
+  directives: [NgIf, FORM_DIRECTIVES, RouterLink],
   pipes: [],
-  styles: ['app/pages/root/root.css'],
+  styleUrls: ['app/pages/root/root.css'],
   templateUrl: 'app/pages/root/root.html'
 })
 export class RootPage {
@@ -15,10 +16,6 @@ export class RootPage {
 
   signIn() {
     this.User.authWithGoogle();
-  }
-
-  isLoggedIn() {
-    return this.User.isLoggedIn();
   }
 
 }

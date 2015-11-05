@@ -1,0 +1,20 @@
+<div class="group">
+  <h1>{{group}}</h1>
+
+  <table class="table groups-table">
+    <thead>
+      <tr>
+        <th>Member</th>
+        <th class="number">Days Planked</th>
+        <th class="number">Time Planked</th>
+      </tr>
+    </thead>
+    <tbody *ng-if="groupMembers">
+      <tr *ng-for="#member of groupMembers" class="member-row">
+        <td class="name"><a [router-link]="['/Member', {id: member.id}]">{{member.name}}</a></td>
+        <td class="days number">{{member.daysPlanked}}</td>
+        <td class="time number">{{member.timePlanked}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

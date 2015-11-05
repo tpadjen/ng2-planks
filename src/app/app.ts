@@ -1,6 +1,7 @@
 import {
   Component,
   NgIf,
+  NgFor,
   Directive,
   Inject,
   Attribute,
@@ -10,19 +11,21 @@ import {
 import {RouteConfig, RouterOutlet, RouterLink, Router} from 'angular2/router';
 
 import {RootPage} from './pages/root/root';
-import {HomePage} from './pages/home/home';
+import {GroupPage} from './pages/group/group';
+import {JoinPage} from './pages/join/join';
 import {CalendarPage} from './pages/calendar/calendar';
 
 import {UserService} from './services/user-service';
 
 @RouteConfig([
   {path: '/', component: RootPage, as: 'Root'},
-  {path: '/home', component: HomePage, as: 'Home'},
-  {path: '/calendar', component: CalendarPage, as: 'Calendar'}
+  {path: '/join', component: JoinPage, as: 'Join'},
+  {path: '/groups/:group', component: GroupPage, as: 'Group'},
+  {path: '/member/:id', component: CalendarPage, as: 'Member'}
 ])
 @Component({
   selector: 'app',
-  directives: [RouterOutlet, RouterLink, NgIf],
+  directives: [RouterOutlet, RouterLink, NgIf, NgFor],
   pipes: [],
   styleUrls: ['app/app.css'],
   templateUrl: 'app/app.html'

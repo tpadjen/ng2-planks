@@ -1,5 +1,7 @@
-<div class="month">
-  <help></help>
+<div class="month" [class.interactive]="interactive">
+  <help *ng-if="interactive"></help>
+  <h2 class="member-name" *ng-if="interactive">My</h2>
+  <h2 class="member-name" *ng-if="!interactive">{{member.name}}'s</h2>
   <h1 class="month-name">November</h1>
 
   <table class="table">
@@ -12,7 +14,9 @@
           day
           *ng-for="#date of week; #d = index"
           [date]="date"
-          [objective]="Planks.objectiveFor(date)"></td>
+          [objective]="Planks.objectiveFor(date)"
+          [interactive]="interactive"
+          [member]="member"></td>
       </tr>
 
     </tbody>
