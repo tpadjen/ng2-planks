@@ -3,13 +3,21 @@
     <a [router-link]="['/Root']" class="navbar-brand">Planks!</a>
     <ul class="nav navbar-nav" *ng-if="User.isLoggedIn()">
       <li class="nav-item">
-        <a [router-link]="['/Join']" class="nav-link">Join a Group</a>
-      </li>
-      <li class="nav-item" *ng-for="#group of User.groups">
-        <a [router-link]="['/Group', {group: group}]" class="nav-link">{{group}}</a>
+        <a [router-link]="['/Member', {id: User.id}]" class="nav-link">Calendar</a>
       </li>
       <li class="nav-item">
-        <a [router-link]="['/Member', {id: User.id}]" class="nav-link">Calendar</a>
+        <div class="btn-group" dropdown>
+          <button type="button" class="btn btn-secondary" dropdown-toggle>
+            Groups <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="menuitem" *ng-for="#group of User.groups">
+              <a [router-link]="['/Group', {group: group}]" class="dropdown-item">{{group}}</a>
+            </li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem"><a [router-link]="['/Join']" class="dropdown-item">Join a Group</a></li>
+          </ul>
+        </div>
       </li>
     </ul>
     <ul class="nav navbar-nav pull-right" *ng-if="User.isLoggedIn()">
