@@ -1,21 +1,19 @@
-.wrapper {
+.this {
+  background-color: #aaa;
+
   padding-right: 0;
   padding-left: 0;
 }
 
 @media (min-width: 34em) {
 
-  .wrapper {
+  .this {
     padding-right: .9375rem;
     padding-left: .9375rem;
   }
 }
 
-.calendar {
-  background-color: #aaa;
-}
-
-.calendar.interactive {
+.this.interactive {
   background-color: #fff;
 }
 
