@@ -32,4 +32,12 @@ export class GroupMember {
     }).reduce((a, b) => { return a + b; });
   }
 
+  static ranking(a: GroupMember, b: GroupMember): number {
+    if (a.timePlanked > b.timePlanked) return -1;
+    if (a.timePlanked < b.timePlanked) return 1;
+    if (a.daysPlanked > b.daysPlanked) return -1;
+    if (a.daysPlanked < b.daysPlanked) return 1;
+    return 0;
+  }
+
 }

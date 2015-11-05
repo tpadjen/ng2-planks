@@ -53,6 +53,7 @@ export class MemberService {
             let groupMembers = members.map((member, index) => {
               return new GroupMember(memberIds[index], group, member['name'], prs[index], this.Planks);
             });
+            groupMembers.sort(GroupMember.ranking);
             resolve(groupMembers);
           });
         });
