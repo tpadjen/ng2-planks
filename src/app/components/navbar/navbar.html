@@ -1,0 +1,29 @@
+<div class="this">
+  <nav class="navbar navbar-fixed-top">
+    <a [router-link]="['/Root']" class="navbar-brand">Planks!</a>
+    <ul class="nav navbar-nav" *ng-if="User.isLoggedIn()">
+      <li class="nav-item">
+        <a [router-link]="['/Join']" class="nav-link">Join a Group</a>
+      </li>
+      <li class="nav-item" *ng-for="#group of User.groups">
+        <a [router-link]="['/Group', {group: group}]" class="nav-link">{{group}}</a>
+      </li>
+      <li class="nav-item">
+        <a [router-link]="['/Member', {id: User.id}]" class="nav-link">Calendar</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav pull-right" *ng-if="User.isLoggedIn()">
+      <li class="nav-item user-name">
+        <a href="{{User.profile?.link}}" class="nav-link">{{User.profile?.name}}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{User.profile?.link}}">
+          <img class="thumb" src="{{User.profile?.picture}}" />
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="User.signOut()">Sign Out</a>
+      </li>
+    </ul>
+  </nav>
+</div>

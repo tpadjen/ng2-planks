@@ -10,6 +10,8 @@ import {
 } from 'angular2/angular2';
 import {RouteConfig, RouterOutlet, RouterLink, Router} from 'angular2/router';
 
+import {Navbar} from './components/navbar/navbar';
+
 import {RootPage} from './pages/root/root';
 import {GroupPage} from './pages/group/group';
 import {JoinPage} from './pages/join/join';
@@ -25,7 +27,7 @@ import {UserService} from './services/user-service';
 ])
 @Component({
   selector: 'app',
-  directives: [RouterOutlet, RouterLink, NgIf, NgFor],
+  directives: [Navbar, RouterOutlet],
   pipes: [],
   styleUrls: ['app/app.css'],
   templateUrl: 'app/app.html'

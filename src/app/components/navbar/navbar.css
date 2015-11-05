@@ -1,0 +1,40 @@
+.navbar {
+  background: #444;
+  color: #FFFFFF;
+}
+
+.navbar .navbar-brand {
+  color: #ddd;
+}
+
+.nav-item:hover .nav-link {
+  color: #ddd;
+}
+
+.nav-link {
+  color: #ddd;
+}
+
+.nav-link.router-link-active {
+  text-decoration: underline;
+}
+
+.user-name {
+  display: none;
+}
+
+@media (min-width: 34em) {
+
+  .user-name {
+    display: block;
+  }
+
+  .main {
+    padding: 20px;
+  }
+}
+
+.thumb {
+  height: 36px;
+  float: right;
+}
