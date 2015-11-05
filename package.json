@@ -15,6 +15,7 @@
   "author": "Tim Padjen",
   "license": "ISC",
   "dependencies": {
+    "@reactivex/rxjs": "^5.0.0-alpha.7",
     "angular2": "2.0.0-alpha.44",
     "ng2-bootstrap": "^0.44.3",
     "systemjs": "0.19.2"
@@ -35,6 +36,7 @@
     "live-server": "^0.8.2",
     "rimraf": "^2.4.3",
     "run-sequence": "^1.1.4",
+    "systemjs-builder": "^0.14.10",
     "typescript": "^1.6.2"
   }
 }

@@ -50,11 +50,27 @@ gulp.task('dev:copy:src', function() {
 });
 
 // copy vendor js files to dev
-gulp.task('dev:copy:vendor', function() {
+gulp.task('dev:copy:vendor', ['dev:build:ng2-bootstrap'], function() {
   var dest = 'build/dev/vendor'
   return gulp.src(appConfig.js.files)
     .pipe(changed(dest))
     .pipe(gulp.dest(dest));
+});
+
+var Builder = require('systemjs-builder');
+
+var builder = new Builder({
+  defaultJSExtensions: true,
+  paths: {
+    'ng2-bootstrap/ng2-bootstrap': './node_modules/ng2-bootstrap/ng2-bootstrap',
+    'angular2/*': './node_modules/angular2/*',
+    '@reactivex/*': './node_modules/@reactivex/*'
+  }
+});
+
+gulp.task('dev:build:ng2-bootstrap', function() {
+  return builder.bundle('ng2-bootstrap/ng2-bootstrap - angular2/*',
+                        path.join('build/dev/vendor', 'ng2-bootstrap.js'));
 });
 
 // convert vendor node_modules path to dev path
