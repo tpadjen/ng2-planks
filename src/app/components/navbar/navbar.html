@@ -1,6 +1,8 @@
-<div class="this">
+<div>
   <nav class="navbar navbar-fixed-top">
-    <a [router-link]="['/Root']" class="navbar-brand">Planks!</a>
+    <a [router-link]="['/Root']"
+      class="navbar-brand"
+      [class.logged-in]="User.isLoggedIn()">Planks!</a>
     <ul class="nav navbar-nav" *ng-if="User.isLoggedIn()">
       <li class="nav-item">
         <a [router-link]="['/Member', {id: User.id}]" class="btn btn-primary">Calendar</a>

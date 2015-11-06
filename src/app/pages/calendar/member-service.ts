@@ -4,6 +4,7 @@ import {Router, RouteParams} from 'angular2/router';
 import {GroupMember} from '../../models/group-member/group-member';
 
 import {FirebaseService} from '../../services/firebase-service';
+import {UserService} from '../../services/user-service';
 import {PlanksService} from '../../services/planks-service';
 
 @Injectable()
@@ -14,7 +15,8 @@ export class MemberService {
     private FirebaseService: FirebaseService,
     private Planks: PlanksService,
     private router: Router,
-    private routeParams: RouteParams
+    private routeParams: RouteParams,
+    private User: UserService
   ) {}
 
   loadFromID(id, watch = false) {
@@ -44,7 +46,6 @@ export class MemberService {
         .child('users')
         .once('value', snapshot => {
           var memberIds = Object.keys(snapshot.val());
-          console.log(memberIds);
           var gettingMembers = Promise.all(memberIds.map(uid => { return this.getMember(uid); }))
             // .then(members => { this.members = members; console.log(members); });
           var gettingPRs = Promise.all(memberIds.map(uid => { return this.getPlankRecords(uid); }))
@@ -56,6 +57,9 @@ export class MemberService {
             groupMembers.sort(GroupMember.ranking);
             resolve(groupMembers);
           });
+        }, error => {
+          console.log(error);
+          this.router.navigate(['/Member', {id: this.User.id}]);
         });
     });
   }
@@ -79,8 +83,9 @@ export class MemberService {
         .plankRecords
         .child(uid)
         .once('value', snapshot => {
-          console.log(snapshot.val());
           resolve(snapshot.val());
+        }, error => {
+          console.log(error);
         });
     });
   }
@@ -91,7 +96,6 @@ export class MemberService {
 
 
   plankedOn(datetime: string) {
-    // console.log(this.plankRecords);
     return this.plankRecords && this.plankRecords[datetime];
   }
 

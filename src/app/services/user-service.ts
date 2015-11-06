@@ -101,7 +101,7 @@ export class UserService {
   }
 
   get daysPlanked() {
-    return this.user.daysPlanked;
+    return this.user ? this.user.daysPlanked : null;
   }
 
   get timePlanked(): number {
@@ -113,7 +113,7 @@ export class UserService {
   }
 
   loadingPlankRecords() {
-    return this.user.loadingPlankRecords;
+    return this.user ? this.user.loadingPlankRecords : false;
   }
 
   plankedOn(datetime) {

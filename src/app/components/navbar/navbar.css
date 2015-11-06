@@ -1,12 +1,15 @@
 .navbar {
   background: #444;
   color: #FFFFFF;
-  padding-right: 8px;
-  padding-left: 8px;
+  min-height: 54px;
 }
 
 .navbar .navbar-brand {
   color: #ddd;
+}
+
+.navbar-brand.logged-in {
+  display: none;
 }
 
 .nav-item:hover .nav-link {
@@ -27,9 +30,8 @@
 
 @media (min-width: 34em) {
 
-  .navbar {
-    padding-right: 16px;
-    padding-left: 16px;
+  .navbar-brand.logged-in {
+    display: inline-block;
   }
 
   .user-name {
