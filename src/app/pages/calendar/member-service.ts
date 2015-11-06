@@ -100,7 +100,7 @@ export class MemberService {
   }
 
   loadingPlankRecords() {
-    return this.member ? this.member.loadingPlankRecords : true;
+    return this.member ? this.member.loadingPlankRecords : false;
   }
 
   get daysPlanked() {
