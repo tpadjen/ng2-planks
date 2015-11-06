@@ -4,13 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gulp & npm run delayed-open & npm run serve",
-    "serve": "live-server --entry-file=index.html --no-browser",
-    "delayed-open": "sleep 2 && npm run open",
+    "start": "gulp",
     "open": "open http:127.0.0.1:8080/build/dev",
     "test": "./node_modules/karma/bin/karma start",
-    "e2e": "protractor",
-    "server": "webpack-dev-server --content-base build/dist"
+    "e2e": "protractor"
   },
   "keywords": [],
   "author": "Tim Padjen",
@@ -18,16 +15,12 @@
   "dependencies": {
     "@reactivex/rxjs": "^5.0.0-alpha.7",
     "angular2": "2.0.0-alpha.44",
-    "ng2-bootstrap": "^0.44.3",
-    "systemjs": "0.19.2"
+    "ng2-bootstrap": "^0.44.3"
   },
   "devDependencies": {
     "del": "^2.0.2",
     "es6-module-loader": "^0.17.8",
     "gulp": "^3.9.0",
-    "gulp-changed": "^1.3.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^2.9.2",
     "gulp-util": "^3.0.7",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.14",
@@ -37,7 +30,6 @@
     "live-server": "^0.8.2",
     "rimraf": "^2.4.3",
     "run-sequence": "^1.1.4",
-    "systemjs-builder": "^0.14.10",
     "ts-loader": "^0.6.0",
     "typescript": "^1.6.2",
     "webpack": "^1.12.3",

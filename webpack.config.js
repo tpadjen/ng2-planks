@@ -1,4 +1,5 @@
 var path = require('path')
+var webpack = require('webpack');
 
 module.exports = {
   resolve: {
@@ -14,7 +15,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'build', 'dist', 'app'),
+    path: path.resolve(__dirname, 'build', 'app'),
     filename: '[name].js',
     sourceMapFilename: '[name].js.map',
     chunkFilename: '[id].chunk.js'
@@ -36,8 +37,26 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+
+      output: {
+        comments: false,
+        semicolons: true,
+      },
+    }),
+  ],
   devServer: {
-    contentBase: './build/dev',
-    historyApiFallback: true
+    contentBase: './src',
+    publicPath: '/app',
+    historyApiFallback: true,
+    stats: {
+      colors: true,
+      chunks: false,
+      // assets: false
+    }
   }
 }
