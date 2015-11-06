@@ -1,6 +1,6 @@
 {
   "firebase": "brilliant-torch-9227",
-  "public": "build/dev",
+  "public": "build",
   "ignore": [
     "firebase.json",
     "**/.*",
