@@ -4,6 +4,8 @@ var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
 var CommonsChunkPlugin   = webpack.optimize.CommonsChunkPlugin;
 var DedupePlugin   = webpack.optimize.DedupePlugin;
 
+var autoprefixer = require('autoprefixer');
+
 module.exports = {
   resolve: {
     root: path.resolve(__dirname, 'src'),
@@ -50,12 +52,15 @@ module.exports = {
       },
 
       // Styles
-      { test: /\.css$/,     loader: 'raw' }
+      { test: /\.css$/,     loader: 'css-loader!postcss-loader' }
     ],
     noParse: [
       /rtts_assert\/src\/rtts_assert/,
       /reflect-metadata/
     ]
+  },
+  postcss: function() {
+    return [autoprefixer]
   },
   plugins: [
     new OccurenceOrderPlugin(),

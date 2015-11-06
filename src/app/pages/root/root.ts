@@ -3,11 +3,13 @@ import {Router, RouterLink} from 'angular2/router';
 
 import {UserService} from '../../services/user-service';
 
+let styles = require('./root.css').toString();
+
 @Component({
   selector: 'root-page',
   directives: [NgIf, FORM_DIRECTIVES, RouterLink],
   pipes: [],
-  styles: [require('./root.css')],
+  styles: [styles],
   templateUrl: 'app/pages/root/root.html'
 })
 export class RootPage {
