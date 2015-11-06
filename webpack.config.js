@@ -26,6 +26,8 @@ module.exports = {
   devtool: 'source-map',
   module: {
     loaders: [
+
+      // Typescript
       {
         test: /\.ts$/, loader: 'ts',
         exclude: [
@@ -34,7 +36,14 @@ module.exports = {
           /test/,
           /helper/
         ]
-      }
+      },
+
+      // Styles
+      { test: /\.css$/,     loader: 'raw' }
+    ],
+    noParse: [
+      /rtts_assert\/src\/rtts_assert/,
+      /reflect-metadata/
     ]
   },
   plugins: [
@@ -49,7 +58,13 @@ module.exports = {
       },
     }),
   ],
+  // rewrite file imports
+  node: {
+    crypto: false,
+    __filename: true
+  },
   devServer: {
+    hot: true,
     contentBase: './src',
     publicPath: '/app',
     historyApiFallback: true,

@@ -7,7 +7,7 @@ import {UserService} from '../../services/user-service';
   selector: 'root-page',
   directives: [NgIf, FORM_DIRECTIVES, RouterLink],
   pipes: [],
-  styleUrls: ['app/pages/root/root.css'],
+  styles: [require('./root.css')],
   templateUrl: 'app/pages/root/root.html'
 })
 export class RootPage {
