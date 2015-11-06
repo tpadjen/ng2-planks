@@ -19,6 +19,8 @@ import {CalendarPage} from './pages/calendar/calendar';
 
 import {UserService} from './services/user-service';
 
+let styles = require('./app.css').toString();
+
 @RouteConfig([
   {path: '/', component: RootPage, as: 'Root'},
   {path: '/join', component: JoinPage, as: 'Join'},
@@ -29,7 +31,7 @@ import {UserService} from './services/user-service';
   selector: 'app',
   directives: [Navbar, RouterOutlet],
   pipes: [],
-  styleUrls: ['app/app.css'],
+  styles: [styles],
   templateUrl: 'app/app.html'
 })
 export class AppComponent {

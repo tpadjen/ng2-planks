@@ -12,11 +12,13 @@ import {PlanksService} from '../../../services/planks-service';
 import {Day} from '../day/day';
 import {Help} from './help/help';
 
+let styles = require('./month.css').toString();
+
 @Component({
   selector: 'month',
   directives: [Day, Help, FORM_DIRECTIVES, NgFor, NgIf],
   pipes: [],
-  styleUrls: ['app/pages/calendar/month/month.css'],
+  styles: [styles],
   templateUrl: 'app/pages/calendar/month/month.html'
 })
 export class Month {

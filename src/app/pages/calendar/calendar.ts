@@ -10,11 +10,13 @@ import {Month} from './month/month';
 import {UserService} from '../../services/user-service';
 import {MemberService} from './member-service';
 
+let styles = require('./calendar.css').toString();
+
 @Component({
   selector: 'calendar-page',
   directives: [NgIf, Month],
   pipes: [],
-  styleUrls: ['app/pages/calendar/calendar.css'],
+  styles: [styles],
   templateUrl: 'app/pages/calendar/calendar.html',
   providers: [MemberService]
 })

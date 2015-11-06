@@ -1,10 +1,12 @@
 import {Component} from 'angular2/angular2';
 
+let styles = require('./help.css').toString();
+
 @Component({
   selector: 'help',
   directives: [],
   pipes: [],
-  styleUrls: ['app/pages/calendar/month/help/help.css'],
+  styles: [styles],
   templateUrl: 'app/pages/calendar/month/help/help.html'
 })
 export class Help {

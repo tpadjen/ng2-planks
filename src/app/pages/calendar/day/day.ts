@@ -4,11 +4,13 @@ import {UserService} from '../../../services/user-service';
 import {FirebaseService} from '../../../services/firebase-service';
 import {PlankRecord} from '../../../models/plank-record/plank-record';
 
+let styles = require('./day.css').toString();
+
 @Component({
   selector: 'td[day]',
   directives: [NgIf],
   pipes: [],
-  styleUrls: ['app/pages/calendar/day/day.css'],
+  styles: [styles],
   templateUrl: 'app/pages/calendar/day/day.html',
   host: {
     '[class.past]': 'onOrBeforeToday',

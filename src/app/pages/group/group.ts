@@ -8,11 +8,13 @@ import {GroupMember} from '../../models/group-member/group-member';
 import {UserService} from '../../services/user-service';
 import {MemberService} from '../calendar/member-service';
 
+let styles = require('./group.css').toString();
+
 @Component({
   selector: 'group-page',
   directives: [NgIf, NgFor, RouterLink],
   pipes: [],
-  styleUrls: ['app/pages/group/group.css'],
+  styles: [styles],
   templateUrl: 'app/pages/group/group.html',
   providers: [MemberService]
 })
