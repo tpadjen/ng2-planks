@@ -1,4 +1,4 @@
-///<reference path="firebase.d.ts" />
+///<reference path="../typings/firebase.d.ts" />
 import {ChangeDetectorRef, Component, Inject, Pipe, View, WrappedValue, bind, bootstrap} from 'angular2/angular2';
 
 export enum ALLOWED_FIREBASE_EVENTS {value, child_added};

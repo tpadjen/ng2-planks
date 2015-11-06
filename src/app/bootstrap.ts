@@ -1,3 +1,4 @@
+///<reference path="typings/webpack.d.ts" />
 import {bootstrap, provide} from 'angular2/angular2';
 
 import {UserService} from './services/user-service';
