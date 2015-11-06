@@ -116,6 +116,14 @@ export class UserService {
     return this.user ? this.user.loadingPlankRecords : false;
   }
 
+  get loading(): Promise<any> {
+    return this.user ? this.user.loading : null;
+  }
+
+  isLoaded() {
+    return this.user && this.user.isLoaded();
+  }
+
   plankedOn(datetime) {
     return this.plankRecords && this.plankRecords[datetime];
   }

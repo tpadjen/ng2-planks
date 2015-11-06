@@ -1,5 +1,7 @@
 import {Component} from 'angular2/angular2';
 
+import {UserService} from '../../../../services/user-service';
+
 let styles = require('./help.css');
 
 @Component({
@@ -14,7 +16,22 @@ export class Help {
   buttonIsVisible = true;
   beenShown = false;
 
-  constructor() {}
+  constructor(public User: UserService) { }
+
+  afterViewInit() {
+
+    if (this.User.isLoaded()) {
+      if (this.User.daysPlanked == 0) {
+        this.showInstructions();
+      }
+    }else {
+      this.User.loading.then(() => {
+        if (this.User.daysPlanked == 0) {
+          this.showInstructions();
+        }
+      });
+    }
+  }
 
   showInstructions() {
     this.beenShown = true;
