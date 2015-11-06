@@ -1,3 +1,5 @@
+var path = require('path');
+var fs = require('fs');
 var del = require('del');
 var gulp = require('gulp');
 var gutil = require("gulp-util");
@@ -54,6 +56,29 @@ gulp.task('dist:webpack', function(callback) {
       },
     })
   )
+
+  // add hash to app bundle
+  webpackConfig.plugins.push(
+    function () {
+      this.plugin("done", function (stats) {
+        var replaceInFile = function (filePath, toReplace, replacement) {
+          var replacer = function (match) {
+            var message = 'Replacing in ' + filePath +': ' + match + ' => ' + replacement;
+            gutil.log("[hashquery]", gutil.colors.cyan(message));
+            return replacement;
+          };
+          var str = fs.readFileSync(filePath, 'utf8');
+          var out = str.replace(new RegExp(toReplace, 'g'), replacer);
+          fs.writeFileSync(filePath, out);
+        };
+
+        replaceInFile(path.join(BUILD_DEST, 'index.html'),
+          'app.js',
+          'app.js?v=' + stats.hash;
+        );
+      });
+    }
+  );
 
   webpack(webpackConfig, function(err, stats) {
     if(err) throw new gutil.PluginError("webpack", err);
