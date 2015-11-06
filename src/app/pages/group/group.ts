@@ -8,7 +8,7 @@ import {GroupMember} from '../../models/group-member/group-member';
 import {UserService} from '../../services/user-service';
 import {MemberService} from '../calendar/member-service';
 
-let styles = require('./group.css').toString();
+let styles = require('./group.css');
 
 @Component({
   selector: 'group-page',

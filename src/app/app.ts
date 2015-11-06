@@ -19,7 +19,7 @@ import {CalendarPage} from './pages/calendar/calendar';
 
 import {UserService} from './services/user-service';
 
-let styles = require('./app.css').toString();
+let styles = require('./app.css');
 
 @RouteConfig([
   {path: '/', component: RootPage, as: 'Root'},

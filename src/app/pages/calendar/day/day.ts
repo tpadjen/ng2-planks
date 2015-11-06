@@ -4,7 +4,7 @@ import {UserService} from '../../../services/user-service';
 import {FirebaseService} from '../../../services/firebase-service';
 import {PlankRecord} from '../../../models/plank-record/plank-record';
 
-let styles = require('./day.css').toString();
+let styles = require('./day.css');
 
 @Component({
   selector: 'td[day]',

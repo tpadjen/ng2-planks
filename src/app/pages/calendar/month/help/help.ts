@@ -1,6 +1,6 @@
 import {Component} from 'angular2/angular2';
 
-let styles = require('./help.css').toString();
+let styles = require('./help.css');
 
 @Component({
   selector: 'help',

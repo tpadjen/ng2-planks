@@ -10,7 +10,7 @@ import {Month} from './month/month';
 import {UserService} from '../../services/user-service';
 import {MemberService} from './member-service';
 
-let styles = require('./calendar.css').toString();
+let styles = require('./calendar.css');
 
 @Component({
   selector: 'calendar-page',

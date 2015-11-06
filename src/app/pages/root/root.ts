@@ -3,7 +3,7 @@ import {Router, RouterLink} from 'angular2/router';
 
 import {UserService} from '../../services/user-service';
 
-let styles = require('./root.css').toString();
+let styles = require('./root.css');
 
 @Component({
   selector: 'root-page',

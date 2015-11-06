@@ -5,7 +5,7 @@ import {dropdown} from 'ng2-bootstrap/ng2-bootstrap';
 
 import {UserService} from '../../services/user-service';
 
-let styles = require('./navbar.css').toString();
+let styles = require('./navbar.css');
 
 @Component({
   selector: 'navbar',

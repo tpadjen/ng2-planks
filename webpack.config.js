@@ -52,7 +52,7 @@ module.exports = {
       },
 
       // Styles
-      { test: /\.css$/,     loader: 'css-loader!postcss-loader' }
+      { test: /\.css$/,     loader: 'to-string!css-loader!postcss-loader' }
     ],
     noParse: [
       /rtts_assert\/src\/rtts_assert/,

@@ -12,7 +12,7 @@ import {PlanksService} from '../../../services/planks-service';
 import {Day} from '../day/day';
 import {Help} from './help/help';
 
-let styles = require('./month.css').toString();
+let styles = require('./month.css');
 
 @Component({
   selector: 'month',

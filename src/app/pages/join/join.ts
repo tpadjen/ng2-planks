@@ -6,7 +6,7 @@ import {AuthenticatedPage} from '../authenticated-page';
 import {UserService} from '../../services/user-service';
 import {FirebaseService} from '../../services/firebase-service';
 
-let styles = require('./join.css').toString();
+let styles = require('./join.css');
 
 function dasherize(str) {
   return str.trim().toLowerCase().replace(/\s/g, function(char, index) {
