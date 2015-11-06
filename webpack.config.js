@@ -1,16 +1,27 @@
 var path = require('path')
 var webpack = require('webpack');
+var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
+var CommonsChunkPlugin   = webpack.optimize.CommonsChunkPlugin;
+var DedupePlugin   = webpack.optimize.DedupePlugin;
 
 module.exports = {
   resolve: {
     root: path.resolve(__dirname, 'src'),
-    extensions: ['', '.ts', '.js', '.json']
+    extensions: ['', '.ts', '.js', '.json'],
+    alias: {
+      'rx': '@reactivex/rxjs'
+    }
   },
   entry: {
-    'app': [
+    'ng2': [
       './node_modules/angular2/node_modules/@reactivex/rxjs',
       './node_modules/angular2/node_modules/zone.js',
       './node_modules/angular2/node_modules/reflect-metadata',
+      'angular2/angular2',
+      'angular2/core',
+      'angular2/router'
+    ],
+    'app': [
       './src/app/bootstrap.ts'
     ],
   },
@@ -47,16 +58,17 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-
-      output: {
-        comments: false,
-        semicolons: true,
-      },
+    new OccurenceOrderPlugin(),
+    new DedupePlugin(),
+    new CommonsChunkPlugin({
+      name: 'ng2',
+      minChunks: Infinity,
+      filename: 'ng2.js'
     }),
+    new CommonsChunkPlugin({
+      name: 'common',
+      filename: 'common.js'
+    })
   ],
   // rewrite file imports
   node: {

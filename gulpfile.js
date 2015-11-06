@@ -42,6 +42,19 @@ gulp.task('dist:copy', function() {
 });
 
 gulp.task('dist:webpack', function(callback) {
+  webpackConfig.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+
+      output: {
+        comments: false,
+        semicolons: true,
+      },
+    })
+  )
+
   webpack(webpackConfig, function(err, stats) {
     if(err) throw new gutil.PluginError("webpack", err);
       gutil.log("[webpack]", stats.toString({
@@ -55,13 +68,21 @@ gulp.task('dist:webpack', function(callback) {
 
 
 /**
- * Deveolpment Server
+ * Development Server
  */
 
 gulp.task('dev:webpack', function(callback) {
-  webpackConfig.plugins = [];
+  // The script refreshing the browser on non hot updates
+  webpackConfig.entry.app.unshift('webpack-dev-server/client?http://localhost:8080');
 
-  var compiler = webpack(devWebpackConfig);
+  // For hot style updates
+  webpackConfig.entry.app.unshift('webpack/hot/dev-server');
+  webpackConfig.plugins.unshift(new webpack.HotModuleReplacementPlugin());
+
+  // source maps
+  webpackConfig.devtool = "eval";
+
+  var compiler = webpack(webpackConfig);
 
   new WebpackDevServer(compiler, devWebpackConfig.devServer
   ).listen(8080, "localhost", function(err) {
