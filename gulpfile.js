@@ -72,10 +72,12 @@ gulp.task('dist:webpack', function(callback) {
           fs.writeFileSync(filePath, out);
         };
 
-        replaceInFile(path.join(BUILD_DEST, 'index.html'),
-          'app.js',
-          'app.js?v=' + stats.hash;
-        );
+        stats.toJson().chunks.forEach(function(chunk) {
+          replaceInFile(path.join(BUILD_DEST, 'index.html'),
+            chunk.files[0], // main js file, not source map
+            chunk.files[0] + '?v=' + chunk.hash
+          );
+        })
       });
     }
   );
