@@ -1,16 +1,23 @@
 import {Injectable} from 'angular2/angular2';
 import {Router, Location} from 'angular2/router';
 
-import {User} from '../models/user/user';
+import {PlankRecord} from '../../models/plank-record/plank-record';
 
 import {FirebaseService} from './firebase-service';
 import {PlanksService} from './planks-service';
 
 @Injectable()
 export class UserService {
-  public user: User;
+  private authData;
   public objectives;
+  public groups: string[];
+  public plankRecords: PlankRecord[];
   public isAuthorizing = true;
+  private _isLoaded = false;
+  public _loadPromise: Promise<any> = Promise.resolve(null);
+
+  public firebaseUrl = 'https://planks.firebaseio.com/users';
+  public userRef;
 
   constructor(
     private FirebaseService: FirebaseService,
@@ -21,33 +28,29 @@ export class UserService {
     this.FirebaseService.onAuth((userData) => this.onAuth(userData));
   }
 
+
+  /**
+   * Auth
+   */
+
   onAuth(userData) {
     if (userData) {
-      this.user = new User(userData, this.FirebaseService);
+      this.authData = userData;
+      this.isAuthorizing = false;
 
-      this.user.loading.then(() => {
-        this.isAuthorizing = false;
-        if (this.location.path() == "") {
-          this.router.navigate(['/Member', {id: this.id}]);
-        }
-      });
+      let loaders = [
+        this._loadGroups(),
+        this._loadPlankRecords(),
+        this._persistUser()
+      ];
+      this._loadPromise = Promise.all(loaders).then(() => { this.onLoad(); });
     } else {
-      this.user = null;
+      this.authData = null;
+      this._isLoaded = null
+      this.groups = null;
       this.isAuthorizing = false;
       this.router.navigate(['/Root']);
     }
-  }
-
-  signOut() {
-    this.FirebaseService.unauth();
-  }
-
-  isLoggedIn() {
-    return this.doesExist() && this.user.isLoaded();
-  }
-
-  doesExist() {
-    return this.user != null;
   }
 
   authWithGoogle() {
@@ -58,6 +61,46 @@ export class UserService {
       }
     });
   }
+
+  signOut() {
+    this.FirebaseService.unauth();
+  }
+
+  isLoggedIn() {
+    return this.isLoaded();
+  }
+
+  doesExist() {
+    return this.authData != null;
+  }
+
+
+  /**
+   * Loading
+   */
+
+  isLoaded() {
+    return this._isLoaded;
+  }
+
+  onLoad() {
+    this._isLoaded = true;
+
+    if (this.location.path() == "") {
+      this.router.navigate(['/Member', {id: this.id}]);
+    }
+
+    return Promise.resolve(null);
+  }
+
+  waitForLoad() {
+    return this._loadPromise;
+  }
+
+
+  /**
+   * User Model
+   */
 
   setPlankRecord(datetime) {
     this.FirebaseService.plankRecords
@@ -81,27 +124,24 @@ export class UserService {
   }
 
   get profile() {
-    return this.user ? this.user.profile : null;
+    return this.doesExist() ? this.authData.google.cachedUserProfile : null;
   }
 
-  get uid() {
-    return this.user ? this.user.uid : null;
+  get name(): string {
+    return this.doesExist() ? this.profile.name : null;
+  }
+
+  get uid(): string {
+    return this.doesExist() ? this.authData.uid : null;
   }
 
   get id():string {
     return this.uid ? this.uid.replace("google:", "") : null;
   }
 
-  get groups() {
-    return this.user ? this.user.groups : null;
-  }
-
-  get plankRecords() {
-    return this.user ? this.user.plankRecords : null;
-  }
-
   get daysPlanked() {
-    return this.user ? this.user.daysPlanked : null;
+    if (!this.plankRecords) return 0;
+    return Object.keys(this.plankRecords).length;
   }
 
   get timePlanked(): number {
@@ -112,23 +152,11 @@ export class UserService {
     }).reduce((a, b) => { return a + b; });
   }
 
-  loadingPlankRecords() {
-    return this.user ? this.user.loadingPlankRecords : false;
-  }
-
-  get loading(): Promise<any> {
-    return this.user ? this.user.loading : null;
-  }
-
-  isLoaded() {
-    return this.user && this.user.isLoaded();
-  }
-
   plankedOn(datetime) {
     return this.plankRecords && this.plankRecords[datetime];
   }
 
-  attemptToJoinGroup(group, password) {
+  joinGroup(group, password) {
     return new Promise((resolve, reject) => {
       this.FirebaseService
       .groups
@@ -156,7 +184,7 @@ export class UserService {
           if (error) {
             reject(error);
           } else {
-            this.user.groups.push(group);
+            this.groups.push(group);
             resolve();
           }
         });
@@ -164,16 +192,41 @@ export class UserService {
 
   }
 
-  // setObjectives(objectives) {
-  //   return new Promise((resolve, reject) => {
-  //     this.FirebaseService.plankObjectives.set(objectives, error => {
-  //       if (error) {
-  //         reject(error);
-  //       } else {
-  //         resolve(null);
-  //       }
-  //     });
-  //   });
-  // }
+
+  /**
+   * Loading
+   */
+
+  _loadPlankRecords(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.plankRecords.child(this.uid)
+        .on('value', snapshot => {
+          this.plankRecords = snapshot.val();
+          // this.loadingPlankRecords = false;
+          resolve();
+      });
+    });
+  }
+
+  _loadGroups(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.users.child(this.uid).child('groups')
+        .once('value',(groups) => {
+          let val = groups.val();
+          this.groups = val ? Object.keys(val) : [];
+          resolve();
+      });
+    });
+  }
+
+  _persistUser(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.FirebaseService.users.child(this.uid)
+        .update({name: this.profile.name}, error => {
+          if (error) console.log(error);
+      });
+      resolve();
+    });
+  }
 
 }
