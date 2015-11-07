@@ -21,17 +21,12 @@ export class Help {
 
   afterViewInit() {
 
-    if (this.User.isLoaded()) {
+    this.User.waitForLoad().then(() => {
       if (this.User.daysPlanked == 0) {
         this.showInstructions();
       }
-    }else {
-      this.User.loading.then(() => {
-        if (this.User.daysPlanked == 0) {
-          this.showInstructions();
-        }
-      });
-    }
+    });
+
   }
 
   showInstructions() {

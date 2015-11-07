@@ -26,6 +26,7 @@ export class Day {
   @Input() objective: any;
   @Input() interactive: boolean;
   @Input() member: any;
+  public loading = true;
 
   animateIn: boolean = true;
   animateOut: boolean = false;
@@ -38,15 +39,15 @@ export class Day {
             'August','September','October',
             'November','December'];
 
-  constructor() { }
+  constructor() {
 
-  onInit() {
-    this.animateIn = true;
-    this.animateFor(800);
   }
 
-  get loading() {
-    return this.member.loadingPlankRecords();
+  onInit() {
+    this.member.waitForLoad().then(() => { this.loading = false; });
+
+    this.animateIn = true;
+    this.animateFor(800);
   }
 
   get planked() {
@@ -75,6 +76,7 @@ export class Day {
   }
 
   onClick(event) {
+    if (this.loading) return false;
     if (!this.interactive) return false;
 
     if (!this.onOrBeforeToday) return false;
