@@ -1,7 +1,6 @@
 import {Injectable} from 'angular2/angular2';
 
 import {PlankRecord} from '../models/plank-record/plank-record';
-import {User} from '../models/user/user';
 import {Group} from '../models/group/group';
 
 export class FirebaseWrapper extends Firebase {
@@ -26,36 +25,31 @@ export class FirebaseWrapper extends Firebase {
 
 @Injectable()
 export class FirebaseService {
-  public ref: Firebase;
-  public url: string;
-  public plankRecordsUrl = 'https://planks.firebaseio.com/plank-records';
-  public plankObjectivesUrl = 'https://planks.firebaseio.com/plank-objectives';
-  public usersUrl = 'https://planks.firebaseio.com/users';
-  public groupsUrl = 'https://planks.firebaseio.com/groups';
-  public plankRecords: FirebaseWrapper;
-  public plankObjectives: Firebase;
-  public users: FirebaseWrapper;
-  public groups: FirebaseWrapper;
+  public BASE_URL = 'https://planks.firebaseio.com/';
 
-  constructor() {
-    this.url = this.usersUrl;
-    this.plankRecords = new FirebaseWrapper(this.plankRecordsUrl, PlankRecord);
-    this.plankObjectives = new Firebase(this.plankObjectivesUrl);
-    this.users = new FirebaseWrapper(this.usersUrl, User);
-    this.groups = new FirebaseWrapper(this.groupsUrl, Group);
-    this.ref = this.users;
-  }
+  public usersUrl           = this.BASE_URL + 'users';
+  public plankRecordsUrl    = this.BASE_URL + 'plank-records';
+  public plankObjectivesUrl = this.BASE_URL + 'plank-objectives';
+  public groupsUrl          = this.BASEURL + 'groups';
+  public authUrl            = this.usersUrl;
+
+
+  public plankRecords    = new FirebaseWrapper(this.plankRecordsUrl, PlankRecord);
+  public plankObjectives = new Firebase(this.plankObjectivesUrl);
+  public users           = new Firebase(this.usersUrl);
+  public groups          = new FirebaseWrapper(this.groupsUrl, Group);
+  public authRef         = this.users;
 
   onAuth(callback) {
-    this.ref.onAuth(callback);
+    this.authRef.onAuth(callback);
   }
 
   authWithOAuthPopup(eventType, error) {
-    this.ref.authWithOAuthPopup(eventType, error);
+    this.authRef.authWithOAuthPopup(eventType, error);
   }
 
   unauth() {
-    this.ref.unauth();
+    this.authRef.unauth();
   }
 
   onDestroy() {
