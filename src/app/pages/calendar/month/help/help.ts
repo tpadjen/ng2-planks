@@ -3,13 +3,14 @@ import {Component} from 'angular2/angular2';
 import {UserService} from '../../../../services/user-service';
 
 let styles = require('./help.css');
+let template = require('./help.html');
 
 @Component({
   selector: 'help',
   directives: [],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/pages/calendar/month/help/help.html'
+  template: template
 })
 export class Help {
   instructionsAreVisible = false;

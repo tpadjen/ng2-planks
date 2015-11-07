@@ -22,7 +22,7 @@ gulp.task('default', ['dev:webpack']);
  * Production Build
  */
 
-var SOURCE_DEST = "src";
+var SOURCE = "src";
 var BUILD_DEST = "build";
 
 gulp.task('build', function(callback) {
@@ -39,8 +39,16 @@ gulp.task('dist:clean', function() {
 });
 
 gulp.task('dist:copy', function() {
-  return gulp.src(SOURCE_DEST + '/**/!(*.ts)', {base: SOURCE_DEST})
-    .pipe(gulp.dest(BUILD_DEST));
+  var includes = [
+    '**/*.{jpg,jpeg,png,gif,svg}',  // images
+    'index.html',                   // index
+    'styles/**/*.*',                // styles
+    'app/lib/**/*.*'                // js
+  ]
+  var files = '/{' + includes.join(',') + '}';
+
+  return gulp.src(SOURCE + files, {base: SOURCE})
+          .pipe(gulp.dest(BUILD_DEST));
 });
 
 gulp.task('dist:webpack', function(callback) {

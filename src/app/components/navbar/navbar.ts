@@ -6,13 +6,14 @@ import {dropdown} from 'ng2-bootstrap/ng2-bootstrap';
 import {UserService} from '../../services/user-service';
 
 let styles = require('./navbar.css');
+let template = require('./navbar.html');
 
 @Component({
   selector: 'navbar',
   directives: [RouterLink, NgIf, NgFor, dropdown],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/components/navbar/navbar.html'
+  template: template
 })
 export class Navbar {
 

@@ -52,12 +52,19 @@ module.exports = {
       },
 
       // Styles
-      { test: /\.css$/,     loader: 'to-string!css-loader!postcss-loader' }
+      { test: /\.css$/,     loader: 'to-string!css-loader!postcss-loader' },
+
+      // Templates
+      { test: /\.html$/,     loader: 'raw!html-minify' }
+
     ],
     noParse: [
       /rtts_assert\/src\/rtts_assert/,
       /reflect-metadata/
     ]
+  },
+  'html-minify-loader': {
+    empty: true, // KEEP empty attributes
   },
   postcss: function() {
     return [autoprefixer]

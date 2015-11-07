@@ -9,13 +9,14 @@ import {UserService} from '../../services/user-service';
 import {MemberService} from '../calendar/member-service';
 
 let styles = require('./group.css');
+let template = require('./group.html');
 
 @Component({
   selector: 'group-page',
   directives: [NgIf, NgFor, RouterLink],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/pages/group/group.html',
+  template: template,
   providers: [MemberService]
 })
 export class GroupPage extends AuthenticatedPage {

@@ -11,13 +11,14 @@ import {UserService} from '../../services/user-service';
 import {MemberService} from './member-service';
 
 let styles = require('./calendar.css');
+let template = require('./calendar.html');
 
 @Component({
   selector: 'calendar-page',
   directives: [NgIf, Month],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/pages/calendar/calendar.html',
+  template: template,
   providers: [MemberService]
 })
 export class CalendarPage extends AuthenticatedPage {

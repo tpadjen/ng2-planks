@@ -7,6 +7,7 @@ import {UserService} from '../../services/user-service';
 import {FirebaseService} from '../../services/firebase-service';
 
 let styles = require('./join.css');
+let template = require('./join.html');
 
 function dasherize(str) {
   return str.trim().toLowerCase().replace(/\s/g, function(char, index) {
@@ -19,7 +20,7 @@ function dasherize(str) {
   directives: [NgIf, FORM_DIRECTIVES],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/pages/join/join.html'
+  template: template
 })
 export class JoinPage extends AuthenticatedPage {
   joinData = {

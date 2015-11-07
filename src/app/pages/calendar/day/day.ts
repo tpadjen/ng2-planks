@@ -5,13 +5,14 @@ import {FirebaseService} from '../../../services/firebase-service';
 import {PlankRecord} from '../../../models/plank-record/plank-record';
 
 let styles = require('./day.css');
+let template = require('./day.html');
 
 @Component({
   selector: 'td[day]',
   directives: [NgIf],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/pages/calendar/day/day.html',
+  template: template,
   host: {
     '[class.past]': 'onOrBeforeToday',
     '[class.today]': 'today',

@@ -13,13 +13,14 @@ import {Day} from '../day/day';
 import {Help} from './help/help';
 
 let styles = require('./month.css');
+let template = require('./month.html');
 
 @Component({
   selector: 'month',
   directives: [Day, Help, FORM_DIRECTIVES, NgFor, NgIf],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/pages/calendar/month/month.html'
+  template: template
 })
 export class Month {
   @Input() interactive: boolean;

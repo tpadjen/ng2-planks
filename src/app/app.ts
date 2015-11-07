@@ -20,6 +20,7 @@ import {CalendarPage} from './pages/calendar/calendar';
 import {UserService} from './services/user-service';
 
 let styles = require('./app.css');
+let template = require('./app.html');
 
 @RouteConfig([
   {path: '/', component: RootPage, as: 'Root'},
@@ -32,7 +33,7 @@ let styles = require('./app.css');
   directives: [Navbar, RouterOutlet],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/app.html'
+  template: template
 })
 export class AppComponent {
 

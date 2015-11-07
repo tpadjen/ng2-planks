@@ -4,13 +4,14 @@ import {Router, RouterLink} from 'angular2/router';
 import {UserService} from '../../services/user-service';
 
 let styles = require('./root.css');
+let template = require('./root.html');
 
 @Component({
   selector: 'root-page',
   directives: [NgIf, FORM_DIRECTIVES, RouterLink],
   pipes: [],
   styles: [styles],
-  templateUrl: 'app/pages/root/root.html'
+  template: template
 })
 export class RootPage {
 
