@@ -37,7 +37,7 @@ export class JoinPage extends AuthenticatedPage {
 
     let group = dasherize(this.joinData.group);
 
-    this.User.attemptToJoinGroup(group, this.joinData.password)
+    this.User.joinGroup(group, this.joinData.password)
       .then(() => {
         this.router.navigate(['/Group', {group: group}]);
       }, (error) => {
