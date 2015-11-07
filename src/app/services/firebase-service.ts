@@ -30,7 +30,7 @@ export class FirebaseService {
   public usersUrl           = this.BASE_URL + 'users';
   public plankRecordsUrl    = this.BASE_URL + 'plank-records';
   public plankObjectivesUrl = this.BASE_URL + 'plank-objectives';
-  public groupsUrl          = this.BASEURL + 'groups';
+  public groupsUrl          = this.BASE_URL + 'groups';
   public authUrl            = this.usersUrl;
 
 
