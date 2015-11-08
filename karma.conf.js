@@ -16,32 +16,32 @@ module.exports = function(config) {
     files: [
       // paths loaded by Karma
       {pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true},
-      {pattern: 'build/dev/vendor/firebase.js', included: true, watched: true},
-      {pattern: 'node_modules/angular2/bundles/angular2.js', included: true, watched: true},
-      {pattern: 'node_modules/angular2/bundles/testing.js', included: true, watched: true},
-      {pattern: 'karma-test-shim.js', included: true, watched: true},
+      {pattern: 'src/app/lib/firebase-2.3.1.js', included: true, watched: true},
+      // {pattern: 'karma-test-shim.js', included: true, watched: true},
       // {pattern: 'src/test/matchers.js', included: true, watched: true},
 
       // load test helper first
-      {pattern: 'build/dev/app/test/helper.js', included: true, watched: true},
+      // {pattern: 'src/app/test/helper.ts', included: true, watched: true},
 
-      // paths loaded via module imports
-      {pattern: 'build/dev/**/*.js', included: false, watched: true},
+      // {pattern: 'build/dev/**/*.js', included: false, watched: true},
 
       // paths loaded via Angular's component compiler
       // (these paths need to be rewritten, see proxies section)
-      {pattern: 'build/dev/**/*.html', included: false, watched: true},
-      {pattern: 'build/dev/**/*.css', included: false, watched: true},
+      {pattern: 'src/app/**/*.html', included: false, watched: true},
+      {pattern: 'src/app/**/*.css', included: false, watched: true},
 
-      // paths to support debugging with source maps in dev tools
-      {pattern: 'build/dev/**/*.ts', included: false, watched: false},
-      {pattern: 'build/dev/**/*.js.map', included: false, watched: false}
+      // all tests loaded with webpack requires
+      {pattern: 'spec.bundle.js', included: true, watched: false},
+
+      // paths to support debugging with source maps in dev tools and watching
+      {pattern: 'src/app/**/*.ts', included: false, watched: true},
+      // {pattern: 'build/dev/**/*.js.map', included: false, watched: false}
     ],
 
     // proxied base paths
     proxies: {
         // required for component assests fetched by Angular's compiler
-        "/app/": "/base/build/dev/app/",
+        "/app/": "/base/src/app/",
     },
 
     // list of files to exclude
@@ -52,6 +52,25 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'spec.bundle.js':  ['webpack']
+    },
+    webpack: {
+      resolve: {
+        extensions: ['', '.ts', '.js']
+      },
+      module: {
+        loaders: [
+          // Typescript
+          { test: /\.ts$/,      loader: 'ts' },
+          // Styles
+          { test: /\.css$/,     loader: 'raw' },
+          // Templates
+          { test: /\.html$/,    loader: 'raw' }
+        ]
+      }
+    },
+    webpackMiddleware: {
+      noInfo: true
     },
 
 
