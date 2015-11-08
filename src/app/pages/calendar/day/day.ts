@@ -58,11 +58,11 @@ export class Day {
   get rest() {
     if (this.loading) return false;
 
-    return this.objective == "Rest";
+    return this.objective == "Rest" || this.objective == 0;
   }
 
   get onOrBeforeToday() {
-    if (this.loading) return false;
+    if (this.loading || this.objective == "Rest") return false;
 
     var clone = new Date(this.date.getTime()).setHours(0,0,0,0);
     return this._todayAtMidnight() >= this._dateAtMidnight();

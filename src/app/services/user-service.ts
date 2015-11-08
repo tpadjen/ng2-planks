@@ -10,7 +10,7 @@ import {PlanksService} from './planks-service';
 export class UserService {
   private authData;
   public objectives;
-  public groups: {};
+  public groups = {};
   public plankRecords: PlankRecord[];
   public isAuthorizing = true;
   private _isLoaded = false;
@@ -38,10 +38,12 @@ export class UserService {
       this.authData = userData;
       this.isAuthorizing = false;
 
+      this.PlanksService.loadObjectives();
       let loaders = [
         this._loadGroups(),
         this._loadPlankRecords(),
-        this._persistUser()
+        this._persistUser(),
+        this.PlanksService.waitForLoad()
       ];
       this._loadPromise = Promise.all(loaders).then(() => { this.onLoad(); });
     } else {
