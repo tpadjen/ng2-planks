@@ -9,7 +9,7 @@
   <div *ng-if="!loading">
     <image class="smile animated"
           [class.visible]="planked"
-          [class.tada]="animateIn"
+          [class.tada]="animateIn && planked"
           [class.fadeOut]="animateOut"
           src="app/pages/calendar/day/img/star.png" alt="By Eduemoni (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons">
   </div>
