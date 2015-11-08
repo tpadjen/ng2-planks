@@ -1,15 +1,15 @@
 <div>
   <nav class="navbar navbar-fixed-top">
-    <div class="spinner-loader pull-right" *ng-if="!User.isLoggedIn()"></div>
+    <div class="spinner-loader pull-right" *ng-if="User.doesExist() && !User.isLoggedIn()"></div>
     <a [router-link]="['/Root']"
       class="navbar-brand"
       [class.logged-in]="User.isLoggedIn()">Planks!</a>
     <ul class="nav navbar-nav clear-fix"
-        [class.shown]="User.isLoggedIn()">
-      <li class="nav-item">
+        [class.shown]="User.doesExist() && User.isLoggedIn()">
+      <li class="nav-item calendar">
         <a [router-link]="['/Member', {id: User.id}]" class="btn btn-primary">Calendar</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ng-if="User.isLoaded()">
         <div *ng-if="User.groups.length == 0">
           <a [router-link]="['/Join']" class="btn btn-warning">Join a Group!</a>
         </div>
@@ -30,7 +30,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav pull-right"
-        [class.shown]="User.isLoggedIn()">
+        [class.shown]="User.doesExist() && User.isLoggedIn()">
       <li class="nav-item user-name">
         <a href="{{User.profile?.link}}" class="nav-link">{{User.profile?.name}}</a>
       </li>
