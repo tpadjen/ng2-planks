@@ -22,6 +22,7 @@ let template = require('./group.html');
 export class GroupPage extends AuthenticatedPage {
   group: string;
   groupMembers: GroupMember[] = [];
+  loading: boolean = true;
 
   constructor(
     public User: UserService,
@@ -34,6 +35,7 @@ export class GroupPage extends AuthenticatedPage {
     this.group = routeParams.get('group');
 
     MemberService.getGroupMembers(this.group).then((groupMembers) => {
+      this.loading = false;
       this.groupMembers = groupMembers;
     });
 
