@@ -35,16 +35,18 @@ export class GroupPage extends AuthenticatedPage {
     this.group = routeParams.get('group');
   }
 
-  onActivate() {
+  onActivate(): any {
     if (!super.onActivate()) return false;
 
-    if (!this.User.isMemberOfGroup(this.group)) {
-      this.router.navigate(['/Join']);
-      return false;
-    }
+    return this.User.waitForLoad().then(() => {
+      if (!this.User.isMemberOfGroup(this.group)) {
+        this.router.navigate(['/Join']);
+        return false;
+      }
 
-    this._loadGroupMembers();
-    return true;
+      this._loadGroupMembers();
+      return true;
+    });
   }
 
   _loadGroupMembers() {
