@@ -10,6 +10,7 @@ import {PlanksService} from '../../services/planks-service';
 @Injectable()
 export class MemberService {
   member;
+  _loadPromise: Promise<any> = Promise.resolve(null);
 
   constructor(
     private FirebaseService: FirebaseService,
@@ -21,12 +22,19 @@ export class MemberService {
 
   loadFromID(id, watch = false) {
     let uid = "google:" + id;
-    Promise.all([this.getMember(uid), this.getPlankRecords(uid)]).then(([member, pr]) => {
+    this._loadPromise = Promise.all([
+      this.getMember(uid),
+      this.getPlankRecords(uid)
+    ]).then(([member, pr]) => {
       this.member = new GroupMember(uid, "", member['name'], pr, this.Planks);
       if (watch) {
         this._watchMember()
       }
     });
+  }
+
+  waitForLoad() {
+    return this._loadPromise;
   }
 
   _watchMember() {
