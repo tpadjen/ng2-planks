@@ -3,10 +3,15 @@
     <h1 class="name">{{daysAbbr[date.getDay()]}}</h1>
     <h1 class="ordinal">{{date.getDate()}}</h2>
   </div>
-  <image class="smile animated"
-        [class.visible]="planked"
-        [class.tada]="animateIn"
-        [class.fadeOut]="animateOut"
-        src="app/pages/calendar/day/img/star.png" alt="By Eduemoni (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons">
+  <div class="spinner-loader centered" *ng-if="loading">
+    Loading…
+  </div>
+  <div *ng-if="!loading">
+    <image class="smile animated"
+          [class.visible]="planked"
+          [class.tada]="animateIn"
+          [class.fadeOut]="animateOut"
+          src="app/pages/calendar/day/img/star.png" alt="By Eduemoni (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons">
+  </div>
   <h2 class="objective" [hidden]="objective <= 0">{{objective}}</h2>
 </div>

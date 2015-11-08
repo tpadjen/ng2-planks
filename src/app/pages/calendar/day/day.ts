@@ -44,10 +44,9 @@ export class Day {
   }
 
   onInit() {
-    this.member.waitForLoad().then(() => { this.loading = false; });
-
-    this.animateIn = true;
-    this.animateFor(800);
+    this.member.waitForLoad().then(() => {
+      this.loading = false;
+    });
   }
 
   get planked() {

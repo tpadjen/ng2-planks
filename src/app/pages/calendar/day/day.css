@@ -53,6 +53,14 @@ h2.objective {
   opacity: 1;
 }
 
+.spinner-loader.centered {
+  position: absolute;
+  margin: 18% 45%;
+  display: block;
+  font-size: 4px;
+}
+
+
 @media (min-width: 34em) {
 
   h1 {
@@ -78,6 +86,19 @@ h2.objective {
     min-height: 80px;
   }
 
+  .spinner-loader.centered {
+    margin: 22% 44%;
+    font-size: 5px;
+  }
+
+
+}
+
+@media (min-width: 40em) {
+  .day {
+    padding: 4px;
+    min-height: 100px;
+  }
 }
 
 @media (min-width: 48em) {
@@ -92,9 +113,20 @@ h2.objective {
 
   .day {
     padding: 4px;
-    min-height: 90px;
+    min-height: 120px;
   }
 
+  .spinner-loader.centered {
+    margin: 24% 44%;
+    font-size: 6px;
+  }
+
+}
+
+@media (min-width: 54em) {
+  .day {
+    min-height: 130px;
+  }
 }
 
 @media (min-width: 62em) {
@@ -113,7 +145,12 @@ h2.objective {
 
   .day {
     padding: 4px;
-    min-height: 120px;
+    min-height: 160px;
+  }
+
+  .spinner-loader.centered {
+    margin: 24% 44%;
+    font-size: 8px;
   }
 
 }
