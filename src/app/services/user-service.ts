@@ -10,7 +10,7 @@ import {PlanksService} from './planks-service';
 export class UserService {
   private authData;
   public objectives;
-  public groups: string[];
+  public groups: {};
   public plankRecords: PlankRecord[];
   public isAuthorizing = true;
   private _isLoaded = false;
@@ -47,7 +47,7 @@ export class UserService {
     } else {
       this.authData = null;
       this._isLoaded = null
-      this.groups = null;
+      this.groups = {};
       this.isAuthorizing = false;
       this.router.navigate(['/Root']);
     }
@@ -173,6 +173,30 @@ export class UserService {
     });
   }
 
+  isMemberOfGroup(group) {
+    return this.groups && group in this.groups;
+  }
+
+  hasLoadedGroup(group) {
+    return this.groups[group].length > 0;
+  }
+
+  groupMembers(group: string) {
+    return this.groups[group];
+  }
+
+  setGroupMembers(group, members: Array<any>) {
+    this.groups[group] = members;
+  }
+
+  get groupNames() {
+    return (Object.keys(this.groups) || []);
+  }
+
+  hasGroups() {
+    return this.groupNames.length > 0;
+  }
+
   _addToGroup(group): Promise<any> {
     return new Promise((resolve, reject) => {
       this.FirebaseService
@@ -184,7 +208,7 @@ export class UserService {
           if (error) {
             reject(error);
           } else {
-            this.groups.push(group);
+            this.groups[group] = [];
             resolve();
           }
         });
@@ -213,7 +237,12 @@ export class UserService {
       this.FirebaseService.users.child(this.uid).child('groups')
         .once('value',(groups) => {
           let val = groups.val();
-          this.groups = val ? Object.keys(val) : [];
+          if (val) {
+            this.groups = {};
+            Object.keys(val).forEach(key => {
+              this.groups[key] = [];
+            });
+          }
           resolve();
       });
     });

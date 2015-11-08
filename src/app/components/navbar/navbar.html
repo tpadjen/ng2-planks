@@ -10,16 +10,16 @@
         <a [router-link]="['/Member', {id: User.id}]" class="btn btn-primary">Calendar</a>
       </li>
       <li class="nav-item" *ng-if="User.isLoaded()">
-        <div *ng-if="User.groups.length == 0">
+        <div *ng-if="!User.hasGroups()">
           <a [router-link]="['/Join']" class="btn btn-warning">Join a Group!</a>
         </div>
-        <div *ng-if="User.groups.length > 0">
+        <div *ng-if="User.hasGroups()">
           <div class="btn-group" dropdown>
             <button type="button" class="btn btn-secondary" dropdown-toggle>
               Groups <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li role="menuitem" *ng-for="#group of User.groups">
+              <li role="menuitem" *ng-for="#group of User.groupNames">
                 <a [router-link]="['/Group', {group: group}]" class="dropdown-item">{{group}}</a>
               </li>
               <li class="divider dropdown-divider"></li>

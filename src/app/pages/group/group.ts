@@ -33,12 +33,31 @@ export class GroupPage extends AuthenticatedPage {
     super(User, router);
 
     this.group = routeParams.get('group');
+  }
 
-    MemberService.getGroupMembers(this.group).then((groupMembers) => {
+  onActivate() {
+    if (!super.onActivate()) return false;
+
+    if (!this.User.isMemberOfGroup(this.group)) {
+      this.router.navigate(['/Join']);
+      return false;
+    }
+
+    this._loadGroupMembers();
+    return true;
+  }
+
+  _loadGroupMembers() {
+    if (this.User.hasLoadedGroup(this.group)) {
       this.loading = false;
-      this.groupMembers = groupMembers;
-    });
-
+      this.groupMembers = this.User.groupMembers(this.group);
+    } else {
+      this.MemberService.getGroupMembers(this.group).then((groupMembers) => {
+        this.loading = false;
+        this.groupMembers = groupMembers;
+        this.User.setGroupMembers(this.group, groupMembers);
+      });
+    }
   }
 
 }
