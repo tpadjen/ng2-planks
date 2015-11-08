@@ -1,7 +1,7 @@
 import {Injectable} from 'angular2/angular2';
 import {Router, Location} from 'angular2/router';
 
-import {PlankRecord} from '../../models/plank-record/plank-record';
+import {PlankRecord} from '../models/plank-record/plank-record';
 
 import {FirebaseService} from './firebase-service';
 import {PlanksService} from './planks-service';
