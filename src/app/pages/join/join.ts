@@ -1,10 +1,9 @@
 import {Component, NgIf, FORM_DIRECTIVES} from 'angular2/angular2';
-import {Router} from 'angular2/router';
+import {Router, CanActivate} from 'angular2/router';
 
-import {AuthenticatedPage} from '../authenticated-page';
+import {isLoggedIn} from '../auth';
 
 import {UserService} from '../../services/user-service';
-import {FirebaseService} from '../../services/firebase-service';
 
 let styles = require('./join.css');
 let template = require('./join.html');
@@ -22,14 +21,16 @@ function dasherize(str) {
   styles: [styles],
   template: template
 })
-export class JoinPage extends AuthenticatedPage {
+@CanActivate((to, from) => {
+  return isLoggedIn(to, from);
+})
+export class JoinPage {
   joinData = {
     group: null,
     password: null
   }
 
-  constructor(public User: UserService, public router: Router, private FirebaseService: FirebaseService) {
-    super(User, router);
+  constructor(public User: UserService, public router: Router) {
   }
 
   joinGroup() {

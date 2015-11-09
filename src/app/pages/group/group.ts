@@ -1,7 +1,7 @@
 import {Component, NgIf, NgFor} from 'angular2/angular2';
-import {Router, RouteParams, RouterLink} from 'angular2/router';
-
-import {AuthenticatedPage} from '../authenticated-page';
+import {Router, RouteParams, RouterLink, CanActivate} from 'angular2/router';
+import {appInjector} from '../../app-injector';
+import {isLoggedIn} from '../auth';
 
 import {GroupMember} from '../../models/group-member/group-member';
 
@@ -19,7 +19,23 @@ let template = require('./group.html');
   template: template,
   providers: [MemberService]
 })
-export class GroupPage extends AuthenticatedPage {
+@CanActivate((to, from) => {
+  if (!isLoggedIn(to, from)) return false;
+
+  let injector = appInjector();
+  let User = injector.get(UserService);
+  let router = injector.get(Router);
+
+  return User.waitForLoad().then(() => {
+    if (!User.isMemberOfGroup(to.params['group'])) {
+      router.navigate(['/Join']);
+      return false;
+    }
+
+    return true;
+  });
+})
+export class GroupPage {
   group: string;
   groupMembers: GroupMember[] = [];
   loading: boolean = true;
@@ -30,23 +46,8 @@ export class GroupPage extends AuthenticatedPage {
     public routeParams: RouteParams,
     private MemberService: MemberService
   ) {
-    super(User, router);
-
     this.group = routeParams.get('group');
-  }
-
-  onActivate(): any {
-    if (!super.onActivate()) return false;
-
-    return this.User.waitForLoad().then(() => {
-      if (!this.User.isMemberOfGroup(this.group)) {
-        this.router.navigate(['/Join']);
-        return false;
-      }
-
-      this._loadGroupMembers();
-      return true;
-    });
+    this._loadGroupMembers();
   }
 
   _loadGroupMembers() {

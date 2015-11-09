@@ -12,6 +12,7 @@ import {
 } from 'angular2/router';
 
 import {AppComponent} from './app'
+import {appInjector} from './app-injector';
 
 bootstrap(AppComponent, [
     UserService,
@@ -20,4 +21,6 @@ bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy })
   ]
-);
+).then((appRef) => {
+  appInjector(appRef.injector);
+});
