@@ -6,36 +6,20 @@ import {Progressbar} from 'ng2-bootstrap/ng2-bootstrap';
 import {Modal} from '../../../../components/modal/modal';
 import {Timer} from './timer/timer';
 
+let styles = require('./time-modal.css');
+let template = require('./time-modal.html');
+
 @Component({
   selector: 'time-modal',
   directives: [Modal, Progressbar, Timer, NgIf],
   pipes: [MinutesPipe],
-  styles: [],
-  template: `
-    <modal
-      (confirm)="onConfirm($event)"
-      (cancel)="onCancel($event)"
-      [title]="title"
-      [confirmable]="true"
-      confirm-button-text="I did it!"
-      cancel-button-text="Cancel"
-    >
-      <div class="goal">
-        Goal: <span class="number">{{goal | minutes}}
-                <i class="fa fa-thumbs-up animated tada"
-                   *ng-if="timer.done"></i>
-              </span>
-      </div>
-      <progress class="progress"
-        [class.progress-success]="timer.done"
-        [value]="timer.percent || 0"
-        max="100"
-      ></progress>
-      <timer #timer [goal]="goal"></timer>
-    </modal>
-  `
+  styles: [styles],
+  template: template
 })
 export class TimeModal {
+  timing: boolean = false;
+  inputing: boolean = false;
+
   @Input() goal: number = 0;
   @Input() title: string = "";
 
@@ -52,13 +36,23 @@ export class TimeModal {
   }
 
   onConfirm(event) {
-    this.confirm.next(this.timer.timeInSeconds);
-    this.timer.stop();
+    if (this.timer) {
+      this.confirm.next(this.timer.timeInSeconds);
+      this.timer.stop();
+    }
+
+    this.reset();
   }
 
   onCancel(event) {
-    this.timer.stop();
+    if (this.timer) this.timer.stop();
     this.cancel.next(null);
+    this.reset();
+  }
+
+  reset() {
+    this.timing = false;
+    this.inputing = false;
   }
 
 }

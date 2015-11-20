@@ -19,6 +19,7 @@ let styles = require('./modal.css');
           <div class="buttons">
             <button
               class="btn btn-success confirm"
+              *ng-if="showConfirm"
               (click)="onConfirm($event)"
               [class.disabled]="!confirmable">{{ confirmButtonText }}</button>
             <button
@@ -35,6 +36,7 @@ export class Modal {
   @Input() confirmButtonText: string = "OK";
   @Input() cancelButtonText: string = "Cancel";
   @Input() confirmable: boolean;
+  @Input() showConfirm: boolean = false;
 
   @Output() confirm: EventEmitter = new EventEmitter();
   @Output() cancel: EventEmitter = new EventEmitter();

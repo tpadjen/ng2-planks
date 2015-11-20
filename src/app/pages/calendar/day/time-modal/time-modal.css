@@ -1,0 +1,40 @@
+.choice {
+  cursor: pointer;
+}
+
+.choice:hover {
+  color: green;
+}
+
+.choice, .or {
+  display: inline-block;
+}
+
+.or {
+  font-size: 1.5rem;
+  height: 53px;
+  transform: translate(0, -50%);
+}
+
+.choice.timer {
+  margin-right: 1.5rem;
+}
+
+.choice.input {
+  margin-left: 1.5rem;
+}
+
+.pane-choices .question {
+  font-size: 1.125rem;
+  margin-bottom: 20px;
+  color: #025aa5;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media(min-width: 32rem) {
+  .pane-choices .question {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

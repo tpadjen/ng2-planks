@@ -1,0 +1,39 @@
+<modal
+  (confirm)="onConfirm($event)"
+  (cancel)="onCancel($event)"
+  [title]="title"
+  [confirmable]="true"
+  confirm-button-text="I did it!"
+  [show-confirm]="timing || inputing"
+  cancel-button-text="Cancel"
+>
+  <div class="pane-choices" *ng-if="!(timing || inputing)">
+    <h3 class="question">How do you want to enter your time?</h3>
+    <div class="choice timer" (click)="timing = true">
+      <h2>Timer</h2>
+      <i class="fa fa-clock-o fa-4x"></i>
+    </div>
+    <div class="or">or</div>
+    <div class="choice input" (click)="inputing = true">
+      <h2>Input</h2>
+      <i class="fa fa-hand-pointer-o fa-4x" ></i>
+    </div>
+  </div>
+  <div class="timer-pane" *ng-if="timing">
+    <div class="goal">
+      Goal: <span class="number">{{goal | minutes}}
+              <i class="fa fa-thumbs-up animated tada"
+                 *ng-if="timer.done"></i>
+            </span>
+    </div>
+    <progress class="progress"
+      [class.progress-success]="timer.done"
+      [value]="timer.percent || 0"
+      max="100"
+    ></progress>
+    <timer #timer [goal]="goal"></timer>
+  </div>
+  <div class="input-pane" *ng-if="inputing">
+    <p>Inputing</p>
+  </div>
+</modal>
