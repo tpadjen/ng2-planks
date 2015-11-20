@@ -10,7 +10,7 @@ let styles = require('./modal.css');
   template: `
     <div class="modal" [class.hidden]="!showing">
       <div class="background" (click)="canceled($event)">
-        <div class="window">
+        <div class="window" (click)="$event.stopPropagation()">
           <header><h1 class="title">{{ title }}</h1></header>
           <hr>
           <div class="content">
@@ -18,7 +18,7 @@ let styles = require('./modal.css');
           </div>
           <div class="buttons">
             <button
-              class="btn btn-primary confirm"
+              class="btn btn-success confirm"
               (click)="onConfirm($event)"
               [class.disabled]="!confirmable">{{ confirmButtonText }}</button>
             <button

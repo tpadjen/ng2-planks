@@ -1,6 +1,7 @@
 .modal {
   z-index: 9999;
   display: block;
+  cursor: default;
 }
 
 .modal.hidden {
@@ -18,21 +19,21 @@
 
 .window {
   position: absolute;
-  width: 320px;
+  width: 80%;
   padding: 30px;
   left: 50%;
   top: 50%;
-  /*
-  Yep!
-  */
   transform: translate(-50%, -50%);
-  /*bottom: 40px;*/
-  /*margin-left: auto;
-  margin-right: auto;*/
   background: white;
 
   border-radius: 6px;
 
+}
+
+@media (min-device-width: 500px) {
+  .window {
+    max-width: 400px;
+  }
 }
 
 header {
