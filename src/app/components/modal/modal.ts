@@ -16,7 +16,7 @@ let styles = require('./modal.css');
               class="title"
               [class.back-showing]="backShowing"
             >{{ title }}</h1></header>
-          <hr>
+          <hr [class.back-showing]="backShowing">
           <div class="content">
             <ng-content>My Content</ng-content>
           </div>

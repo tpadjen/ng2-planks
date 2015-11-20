@@ -80,4 +80,12 @@ button.cancel {
     font-size: 1.25rem;
     top: 0.5rem;
   }
+
+  .window {
+    padding: 15px;
+  }
+
+  hr.back-showing {
+    visibility: hidden;
+  }
 }
