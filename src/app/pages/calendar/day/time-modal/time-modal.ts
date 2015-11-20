@@ -4,7 +4,7 @@ import {MinutesPipe} from '../../../../pipes/minutes';
 
 import {Progressbar} from 'ng2-bootstrap/ng2-bootstrap';
 import {Modal} from '../../../../components/modal/modal';
-import {Timer} from '../timer/timer';
+import {Timer} from './timer/timer';
 
 @Component({
   selector: 'time-modal',
