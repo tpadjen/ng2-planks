@@ -23,7 +23,7 @@
 .btn-help {
   position: absolute;
   z-index: 102;
-  top: 124px;
+  top: 100px;
   /*margin-left: 10px;*/
 }
 
@@ -37,13 +37,19 @@
 .instructions {
   visibility: hidden;
   position: fixed;
-  top: 124px;
+  top: 100px;
   background-color: white;
   z-index: 0;
   border: 1px solid #aaa;
   border-radius: 4px;
   padding: 10px;
   width: 240px;
+}
+
+@media(min-width: 321px) {
+  .btn-help, .instructions {
+    top: 124px;
+  }
 }
 
 .instructions.animated {

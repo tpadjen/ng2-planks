@@ -24,7 +24,7 @@ h2 {
 }
 
 h2.info {
-  font-size: 1.2rem;
+  font-size: 0.92rem;
   background-color: #ccc;
   color: #333;
   position: fixed;
@@ -33,6 +33,12 @@ h2.info {
   display: inline-block;
   opacity: 1;
   transition: 0.3s linear;
+}
+
+@media(min-width: 321px) {
+  h2.info {
+    font-size: 1.2rem;
+  }
 }
 
 .this.interactive h2.info {

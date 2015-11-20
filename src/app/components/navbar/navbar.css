@@ -3,6 +3,13 @@
   color: #FFFFFF;
   min-height: 54px;
   max-height: 54px;
+  padding: .5rem 0.5rem;
+}
+
+@media (min-width: 321px) {
+  .navbar {
+    padding: .5rem 1.0rem;
+  }
 }
 
 .navbar .navbar-brand {
