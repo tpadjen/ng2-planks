@@ -6,7 +6,15 @@
   confirm-button-text="I did it!"
   [show-confirm]="timing || inputing"
   cancel-button-text="Cancel"
+  [back-showing]="timing || inputing"
 >
+  <div
+    class="back-button"
+    *ng-if="timing || inputing"
+    (click)="timing = inputing = false"
+  >
+    <i class="fa fa-chevron-left"></i>
+  </div>
   <div class="pane-choices" *ng-if="!(timing || inputing)">
     <h3 class="question">How do you want to enter your time?</h3>
     <div class="choice timer" (click)="timing = true">

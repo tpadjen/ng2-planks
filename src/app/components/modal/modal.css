@@ -65,3 +65,19 @@ button.confirm {
 button.cancel {
   float: right;
 }
+
+
+@media(max-width: 32rem) {
+  .back-showing.title {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.4rem;
+  }
+}
+
+@media(max-width: 320px) {
+  .back-showing.title {
+    font-size: 1.25rem;
+    top: 0.5rem;
+  }
+}

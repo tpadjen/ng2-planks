@@ -11,7 +11,11 @@ let styles = require('./modal.css');
     <div class="modal" [class.hidden]="!showing">
       <div class="background" (click)="onCancel($event)">
         <div class="window" (click)="$event.stopPropagation()">
-          <header><h1 class="title">{{ title }}</h1></header>
+          <header>
+            <h1
+              class="title"
+              [class.back-showing]="backShowing"
+            >{{ title }}</h1></header>
           <hr>
           <div class="content">
             <ng-content>My Content</ng-content>
@@ -37,6 +41,7 @@ export class Modal {
   @Input() cancelButtonText: string = "Cancel";
   @Input() confirmable: boolean;
   @Input() showConfirm: boolean = false;
+  @Input() backShowing: boolean = false;
 
   @Output() confirm: EventEmitter = new EventEmitter();
   @Output() cancel: EventEmitter = new EventEmitter();
