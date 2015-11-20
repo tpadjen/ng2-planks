@@ -1,4 +1,4 @@
-import {Component, Input, Attribute, NgIf} from 'angular2/angular2';
+import {Component, Input, Attribute, NgIf, ViewChild} from 'angular2/angular2';
 
 import {UserService} from '../../../services/user-service';
 import {FirebaseService} from '../../../services/firebase-service';
@@ -6,12 +6,14 @@ import {PlankRecord} from '../../../models/plank-record/plank-record';
 
 import {MinutesPipe} from '../../../pipes/minutes';
 
+import {Modal} from '../../../components/modal/modal';
+
 let styles = require('./day.css');
 let template = require('./day.html');
 
 @Component({
   selector: 'td[day]',
-  directives: [NgIf],
+  directives: [Modal, NgIf],
   pipes: [MinutesPipe],
   styles: [styles],
   template: template,
@@ -29,6 +31,7 @@ export class Day {
   @Input() interactive: boolean;
   @Input() member: any;
   public loading = true;
+  @ViewChild(Modal) modal: Modal;
 
   animateIn: boolean = true;
   animateOut: boolean = false;
@@ -76,24 +79,32 @@ export class Day {
     return this._todayAtMidnight() == this._dateAtMidnight();
   }
 
+  get _clickable() {
+    return !this.loading && this.interactive && !this.rest && this.onOrBeforeToday;
+  }
+
   onClick(event) {
-    if (this.loading) return false;
-    if (!this.interactive) return false;
+    if (!this._clickable) return false;
 
-    if (!this.onOrBeforeToday) return false;
-    if (this.objective == "Rest") return false;
-
-    if (!this.planked) {
-      this.member.setPlankRecord(this._dateAtMidnight());
-      this.animateIn = true;
-      this.animateFor(800);
-    } else {
-      this.member.removePlankRecord(this._dateAtMidnight());
-      this.animateOut = true;
-      this.animateFor(300);
+    if (this.planked) {
+      this.unsetPlanked();
+      return false;
     }
+    if (this.modal) this.modal.show();
 
     return false;
+  }
+
+  setPlanked() {
+    this.member.setPlankRecord(this._dateAtMidnight());
+    this.animateIn = true;
+    this.animateFor(800);
+  }
+
+  unsetPlanked() {
+    this.member.removePlankRecord(this._dateAtMidnight());
+    this.animateOut = true;
+    this.animateFor(300);
   }
 
   animateFor(time) {

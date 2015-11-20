@@ -14,4 +14,10 @@
           src="app/pages/calendar/day/img/star.png" alt="By Eduemoni (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons">
   </div>
   <h2 class="objective" [hidden]="objective <= 0">{{objective | minutes}}</h2>
+  <modal *ng-if="interactive && !planked"
+    (ok)="setPlanked()"
+    title="{{days[date.getDay()]}} {{date.getDate()}}/11/2015"
+    [confirmable]="true"
+    confirm-button-text="I did it!"
+    cancel-button-text="Cancel">Goal: {{objective | minutes}}</modal>
 </div>

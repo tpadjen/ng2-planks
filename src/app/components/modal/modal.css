@@ -1,0 +1,66 @@
+.modal {
+  z-index: 9999;
+  display: block;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(125, 125, 125, 0.8);
+}
+
+.window {
+  position: absolute;
+  width: 320px;
+  padding: 30px;
+  left: 50%;
+  top: 50%;
+  /*
+  Yep!
+  */
+  transform: translate(-50%, -50%);
+  /*bottom: 40px;*/
+  /*margin-left: auto;
+  margin-right: auto;*/
+  background: white;
+
+  border-radius: 6px;
+
+}
+
+header {
+  /*padding-top: 20px;*/
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+
+hr {
+  margin-bottom: 20px;
+}
+
+.content {
+  margin-bottom: 30px;
+}
+
+.buttons {
+  /*margin-bottom: 30px;*/
+}
+
+button.confirm {
+  float: left;
+}
+
+button.cancel {
+  float: right;
+}
