@@ -2,6 +2,7 @@ import {Component, NgIf, Input, Output, ViewChild, EventEmitter} from 'angular2/
 
 import {MinutesPipe} from '../../../../pipes/minutes';
 
+import {InputPane} from './input-pane/input-pane';
 import {Progressbar} from 'ng2-bootstrap/ng2-bootstrap';
 import {Modal} from '../../../../components/modal/modal';
 import {Timer} from './timer/timer';
@@ -11,7 +12,7 @@ let template = require('./time-modal.html');
 
 @Component({
   selector: 'time-modal',
-  directives: [Modal, Progressbar, Timer, NgIf],
+  directives: [Modal, Progressbar, Timer, InputPane, NgIf],
   pipes: [MinutesPipe],
   styles: [styles],
   template: template

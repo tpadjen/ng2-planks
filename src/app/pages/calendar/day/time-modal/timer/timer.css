@@ -1,12 +1,3 @@
-@font-face {
-  font-family: "DigitalMono";
-  src: url('/styles/fonts/digital-7.mono.ttf') format("truetype");
-}
-@font-face {
-  font-family: "DigitalReg";
-  src: url('/styles/fonts/digital-7.regular.ttf') format("truetype");
-}
-
 .timer {
   border: 1px solid #333;
   padding: 10px 20px;

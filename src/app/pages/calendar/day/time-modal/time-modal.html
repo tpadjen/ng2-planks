@@ -41,7 +41,5 @@
     ></progress>
     <timer #timer [goal]="goal"></timer>
   </div>
-  <div class="input-pane" *ng-if="inputing">
-    <p>Inputing</p>
-  </div>
+  <input-pane *ng-if="inputing" goal="{{goal}}"></input-pane>
 </modal>
