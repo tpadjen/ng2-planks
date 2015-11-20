@@ -53,9 +53,10 @@ module.exports = {
 
       // Styles
       { test: /\.css$/,     loader: 'to-string!css-loader!postcss-loader' },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
 
       // Templates
-      { test: /\.html$/,     loader: 'raw!html-minify' }
+      { test: /\.html$/,    loader: 'raw!html-minify' }
 
     ],
     noParse: [

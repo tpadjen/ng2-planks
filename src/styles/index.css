@@ -57,3 +57,26 @@ body {
   overflow: hidden;
   text-indent: 100%;
 }
+
+.this {
+  margin-bottom: 30px;
+}
+
+footer {
+  font-size: 12px;
+  background: rgb(68, 68, 68);
+  color: white;
+  padding: 2rem;
+}
+
+footer h1 {
+  font-size: 14px;
+}
+
+footer a {
+  color: #999;
+}
+
+footer a:hover {
+  color: #bbb;
+}

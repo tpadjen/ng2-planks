@@ -1,5 +1,5 @@
 <div class="timer">
-  <div class="time">{{ time | toTime }}</div>
+  <div class="time"><span class="min">{{ minutesPart }}</span><span class="punc">:</span><span class="sec">{{ secondsPart }}</span><span class="punc">.</span><span class="sec">{{ tenthsPart }}</span></div>
 
   <div class="buttons">
     <i class="fa fa-play fa-3x" *ng-if="!playing" (click)="togglePlay($event)"></i>
