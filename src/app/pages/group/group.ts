@@ -3,6 +3,7 @@ import {Router, RouteParams, RouterLink, CanActivate} from 'angular2/router';
 import {appInjector} from '../../app-injector';
 import {isLoggedIn} from '../auth';
 
+import {Page} from '../page';
 import {GroupMember} from '../../models/group-member/group-member';
 
 import {UserService} from '../../services/user-service';
@@ -35,7 +36,7 @@ let template = require('./group.html');
     return true;
   });
 })
-export class GroupPage {
+export class GroupPage extends Page {
   group: string;
   groupMembers: GroupMember[] = [];
   loading: boolean = true;
@@ -46,6 +47,7 @@ export class GroupPage {
     public routeParams: RouteParams,
     private MemberService: MemberService
   ) {
+    super(User);
     this.group = routeParams.get('group');
     this._loadGroupMembers();
   }

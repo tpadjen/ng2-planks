@@ -108,7 +108,7 @@ gulp.task('dist:webpack', function(callback) {
 
 gulp.task('dev:webpack', function(callback) {
   // The script refreshing the browser on non hot updates
-  webpackConfig.entry.app.unshift('webpack-dev-server/client?http://localhost:8080');
+  webpackConfig.entry.app.unshift('webpack-dev-server/client?http://localhost:8081');
 
   // For hot style updates
   webpackConfig.entry.app.unshift('webpack/hot/dev-server');

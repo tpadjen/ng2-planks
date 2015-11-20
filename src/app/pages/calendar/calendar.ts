@@ -1,6 +1,7 @@
 import {Component, NgIf} from 'angular2/angular2';
 import {RouteParams, CanActivate} from 'angular2/router';
 
+import {Page} from '../page';
 import {isLoggedIn} from '../auth';
 
 import {Month} from './month/month';
@@ -24,7 +25,7 @@ let template = require('./calendar.html');
 @CanActivate((to, from) => {
   return isLoggedIn(to, from);
 })
-export class CalendarPage {
+export class CalendarPage extends Page {
   loading: boolean = true;
   member;
 
@@ -33,6 +34,8 @@ export class CalendarPage {
     public routeParams: RouteParams,
     public MemberService: MemberService
   ) {
+    super(User);
+
     let id = routeParams.get('id')
 
     if (id == this.User.id) {
