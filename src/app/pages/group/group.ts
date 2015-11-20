@@ -9,13 +9,15 @@ import {GroupMember} from '../../models/group-member/group-member';
 import {UserService} from '../../services/user-service';
 import {MemberService} from '../calendar/member-service';
 
+import {MinutesPipe} from '../../pipes/minutes';
+
 let styles = require('./group.css');
 let template = require('./group.html');
 
 @Component({
   selector: 'group-page',
   directives: [NgIf, NgFor, RouterLink],
-  pipes: [],
+  pipes: [MinutesPipe],
   styles: [styles],
   template: template,
   providers: [MemberService]

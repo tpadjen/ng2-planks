@@ -32,8 +32,8 @@ h2.objective {
 
 .smile {
   position: relative;
-  right: -4px;
-  top: -4px;
+  right: -2px;
+  top: -12px;
   clear: both;
   width: 70%;
   opacity:0;
@@ -77,8 +77,8 @@ h2.objective {
   }
 
   .smile {
-    right: -6px;
-    top: -6px;
+    right: -2px;
+    top: -12px;
   }
 
   .day {
@@ -121,6 +121,11 @@ h2.objective {
     font-size: 6px;
   }
 
+  .smile {
+    right: -2px;
+    top: -12px;
+  }
+
 }
 
 @media (min-width: 54em) {
@@ -151,6 +156,11 @@ h2.objective {
   .spinner-loader.centered {
     margin: 24% 44%;
     font-size: 8px;
+  }
+
+  .smile {
+    right: -2px;
+    top: -18px;
   }
 
 }

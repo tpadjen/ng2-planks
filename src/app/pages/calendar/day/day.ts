@@ -4,13 +4,15 @@ import {UserService} from '../../../services/user-service';
 import {FirebaseService} from '../../../services/firebase-service';
 import {PlankRecord} from '../../../models/plank-record/plank-record';
 
+import {MinutesPipe} from '../../../pipes/minutes';
+
 let styles = require('./day.css');
 let template = require('./day.html');
 
 @Component({
   selector: 'td[day]',
   directives: [NgIf],
-  pipes: [],
+  pipes: [MinutesPipe],
   styles: [styles],
   template: template,
   host: {

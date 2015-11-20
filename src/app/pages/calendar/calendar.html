@@ -3,7 +3,7 @@
     <h2 class="info days-planked"
         [class.hidden]="loading">Days Planked: {{member.daysPlanked}}</h2>
     <h2 class="info time-planked"
-        [class.hidden]="loading">Time Planked: {{member.timePlanked}}</h2>
+        [class.hidden]="loading">Time Planked: {{member.timePlanked | minutes}}</h2>
   </div>
   <month [interactive]="isUserPage()" [member]="member"></month>
 </div>

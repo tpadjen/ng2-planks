@@ -1,6 +1,8 @@
 import {Component, NgIf} from 'angular2/angular2';
 import {RouteParams, CanActivate} from 'angular2/router';
 
+import {MinutesPipe} from '../../pipes/minutes';
+
 import {Page} from '../page';
 import {isLoggedIn} from '../auth';
 
@@ -17,7 +19,7 @@ let template = require('./calendar.html');
 @Component({
   selector: 'calendar-page',
   directives: [NgIf, Month],
-  pipes: [],
+  pipes: [MinutesPipe],
   styles: [styles],
   template: template,
   providers: [MemberService]
