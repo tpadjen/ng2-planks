@@ -19,5 +19,10 @@
     title="{{days[date.getDay()]}} {{date.getDate()}}/11/2015"
     [confirmable]="true"
     confirm-button-text="I did it!"
-    cancel-button-text="Cancel">Goal: {{objective | minutes}}</modal>
+    cancel-button-text="Cancel">
+    <div class="goal">
+      Goal: {{objective | minutes}}
+    </div>
+    <timer></timer>
+    </modal>
 </div>

@@ -7,13 +7,14 @@ import {PlankRecord} from '../../../models/plank-record/plank-record';
 import {MinutesPipe} from '../../../pipes/minutes';
 
 import {Modal} from '../../../components/modal/modal';
+import {Timer} from './timer/timer';
 
 let styles = require('./day.css');
 let template = require('./day.html');
 
 @Component({
   selector: 'td[day]',
-  directives: [Modal, NgIf],
+  directives: [Modal, Timer, NgIf],
   pipes: [MinutesPipe],
   styles: [styles],
   template: template,
