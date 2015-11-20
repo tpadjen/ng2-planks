@@ -69,26 +69,6 @@ h2.objective {
   font-size: 4px;
 }
 
-.goal {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-progress {
-  margin-bottom: 20px;
-}
-
-.number {
-  position: relative;
-}
-
-i.fa-thumbs-up {
-  color: green;
-  font-size: 2.0rem;
-  position: absolute;
-  right: -42px;
-}
-
 @media (min-width: 34em) {
 
   h1 {
