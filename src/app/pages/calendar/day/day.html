@@ -15,14 +15,19 @@
   </div>
   <h2 class="objective" [hidden]="objective <= 0">{{objective | minutes}}</h2>
   <modal *ng-if="interactive && !planked"
-    (ok)="setPlanked()"
+    (ok)="timer.stop(); setPlanked()"
+    (cancel)="timer.stop()"
     title="{{days[date.getDay()]}} 11/{{date.getDate()}}/2015"
     [confirmable]="true"
     confirm-button-text="I did it!"
     cancel-button-text="Cancel">
     <div class="goal">
-      Goal: {{objective | minutes}}
+      Goal: <span class="number">{{objective | minutes}} <i class="fa fa-thumbs-up animated tada" *ng-if="timer.done"></i></span>
     </div>
-    <timer></timer>
+    <progress class="progress"
+      [class.progress-success]="timer.done"
+      [value]="timer.percent || 0"
+      max="100"></progress>
+    <timer #timer [goal]="objective"></timer>
     </modal>
 </div>

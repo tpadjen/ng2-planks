@@ -1,4 +1,4 @@
-import {Component, NgIf} from 'angular2/angular2';
+import {Component, Input, NgIf} from 'angular2/angular2';
 
 import {ToTimePipe} from './pipes/to-time';
 
@@ -14,6 +14,7 @@ let template = require('./timer.html');
 })
 export class Timer {
   time: number = 0;
+  @Input() goal: number = 0;
   playing = null;
 
   constructor() {}
@@ -37,6 +38,14 @@ export class Timer {
   pause() {
     clearTimeout(this.playing);
     this.playing = null;
+  }
+
+  get done() {
+    return this.time >= this.goal;
+  }
+
+  get percent() {
+    return this.goal == 0 ? 100 : (this.time / this.goal) * 100;
   }
 
 }

@@ -6,6 +6,7 @@ import {PlankRecord} from '../../../models/plank-record/plank-record';
 
 import {MinutesPipe} from '../../../pipes/minutes';
 
+import {Progressbar} from 'ng2-bootstrap/ng2-bootstrap';
 import {Modal} from '../../../components/modal/modal';
 import {Timer} from './timer/timer';
 
@@ -14,7 +15,7 @@ let template = require('./day.html');
 
 @Component({
   selector: 'td[day]',
-  directives: [Modal, Timer, NgIf],
+  directives: [Modal, Timer, Progressbar, NgIf],
   pipes: [MinutesPipe],
   styles: [styles],
   template: template,
