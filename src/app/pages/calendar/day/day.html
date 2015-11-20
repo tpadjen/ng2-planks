@@ -16,7 +16,7 @@
   <h2 class="objective" [hidden]="objective <= 0">{{objective | minutes}}</h2>
   <modal *ng-if="interactive && !planked"
     (ok)="setPlanked()"
-    title="{{days[date.getDay()]}} {{date.getDate()}}/11/2015"
+    title="{{days[date.getDay()]}} 11/{{date.getDate()}}/2015"
     [confirmable]="true"
     confirm-button-text="I did it!"
     cancel-button-text="Cancel">
