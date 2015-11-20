@@ -13,7 +13,7 @@ let template = require('./timer.html');
   template: template
 })
 export class Timer {
-  time: number = 0;
+  public time: number = 0;
   @Input() goal: number = 0;
   playing = null;
 
@@ -30,7 +30,7 @@ export class Timer {
     this.playing == null ? this.play() : this.pause();
   }
 
-  stop(event) {
+  stop() {
     this.pause();
     this.time = 0;
   }
@@ -46,6 +46,10 @@ export class Timer {
 
   get percent() {
     return this.goal == 0 ? 100 : (this.time / this.goal) * 100;
+  }
+
+  get timeInSeconds() {
+    return Math.floor(this.time);
   }
 
 }

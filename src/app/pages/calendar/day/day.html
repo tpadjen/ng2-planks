@@ -14,20 +14,12 @@
           src="app/pages/calendar/day/img/star.png" alt="By Eduemoni (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons">
   </div>
   <h2 class="objective" [hidden]="objective <= 0">{{objective | minutes}}</h2>
-  <modal *ng-if="interactive && !planked"
-    (ok)="timer.stop(); setPlanked()"
-    (cancel)="timer.stop()"
-    title="{{days[date.getDay()]}} 11/{{date.getDate()}}/2015"
-    [confirmable]="true"
-    confirm-button-text="I did it!"
-    cancel-button-text="Cancel">
-    <div class="goal">
-      Goal: <span class="number">{{objective | minutes}} <i class="fa fa-thumbs-up animated tada" *ng-if="timer.done"></i></span>
-    </div>
-    <progress class="progress"
-      [class.progress-success]="timer.done"
-      [value]="timer.percent || 0"
-      max="100"></progress>
-    <timer #timer [goal]="objective"></timer>
-    </modal>
+  <div class="show-modal" *ng-if="interactive && !planked">
+    <time-modal
+      (confirm)="setPlanked($event)"
+      (cancel)="true"
+      title="{{longDate}}"
+      goal="{{objective}}"
+    ></time-modal>
+  </div>
 </div>

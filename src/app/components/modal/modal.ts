@@ -9,7 +9,7 @@ let styles = require('./modal.css');
   styles: [styles],
   template: `
     <div class="modal" [class.hidden]="!showing">
-      <div class="background" (click)="canceled($event)">
+      <div class="background" (click)="onCancel($event)">
         <div class="window" (click)="$event.stopPropagation()">
           <header><h1 class="title">{{ title }}</h1></header>
           <hr>
@@ -36,7 +36,7 @@ export class Modal {
   @Input() cancelButtonText: string = "Cancel";
   @Input() confirmable: boolean;
 
-  @Output() ok: EventEmitter = new EventEmitter();
+  @Output() confirm: EventEmitter = new EventEmitter();
   @Output() cancel: EventEmitter = new EventEmitter();
 
   showing: boolean = false;
@@ -46,7 +46,7 @@ export class Modal {
   onConfirm(event) {
     event.stopPropagation();
     if (this.confirmable){
-      this.ok.next(null);
+      this.confirm.next(null);
       this.hide();
     }
   }

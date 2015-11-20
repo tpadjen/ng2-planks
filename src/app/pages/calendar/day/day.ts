@@ -6,16 +6,14 @@ import {PlankRecord} from '../../../models/plank-record/plank-record';
 
 import {MinutesPipe} from '../../../pipes/minutes';
 
-import {Progressbar} from 'ng2-bootstrap/ng2-bootstrap';
-import {Modal} from '../../../components/modal/modal';
-import {Timer} from './timer/timer';
+import {TimeModal} from './time-modal/time-modal';
 
 let styles = require('./day.css');
 let template = require('./day.html');
 
 @Component({
   selector: 'td[day]',
-  directives: [Modal, Timer, Progressbar, NgIf],
+  directives: [TimeModal, NgIf],
   pipes: [MinutesPipe],
   styles: [styles],
   template: template,
@@ -33,7 +31,7 @@ export class Day {
   @Input() interactive: boolean;
   @Input() member: any;
   public loading = true;
-  @ViewChild(Modal) modal: Modal;
+  @ViewChild(TimeModal) modal: TimeModal;
 
   animateIn: boolean = true;
   animateOut: boolean = false;
@@ -97,7 +95,8 @@ export class Day {
     return false;
   }
 
-  setPlanked() {
+  setPlanked(time) {
+    console.log("settingPlanks: " + time);
     this.member.setPlankRecord(this._dateAtMidnight());
     this.animateIn = true;
     this.animateFor(800);
@@ -114,6 +113,10 @@ export class Day {
       this.animateIn = false;
       this.animateOut = false;
     }, time);
+  }
+
+  get longDate() {
+    return this.days[this.date.getDay()] + " 11/" + this.date.getDate() + "/2015";
   }
 
   _dateAtMidnight(): number {
