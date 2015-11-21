@@ -96,8 +96,7 @@ export class Day {
   }
 
   setPlanked(time) {
-    console.log("settingPlanks: " + time);
-    this.member.setPlankRecord(this._dateAtMidnight());
+    this.member.setPlankRecord(this._dateAtMidnight(), time);
     this.animateIn = true;
     this.animateFor(800);
   }

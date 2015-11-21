@@ -28,7 +28,8 @@ export class GroupMember {
     if (this.daysPlanked == 0) return 0;
 
     return Object.keys(this.plankRecords).map(datetime => {
-      return this.PlanksService.objectiveFor(new Date(parseInt(datetime)));
+      return this.plankRecords[datetime];
+      // return this.PlanksService.objectiveFor(new Date(parseInt(datetime)));
     }).reduce((a, b) => { return a + b; });
   }
 

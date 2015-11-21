@@ -104,11 +104,11 @@ export class UserService {
    * User Model
    */
 
-  setPlankRecord(datetime) {
+  setPlankRecord(datetime, time) {
     this.FirebaseService.plankRecords
       .child(this.uid)
       .child(datetime+"")
-      .set(true);
+      .set(time);
   }
 
   removePlankRecord(datetime) {
@@ -150,7 +150,8 @@ export class UserService {
     if (!this.plankRecords) return 0;
 
     return Object.keys(this.plankRecords).map(datetime => {
-      return this.PlanksService.objectiveFor(new Date(parseInt(datetime)));
+      return this.plankRecords[datetime];
+      // return this.PlanksService.objectiveFor(new Date(parseInt(datetime)));
     }).reduce((a, b) => { return a + b; });
   }
 
