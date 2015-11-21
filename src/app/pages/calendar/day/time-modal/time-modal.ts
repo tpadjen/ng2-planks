@@ -26,6 +26,7 @@ export class TimeModal {
 
   @ViewChild(Modal) modal: Modal;
   @ViewChild(Timer) timer: Timer;
+  @ViewChild(InputPane) inputPane: InputPane;
 
   @Output() confirm: EventEmitter = new EventEmitter();
   @Output() cancel: EventEmitter = new EventEmitter();
@@ -40,6 +41,8 @@ export class TimeModal {
     if (this.timer) {
       this.confirm.next(this.timer.timeInSeconds);
       this.timer.stop();
+    } else if (this.inputPane) {
+      this.confirm.next(this.inputPane.time);
     }
 
     this.reset();
@@ -54,6 +57,11 @@ export class TimeModal {
   reset() {
     this.timing = false;
     this.inputing = false;
+  }
+
+  showConfirm() {
+    return (this.timing && this.timer && this.timer.done) ||
+            (this.inputing && this.inputPane && this.inputPane.valid);
   }
 
 }

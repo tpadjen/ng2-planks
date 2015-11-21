@@ -1,0 +1,47 @@
+.time {
+  font-size: 3.5rem;
+  font-family: 'DigitalMono', monospace;
+}
+
+.time .punc {
+  font-family: 'DigitalReg', sans-serif;
+}
+
+.pluses {
+  position: relative;
+  top: 8px;
+}
+
+.minuses {
+  position: relative;
+  top: -16px;
+}
+
+i {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+i:first-child {
+  margin-right: 1rem;
+}
+
+i:last-child {
+  margin-left: 1rem;
+}
+
+.fa-undo {
+  position: absolute;
+  right: 2rem;
+  transform: translate(0px, -68px);
+}
+
+@media(max-width: 32rem) {
+  .time, .pluses, .minuses {
+    transform: translate(-2rem, 0);
+  }
+}

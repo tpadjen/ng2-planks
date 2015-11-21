@@ -1,0 +1,12 @@
+<div class="input-pane">
+  <div class="pluses">
+    <i class="fa fa-plus fa-2x" (click)="changeTime(60)" unselectable="on"></i>
+    <i class="fa fa-plus fa-2x" (click)="changeTime(1)" unselectable="on"></i>
+  </div>
+  <div class="time"><span class="min">{{min}}</span><span class="punc">:</span><span class="sec">{{sec}}</span></div>
+  <i class="fa fa-undo fa-3x" (click)="reset()" unselectable="on"></i>
+  <div class="minuses">
+    <i class="fa fa-minus fa-2x" (click)="changeTime(-60)" unselectable="on"></i>
+    <i class="fa fa-minus fa-2x" (click)="changeTime(-1)" unselectable="on"></i>
+  </div>
+</div>

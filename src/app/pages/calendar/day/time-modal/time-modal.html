@@ -4,7 +4,7 @@
   [title]="title"
   [confirmable]="true"
   confirm-button-text="I did it!"
-  [show-confirm]="timing || inputing"
+  [show-confirm]="showConfirm()"
   cancel-button-text="Cancel"
   [back-showing]="timing || inputing"
 >
@@ -41,5 +41,5 @@
     ></progress>
     <timer #timer [goal]="goal"></timer>
   </div>
-  <input-pane *ng-if="inputing" goal="{{goal}}"></input-pane>
+  <input-pane *ng-if="inputing" goal="{{goal}}" #ip></input-pane>
 </modal>
