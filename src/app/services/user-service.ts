@@ -155,7 +155,11 @@ export class UserService {
     }).reduce((a, b) => { return a + b; });
   }
 
-  plankedOn(datetime) {
+  plankedOn(datetime: string) {
+    return this.plankRecords && datetime in this.plankRecords;
+  }
+
+  plankTimeFor(datetime: string) {
     return this.plankRecords && this.plankRecords[datetime];
   }
 

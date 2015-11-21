@@ -1,8 +1,10 @@
 export class PlankRecord {
   public date: number;
   public uid: string;
+  public time: number;
 
   static convertSnapshot = function(snapshotValue): any[] {
+    console.log(snapshotValue);
     return snapshotValue;
     // return Object.keys(snapshotValue).map(key => {
     //   var item = snapshotValue[key];

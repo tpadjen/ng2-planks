@@ -42,9 +42,24 @@ h2.objective {
   opacity:0;
 }
 
+.obj.striked {
+  text-decoration: line-through;
+  color: red;
+}
+
+.better {
+  margin-left: 0.2rem;
+}
+
 @media(min-width: 321px) {
   .smile {
     top: -12px;
+  }
+}
+
+@media(max-width: 320px) {
+  h2.objective span {
+    font-size: 0.65rem;
   }
 }
 

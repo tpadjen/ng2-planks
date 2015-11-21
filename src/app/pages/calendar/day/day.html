@@ -14,7 +14,12 @@
           src="app/pages/calendar/day/img/718star.png"
     >
   </div>
-  <h2 class="objective" [hidden]="objective <= 0">{{objective | minutes}}</h2>
+  <h2
+    class="objective"
+    [hidden]="objective <= 0"
+  >
+    <span class="obj" [class.striked]="beatObjective()">{{objective | minutes}}</span><span class="better" *ng-if="beatObjective()">{{plankTime | minutes}}</span>
+  </h2>
   <div class="show-modal" *ng-if="interactive && !planked">
     <time-modal
       (confirm)="setPlanked($event)"

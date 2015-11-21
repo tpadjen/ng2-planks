@@ -60,6 +60,12 @@ export class Day {
     return this.member.plankedOn(this._dateAtMidnight());
   }
 
+  get plankTime() {
+    if (this.loading) return 0;
+
+    return this.member.plankTimeFor(this._dateAtMidnight());
+  }
+
   get rest() {
     if (this.loading) return false;
 
@@ -81,6 +87,10 @@ export class Day {
 
   get _clickable() {
     return !this.loading && this.interactive && !this.rest && this.onOrBeforeToday;
+  }
+
+  beatObjective() {
+    return this.planked && this.plankTime > this.objective;
   }
 
   onClick(event) {

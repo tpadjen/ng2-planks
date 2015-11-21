@@ -24,6 +24,14 @@ export class GroupMember {
     return this.plankRecords && this.plankRecords[parseInt(datetime)];
   }
 
+  plankTimeFor(datetime): number {
+    if (!this.plankRecords) return 0;
+
+    console.log(this.plankRecords[parseInt(datetime)]);
+
+    return 0;
+  }
+
   get timePlanked() {
     if (this.daysPlanked == 0) return 0;
 
