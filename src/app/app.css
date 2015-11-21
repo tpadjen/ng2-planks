@@ -1,0 +1,22 @@
+.footer {
+  font-size: 12px;
+  background: rgb(68, 68, 68);
+  color: white;
+  padding: 2rem;
+}
+
+.footer h1 {
+  font-size: 14px;
+}
+
+.footer ul {
+  margin-bottom: 0;
+}
+
+.footer a {
+  color: #999;
+}
+
+.footer a:hover {
+  color: #bbb;
+}
