@@ -1,9 +1,24 @@
 <div class="timer">
-  <div class="time"><span class="min">{{ minutesPart }}</span><span class="punc">:</span><span class="sec">{{ secondsPart }}</span><span class="punc">.</span><span class="sec">{{ tenthsPart }}</span></div>
+  <div class="time" unselectable="on"><span class="min">{{ minutesPart }}</span><span class="punc">:</span><span class="sec">{{ secondsPart }}</span><span class="punc">.</span><span class="sec">{{ tenthsPart }}</span></div>
 
   <div class="buttons">
-    <i class="fa fa-play fa-3x" *ng-if="!playing" (click)="togglePlay($event)"></i>
-    <i class="fa fa-pause fa-3x" *ng-if="playing" (click)="togglePlay($event)"></i>
-    <i class="fa fa-undo fa-3x" (click)="stop($event)"></i>
+    <i
+      class="fa fa-play fa-3x"
+      *ng-if="!playing"
+      (click)="togglePlay($event)"
+      unselectable="on"
+    ></i>
+    <i
+      class="fa fa-pause fa-3x"
+      *ng-if="playing"
+      (click)="togglePlay($event)"
+      unselectable="on"
+    ></i>
+    <i
+      class="fa fa-undo fa-3x"
+      (click)="reset($event)"
+      [class.disabled]="playing"
+      unselectable="on"
+    ></i>
   </div>
 </div>

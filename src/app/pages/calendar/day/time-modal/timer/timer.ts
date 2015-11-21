@@ -15,6 +15,11 @@ export class Timer {
   @Input() goal: number = 0;
   playing = null;
 
+  _t: number = 0;
+  _min: number = 0;
+  _sec: number = 0;
+  _tenths: number = 0;
+
   constructor() {}
 
   play() {
@@ -30,7 +35,13 @@ export class Timer {
 
   stop() {
     this.pause();
-    this.time = 0;
+    this.reset();
+  }
+
+  reset() {
+    if (!this.playing) {
+      this._t = this.time = 0;
+    }
   }
 
   pause() {
@@ -50,10 +61,7 @@ export class Timer {
     return Math.floor(this.time);
   }
 
-  _t: number = 0;
-  _min: number = 0;
-  _sec: number = 0;
-  _tenths: number = 0;
+
 
   get minutesPart() {
     if(!this.time || this.time == undefined || this.time == NaN) return "00";
