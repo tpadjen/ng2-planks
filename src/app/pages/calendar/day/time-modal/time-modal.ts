@@ -39,7 +39,7 @@ export class TimeModal {
 
   onConfirm(event) {
     if (this.timer) {
-      this.confirm.next(this.timer.timeInSeconds);
+      this.confirm.next(this.timer.time);
       this.timer.stop();
     } else if (this.inputPane) {
       this.confirm.next(this.inputPane.time);

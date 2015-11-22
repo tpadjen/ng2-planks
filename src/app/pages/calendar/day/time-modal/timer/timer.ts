@@ -11,21 +11,43 @@ let template = require('./timer.html');
   template: template
 })
 export class Timer {
-  public time: number = 0;
   @Input() goal: number = 0;
   playing = null;
 
-  _t: number = 0;
-  _min: number = 0;
-  _sec: number = 0;
-  _tenths: number = 0;
+  // display times
+  minutes: string = "00";
+  seconds: string = "00";
+
+  // internal times
+  _t: number = 0;           // total time in milliseconds
+  _startTime: number = 0;   // time when play pressed
+  _initTime: number = 0;    // time when last paused
 
   constructor() {}
 
+  // total time in seconds
+  get time() {
+    return Math.floor(this._t / 1000);
+  }
+
+  get done() {
+    return this.time >= this.goal;
+  }
+
+  get percent() {
+    return this.goal == 0 ? 100 : (this._t / this.goal / 1000) * 100;
+  }
+
   play() {
+    this._startTime = new Date().getTime();
+    this._initTime = this._t;
     this.playing = setInterval(() => {
-      this.time += 0.1;
-    }, 100);
+      let timeDifference: number = new Date().getTime() - this._startTime;
+      let newTime: number = timeDifference + this._initTime;
+      let timeChanged: boolean = Math.floor(newTime/1000) > this.time;
+      this._t = newTime;
+      if (timeChanged) this._calculateTimePieces();
+    }, 50);
   }
 
   togglePlay(event) {
@@ -40,7 +62,9 @@ export class Timer {
 
   reset() {
     if (!this.playing) {
-      this._t = this.time = 0;
+      this._t = 0;
+      this.minutes = "00";
+      this.seconds = "00";
     }
   }
 
@@ -49,41 +73,29 @@ export class Timer {
     this.playing = null;
   }
 
-  get done() {
-    return this.time >= this.goal;
+
+
+  _calculateTimePieces() {
+    this.minutes = this._minutesPart();
+    this.seconds = this._secondsPart();
   }
 
-  get percent() {
-    return this.goal == 0 ? 100 : (this.time / this.goal) * 100;
+  _minutesPart(): string {
+    if(this._timeIsNotSet()) return "00";
+
+    let min = Math.floor(this._t / 1000 / 60);
+    return min < 10 ? "0" + min : "" + min;
   }
 
-  get timeInSeconds() {
-    return Math.floor(this.time);
+  _secondsPart(): string {
+    if(this._timeIsNotSet()) return "00";
+
+    let sec = Math.floor(this._t / 1000 % 60);
+    return sec < 10 ? "0" + sec : "" + sec;
   }
 
-
-
-  get minutesPart() {
-    if(!this.time || this.time == undefined || this.time == NaN) return "00";
-
-    this._t = this.time;
-    this._min = Math.floor(this._t / 60);
-    return this._min < 10 ?  "0" + this._min : "" + this._min;
-  }
-
-  get secondsPart() {
-    if(!this._t || this._t == undefined || this._t == NaN) return "00";
-
-    this._sec = this._t - 60*this._min;
-    let seconds = Math.floor(this._sec);
-    this._tenths = Math.floor((this._sec - seconds)*10);
-    return seconds < 10 ?  "0" + seconds : "" + seconds;
-  }
-
-  get tenthsPart() {
-    if(!this._t || this._t == undefined || this._t == NaN) return "0";
-
-    return this._tenths+"";
+  _timeIsNotSet() {
+    return !this._t || this._t == undefined || this._t == NaN;
   }
 
 }
