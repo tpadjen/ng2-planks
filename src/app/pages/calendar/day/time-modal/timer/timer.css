@@ -36,3 +36,11 @@
 .disabled {
   color: #bbb;
 }
+
+.fa-undo:not(.disabled):hover {
+  color: #025aa5;
+}
+
+.fa-pause:hover, .fa-play:hover {
+  color: #025aa5;
+}
