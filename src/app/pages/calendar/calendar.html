@@ -1,4 +1,4 @@
-<div class="this container-fluid" [class.interactive]="isUserPage()">
+<div class="this container-fluid" *ng-if="hasUser" [class.interactive]="isUserPage()">
   <div class="dashboard">
     <h2 class="info days-planked"
         [class.hidden]="loading">Days Planked: {{member.daysPlanked}}</h2>
