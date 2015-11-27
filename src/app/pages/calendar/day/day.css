@@ -57,9 +57,23 @@ h2.objective {
   }
 }
 
+@media(max-width: 400px) {
+  h2.objective span {
+    font-size: 0.70rem;
+  }
+
+  .better {
+    margin-left: 0.1rem;
+  }
+}
+
 @media(max-width: 320px) {
   h2.objective span {
-    font-size: 0.65rem;
+    font-size: 0.60rem;
+  }
+
+  .better {
+    margin-left: 0.1rem;
   }
 }
 
