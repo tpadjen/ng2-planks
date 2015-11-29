@@ -4,7 +4,7 @@ import {RouteParams, CanActivate} from 'angular2/router';
 import {MinutesPipe} from '../../pipes/minutes';
 
 import {Page} from '../page';
-import {isLoggedIn} from '../auth';
+import {Authorize} from '../auth';
 
 import {Month} from './month/month';
 
@@ -16,6 +16,7 @@ import {MemberService} from './member-service';
 let styles = require('./calendar.css');
 let template = require('./calendar.html');
 
+@Authorize()
 @Component({
   selector: 'calendar-page',
   directives: [NgIf, Month],
@@ -23,9 +24,6 @@ let template = require('./calendar.html');
   styles: [styles],
   template: template,
   providers: [MemberService]
-})
-@CanActivate((to, from) => {
-  return isLoggedIn(to, from);
 })
 export class CalendarPage extends Page {
   loading: boolean = true;

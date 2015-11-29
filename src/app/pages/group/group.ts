@@ -1,7 +1,7 @@
 import {Component, NgIf, NgFor} from 'angular2/angular2';
 import {Router, RouteParams, RouterLink, CanActivate} from 'angular2/router';
 import {appInjector} from '../../app-injector';
-import {isLoggedIn} from '../auth';
+import {Authorize} from '../auth';
 
 import {Page} from '../page';
 import {GroupMember} from '../../models/group-member/group-member';
@@ -14,6 +14,7 @@ import {MinutesPipe} from '../../pipes/minutes';
 let styles = require('./group.css');
 let template = require('./group.html');
 
+@Authorize() // make sure logged in
 @Component({
   selector: 'group-page',
   directives: [NgIf, NgFor, RouterLink],
@@ -22,9 +23,7 @@ let template = require('./group.html');
   template: template,
   providers: [MemberService]
 })
-@CanActivate((to, from) => {
-  if (!isLoggedIn(to, from)) return false;
-
+@CanActivate((to, from) => { // then check if member of this group
   let injector = appInjector();
   let User = injector.get(UserService);
   let router = injector.get(Router);

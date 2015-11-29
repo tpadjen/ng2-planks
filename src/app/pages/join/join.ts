@@ -2,7 +2,7 @@ import {Component, NgIf, FORM_DIRECTIVES} from 'angular2/angular2';
 import {Router, CanActivate} from 'angular2/router';
 
 import {Page} from '../page';
-import {isLoggedIn} from '../auth';
+import {Authorize} from '../auth';
 
 import {UserService} from '../../services/user-service';
 
@@ -15,15 +15,13 @@ function dasherize(str) {
   });
 };
 
+@Authorize()
 @Component({
   selector: 'join-page',
   directives: [NgIf, FORM_DIRECTIVES],
   pipes: [],
   styles: [styles],
   template: template
-})
-@CanActivate((to, from) => {
-  return isLoggedIn(to, from);
 })
 export class JoinPage extends Page {
   joinData = {
