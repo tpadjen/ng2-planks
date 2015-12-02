@@ -76,3 +76,7 @@ td.day {
   }
 
 }
+
+.empty {
+  border-top: none;
+}

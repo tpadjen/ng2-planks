@@ -2,13 +2,17 @@
   <help *ng-if="interactive"></help>
   <h2 class="member-name" *ng-if="interactive">My</h2>
   <h2 class="member-name" *ng-if="!interactive">{{member.name}}'s</h2>
-  <h1 class="month-name">November</h1>
+  <h1 class="month-name">{{ monthName }}</h1>
 
   <table class="table">
 
     <tbody>
 
-      <tr *ng-for="#week of weeks">
+      <tr *ng-for="#week of weeks; #i = index">
+        <td [attr.colspan]="startDate.getDay()"
+          *ng-if="i == 0 && startDate.getDay() > 0"
+          class="empty"
+        ></td>
         <td
           class="day"
           day

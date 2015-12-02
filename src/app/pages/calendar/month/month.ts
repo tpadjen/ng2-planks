@@ -26,12 +26,22 @@ export class Month {
   @Input() interactive: boolean;
   @Input() member: any;
 
-  startDate: Date = new Date('November 1, 2015 11:00:53 AM');
+  today = new Date();
+  startDate: Date = new Date(this.today.getFullYear(), this.today.getMonth(), 1);
+  monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  monthName = this.monthNames[this.today.getMonth()];
   nDays: number = daysInMonth(this.startDate);
   dates = getDates(this.startDate, addDays(this.startDate, this.nDays - 1));
   weeks = chunk(this.dates, 7);
 
-  constructor(public User: UserService, public Planks: PlanksService) { }
+  constructor(public User: UserService, public Planks: PlanksService) {
+    // remove null padding on first week
+    for (var i = 0; i < this.startDate.getDay(); i++) {
+      this.weeks[0].shift();
+    }
+  }
 
 }
 
@@ -43,6 +53,13 @@ function daysInMonth(anyDateInMonth) {
 
 function getDates(startDate, stopDate) {
     var dateArray = new Array();
+
+    // add null padding to first week so start of month is correct day
+    // and chunks end on saturdays
+    for (var i = 0; i < startDate.getDay(); i++) {
+      dateArray.push(null);
+    }
+
     var currentDate = startDate;
     while (currentDate <= stopDate) {
         dateArray.push( new Date (currentDate) )
