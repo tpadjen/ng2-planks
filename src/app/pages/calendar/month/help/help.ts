@@ -22,7 +22,7 @@ export class Help {
   afterViewInit() {
 
     this.User.waitForLoad().then(() => {
-      if (this.User.daysPlanked == 0) {
+      if (this.User.daysSucceeded == 0) {
         this.showInstructions();
       }
     });

@@ -1,9 +1,9 @@
 <div class="this container-fluid" *ng-if="hasUser" [class.interactive]="isUserPage()">
   <div class="dashboard">
-    <h2 class="info days-planked"
-        [class.hidden]="loading">Days Planked: {{member.daysPlanked}}</h2>
-    <h2 class="info time-planked"
-        [class.hidden]="loading">Time Planked: {{member.timePlanked | minutes}}</h2>
+    <h2 class="info days-succeeded"
+        [class.hidden]="loading">Days: {{member.daysSucceeded}}</h2>
+    <h2 class="info time-succeeded"
+        [class.hidden]="loading">Time: {{member.time | minutes}}</h2>
   </div>
   <month [interactive]="isUserPage()" [member]="member"></month>
 </div>

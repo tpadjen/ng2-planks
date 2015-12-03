@@ -1,4 +1,4 @@
-export class PlankRecord {
+export class TimedRecord {
   public date: number;
   public uid: string;
   public time: number;

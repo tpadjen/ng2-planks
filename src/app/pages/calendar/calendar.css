@@ -55,19 +55,19 @@ h2.info.hidden {
   padding-bottom: 38px;
 }
 
-.days-planked {
+.days-succeeded {
   left: 0px;
   top: 54px;
   border-bottom-right-radius: 4px;
 }
 
-.time-planked {
+.time-succeeded {
   right: 0px;
   top: 54px;
   border-bottom-left-radius: 4px;
 }
 
-.interactive .days-planked,
-.interactive .time-planked {
+.interactive .days-succeeded,
+.interactive .time-succeeded {
   border-bottom: 2px solid #ccc;
 }

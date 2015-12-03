@@ -1,51 +1,51 @@
-import {PlankRecord} from '../plank-record/plank-record';
-import {PlanksService} from '../../services/planks-service';
+import {TimedRecord} from '../timed-record/timed-record';
+import {ObjectivesService} from '../../services/objectives-service';
 
 export class GroupMember {
   id: string;
   // plankRecords: PlankRecord[] = [];
-  loadingPlankRecords: boolean = false;
+  loadingRecords: boolean = false;
 
   constructor(
     public uid: string,
     public group: string,
     public name,
-    public plankRecords: PlankRecord[],
-    private PlanksService: PlanksService
+    public records: TimedRecord[],
+    private ObjectivesService: ObjectivesService
   ) {
     this.id = this.uid.replace("google:", "");
   }
 
-  get daysPlanked() {
-    return this.plankRecords ? Object.keys(this.plankRecords).length : 0;
+  get daysSucceeded() {
+    return this.records ? Object.keys(this.records).length : 0;
   }
 
-  plankedOn(datetime) {
-    return this.plankRecords && this.plankRecords[parseInt(datetime)];
+  succeededOn(datetime) {
+    return this.records && this.records[parseInt(datetime)];
   }
 
-  plankTimeFor(datetime): number {
-    if (!this.plankRecords) return 0;
+  timeFor(datetime): number {
+    if (!this.records) return 0;
 
-    console.log(this.plankRecords[parseInt(datetime)]);
+    console.log(this.records[parseInt(datetime)]);
 
     return 0;
   }
 
-  get timePlanked() {
-    if (this.daysPlanked == 0) return 0;
+  get time() {
+    if (this.daysSucceeded == 0) return 0;
 
-    return Object.keys(this.plankRecords).map(datetime => {
-      return this.plankRecords[datetime];
+    return Object.keys(this.records).map(datetime => {
+      return this.records[datetime];
       // return this.PlanksService.objectiveFor(new Date(parseInt(datetime)));
     }).reduce((a, b) => { return a + b; });
   }
 
   static ranking(a: GroupMember, b: GroupMember): number {
-    if (a.timePlanked > b.timePlanked) return -1;
-    if (a.timePlanked < b.timePlanked) return 1;
-    if (a.daysPlanked > b.daysPlanked) return -1;
-    if (a.daysPlanked < b.daysPlanked) return 1;
+    if (a.time > b.time) return -1;
+    if (a.time < b.time) return 1;
+    if (a.daysSucceeded > b.daysSucceeded) return -1;
+    if (a.daysSucceeded < b.daysSucceeded) return 1;
     return 0;
   }
 

@@ -8,7 +8,7 @@ import {
 
 // import {GroceryItem} from '../../../models/grocery-item/grocery-item';
 import {UserService} from '../../../services/user-service';
-import {PlanksService} from '../../../services/planks-service';
+import {ObjectivesService} from '../../../services/objectives-service';
 import {Day} from '../day/day';
 import {Help} from './help/help';
 
@@ -27,16 +27,16 @@ export class Month {
   @Input() member: any;
 
   today = new Date();
-  startDate: Date = new Date(this.today.getFullYear(), this.today.getMonth(), 1);
+  startDate: Date = new Date(this.today.getFullYear(), this.today.getMonth()-1, 1);
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-  monthName = this.monthNames[this.today.getMonth()];
+  monthName = this.monthNames[this.today.getMonth()-1];
   nDays: number = daysInMonth(this.startDate);
   dates = getDates(this.startDate, addDays(this.startDate, this.nDays - 1));
   weeks = chunk(this.dates, 7);
 
-  constructor(public User: UserService, public Planks: PlanksService) {
+  constructor(public User: UserService, public Objectives: ObjectivesService) {
     // remove null padding on first week
     for (var i = 0; i < this.startDate.getDay(); i++) {
       this.weeks[0].shift();

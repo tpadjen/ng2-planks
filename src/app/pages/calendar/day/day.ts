@@ -2,7 +2,7 @@ import {Component, Input, Attribute, NgIf, ViewChild} from 'angular2/angular2';
 
 import {UserService} from '../../../services/user-service';
 import {FirebaseService} from '../../../services/firebase-service';
-import {PlankRecord} from '../../../models/plank-record/plank-record';
+import {TimedRecord} from '../../../models/timed-record/timed-record';
 
 import {MinutesPipe} from '../../../pipes/minutes';
 
@@ -20,7 +20,7 @@ let template = require('./day.html');
   host: {
     '[class.past]': 'onOrBeforeToday',
     '[class.today]': 'today',
-    '[class.planked]': 'planked',
+    '[class.succeeded]': 'succeeded',
     '[class.rest]': 'rest',
     '(click)': 'onClick($event)'
   }
@@ -35,7 +35,7 @@ export class Day {
 
   animateIn: boolean = true;
   animateOut: boolean = false;
-  _planked: boolean = false;
+  _succeeded: boolean = false;
 
   days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   daysAbbr = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -54,16 +54,16 @@ export class Day {
     });
   }
 
-  get planked() {
+  get succeeded() {
     if (this.loading) return false;
 
-    return this.member.plankedOn(this._dateAtMidnight());
+    return this.member.succeededOn(this._dateAtMidnight());
   }
 
-  get plankTime() {
+  get time() {
     if (this.loading) return 0;
 
-    return this.member.plankTimeFor(this._dateAtMidnight());
+    return this.member.timeFor(this._dateAtMidnight());
   }
 
   get rest() {
@@ -90,14 +90,14 @@ export class Day {
   }
 
   beatObjective() {
-    return this.planked && this.plankTime > this.objective;
+    return this.succeeded && this.time > this.objective;
   }
 
   onClick(event) {
     if (!this._clickable) return false;
 
-    if (this.planked) {
-      this.unsetPlanked();
+    if (this.succeeded) {
+      this.unsetSucceeded();
       return false;
     }
     if (this.modal) this.modal.show();
@@ -105,14 +105,14 @@ export class Day {
     return false;
   }
 
-  setPlanked(time) {
-    this.member.setPlankRecord(this._dateAtMidnight(), time);
+  setTimedRecord(time) {
+    this.member.setTimedRecord(this._dateAtMidnight(), time);
     this.animateIn = true;
     this.animateFor(800);
   }
 
-  unsetPlanked() {
-    this.member.removePlankRecord(this._dateAtMidnight());
+  unsetSucceeded() {
+    this.member.removeRecord(this._dateAtMidnight());
     this.animateOut = true;
     this.animateFor(300);
   }

@@ -8,8 +8,8 @@
   </div>
   <div *ng-if="!loading">
     <image class="smile animated"
-          [class.visible]="planked"
-          [class.tada]="animateIn && planked"
+          [class.visible]="succeeded"
+          [class.tada]="animateIn && succeeded"
           [class.fadeOut]="animateOut"
           src="app/pages/calendar/day/img/718star.png"
     >
@@ -18,11 +18,11 @@
     class="objective"
     [hidden]="objective <= 0"
   >
-    <span class="obj" [class.striked]="beatObjective()">{{objective | minutes}}</span><span class="better" *ng-if="beatObjective()">{{plankTime | minutes}}</span>
+    <span class="obj" [class.striked]="beatObjective()">{{objective | minutes}}</span><span class="better" *ng-if="beatObjective()">{{time | minutes}}</span>
   </h2>
-  <div class="show-modal" *ng-if="interactive && !planked">
+  <div class="show-modal" *ng-if="interactive && !succeeded">
     <time-modal
-      (confirm)="setPlanked($event)"
+      (confirm)="setTimedRecord($event)"
       (cancel)="true"
       title="{{longDate}}"
       goal="{{objective}}"

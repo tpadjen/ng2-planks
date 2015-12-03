@@ -1,17 +1,17 @@
 import {Injectable} from 'angular2/angular2';
 import {Router, Location} from 'angular2/router';
 
-import {PlankRecord} from '../models/plank-record/plank-record';
+import {TimedRecord} from '../models/timed-record/timed-record';
 
 import {FirebaseService} from './firebase-service';
-import {PlanksService} from './planks-service';
+import {ObjectivesService} from './objectives-service';
 
 @Injectable()
 export class UserService {
   private authData;
   public objectives;
   public groups = {};
-  public plankRecords: PlankRecord[];
+  public records: TimedRecord[];
   public isAuthorizing = true;
   private _isLoaded = false;
   public _loadPromise: Promise<any> = Promise.resolve(null);
@@ -21,7 +21,7 @@ export class UserService {
 
   constructor(
     private FirebaseService: FirebaseService,
-    private PlanksService: PlanksService,
+    private ObjectivesService: ObjectivesService,
     private router: Router,
     private location: Location
   ) {
@@ -38,12 +38,12 @@ export class UserService {
       this.authData = userData;
       this.isAuthorizing = false;
 
-      this.PlanksService.loadObjectives();
+      this.ObjectivesService.loadObjectives();
       let loaders = [
         this._loadGroups(),
-        this._loadPlankRecords(),
+        this._loadRecords(),
         this._persistUser(),
-        this.PlanksService.waitForLoad()
+        this.ObjectivesService.waitForLoad()
       ];
       this._loadPromise = Promise.all(loaders).then(() => { this.onLoad(); });
     } else {
@@ -104,15 +104,15 @@ export class UserService {
    * User Model
    */
 
-  setPlankRecord(datetime, time) {
-    this.FirebaseService.plankRecords
+  setTimedRecord(datetime, time) {
+    this.FirebaseService.records
       .child(this.uid)
       .child(datetime+"")
       .set(time);
   }
 
-  removePlankRecord(datetime) {
-    this.FirebaseService.plankRecords
+  removeRecord(datetime) {
+    this.FirebaseService.records
       .child(this.uid)
       .child(datetime+"")
       .remove();
@@ -141,26 +141,26 @@ export class UserService {
     return this.uid ? this.uid.replace("google:", "") : null;
   }
 
-  get daysPlanked() {
-    if (!this.plankRecords) return 0;
-    return Object.keys(this.plankRecords).length;
+  get daysSucceeded() {
+    if (!this.records) return 0;
+    return Object.keys(this.records).length;
   }
 
-  get timePlanked(): number {
-    if (!this.plankRecords) return 0;
+  get time(): number {
+    if (!this.records) return 0;
 
-    return Object.keys(this.plankRecords).map(datetime => {
-      return this.plankRecords[datetime];
-      // return this.PlanksService.objectiveFor(new Date(parseInt(datetime)));
+    return Object.keys(this.records).map(datetime => {
+      return this.records[datetime];
+      // return this.ObjectivesService.objectiveFor(new Date(parseInt(datetime)));
     }).reduce((a, b) => { return a + b; });
   }
 
-  plankedOn(datetime: string) {
-    return this.plankRecords && datetime in this.plankRecords;
+  succeededOn(datetime: string) {
+    return this.records && datetime in this.records;
   }
 
-  plankTimeFor(datetime: string) {
-    return this.plankRecords && this.plankRecords[datetime];
+  timeFor(datetime: string) {
+    return this.records && this.records[datetime];
   }
 
   joinGroup(group, password) {
@@ -228,11 +228,11 @@ export class UserService {
    * Loading
    */
 
-  _loadPlankRecords(): Promise<any> {
+  _loadRecords(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.FirebaseService.plankRecords.child(this.uid)
+      this.FirebaseService.records.child(this.uid)
         .on('value', snapshot => {
-          this.plankRecords = snapshot.val();
+          this.records = snapshot.val();
           // this.loadingPlankRecords = false;
           resolve();
       });

@@ -1,10 +1,10 @@
 import {Injectable} from 'angular2/angular2';
 
-import {PlankRecord} from '../models/plank-record/plank-record';
+import {TimedRecord} from '../models/timed-record/timed-record';
 import {FirebaseService} from './firebase-service';
 
 @Injectable()
-export class PlanksService {
+export class ObjectivesService {
   public objectives;
   private _loadPromise: Promise<any> = Promise.resolve();
 
@@ -14,7 +14,7 @@ export class PlanksService {
     if (this.objectives) return;
 
     this._loadPromise = new Promise((resolve, reject) => {
-      this.FirebaseService.plankObjectives.once('value', snapshot => {
+      this.FirebaseService.objectives.once('value', snapshot => {
         this.objectives = snapshot.val();
         resolve(null);
       });

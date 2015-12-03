@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/angular2';
 
-import {PlankRecord} from '../models/plank-record/plank-record';
+import {TimedRecord} from '../models/timed-record/timed-record';
 import {Group} from '../models/group/group';
 
 export class FirebaseWrapper extends Firebase {
@@ -27,15 +27,15 @@ export class FirebaseWrapper extends Firebase {
 export class FirebaseService {
   public BASE_URL = 'https://planks.firebaseio.com/';
 
-  public usersUrl           = this.BASE_URL + 'users';
-  public plankRecordsUrl    = this.BASE_URL + 'plank-records';
-  public plankObjectivesUrl = this.BASE_URL + 'plank-objectives';
-  public groupsUrl          = this.BASE_URL + 'groups';
-  public authUrl            = this.usersUrl;
+  public usersUrl        = this.BASE_URL + 'users';
+  public recordsUrl      = this.BASE_URL + 'plank-records';
+  public objectivesUrl   = this.BASE_URL + 'plank-objectives';
+  public groupsUrl       = this.BASE_URL + 'groups';
+  public authUrl         = this.usersUrl;
 
 
-  public plankRecords    = new FirebaseWrapper(this.plankRecordsUrl, PlankRecord);
-  public plankObjectives = new Firebase(this.plankObjectivesUrl);
+  public records         = new FirebaseWrapper(this.recordsUrl, TimedRecord);
+  public objectives      = new Firebase(this.objectivesUrl);
   public users           = new Firebase(this.usersUrl);
   public groups          = new FirebaseWrapper(this.groupsUrl, Group);
   public authRef         = this.users;
@@ -53,11 +53,11 @@ export class FirebaseService {
   }
 
   onDestroy() {
-    if (this.plankRecords) {
-      this.plankRecords.off();
+    if (this.records) {
+      this.records.off();
     }
-    if (this.plankObjectives) {
-      this.plankObjectives.off();
+    if (this.objectives) {
+      this.objectives.off();
     }
     if (this.users) {
       this.users.off();
