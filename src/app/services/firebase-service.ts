@@ -28,8 +28,8 @@ export class FirebaseService {
   public BASE_URL = 'https://planks.firebaseio.com/';
 
   public usersUrl        = this.BASE_URL + 'users';
-  public recordsUrl      = this.BASE_URL + 'plank-records';
-  public objectivesUrl   = this.BASE_URL + 'plank-objectives';
+  public recordsUrl      = this.BASE_URL + 'records';
+  public objectivesUrl   = this.BASE_URL + 'objectives';
   public groupsUrl       = this.BASE_URL + 'groups';
   public authUrl         = this.usersUrl;
 

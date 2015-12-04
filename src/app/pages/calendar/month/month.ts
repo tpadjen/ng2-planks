@@ -27,11 +27,11 @@ export class Month {
   @Input() member: any;
 
   today = new Date();
-  startDate: Date = new Date(this.today.getFullYear(), this.today.getMonth()-1, 1);
+  startDate: Date = new Date(this.today.getFullYear(), this.today.getMonth(), 1);
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-  monthName = this.monthNames[this.today.getMonth()-1];
+  monthName = this.monthNames[this.today.getMonth()];
   nDays: number = daysInMonth(this.startDate);
   dates = getDates(this.startDate, addDays(this.startDate, this.nDays - 1));
   weeks = chunk(this.dates, 7);
