@@ -2,6 +2,8 @@
 
 An app to track a month's worth of planking progress using Angular2, Firebase, and Webpack.
 
+Live Demo [https://planks.firebaseapp.com](https://planks.firebaseapp.com) 
+
 ## Setup
 ```
   npm i
