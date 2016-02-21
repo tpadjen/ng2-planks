@@ -11,10 +11,6 @@ Run the live development server:
 ```
   $ npm start
 ```
-In a separate terminal, watch for changes:
-```
-  $ gulp watch
-```
 
 ## Test
 ```
