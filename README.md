@@ -1,6 +1,6 @@
 # planks
 
-An app to track a month's worth of planking progress using Angular2 and Webpack.
+An app to track a month's worth of planking progress using Angular2, Firebase, and Webpack.
 
 ## Setup
 ```
