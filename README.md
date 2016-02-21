@@ -1,4 +1,4 @@
-# ng2-planks
+# planks
 
 An app to track a month's worth of planking progress using Angular2 and Webpack.
 
