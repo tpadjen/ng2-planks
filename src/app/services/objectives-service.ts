@@ -29,7 +29,11 @@ export class ObjectivesService {
     if (!this.objectives) return 0;
 
     var clone = new Date(date.getTime()).setHours(0,0,0,0);
-    return this.objectives[clone];
+    if (this.objectives[clone]) {
+      return this.objectives[clone];
+    } else {
+      return 30 + 5*(date.getDate()-1);
+    }
   }
 
   // setObjectives(objectives) {
