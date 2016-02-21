@@ -125,7 +125,8 @@ export class Day {
   }
 
   get longDate() {
-    return this.days[this.date.getDay()] + " 11/" + this.date.getDate() + "/2015";
+    return this.days[this.date.getDay()] + " " + (this.date.getMonth()+1) +
+      "/" + this.date.getDate() + "/" + this.date.getFullYear();
   }
 
   _dateAtMidnight(): number {
